@@ -1,0 +1,402 @@
+ Input 0 : hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
+ Input 1 : gRTRnCRsFNGbTzLjwcSTMmSz
+ Input 2 : dGgsRWPGdWgZJqBBqhfpPq
+Found character : s	With Count : 19
+ Input 0 : HNCNJHCWJRRLqNJWlfrrrwsmlwGmmf
+ Input 1 : dddvLdLjdDvjvswlmGwlZQtjrt
+ Input 2 : dvcpbLVcvNJJHNPHSp
+Found character : L	With Count : 38
+ Input 0 : QDprSpLQRLQrQDmQcQFZjbbhZwdRsRFbbBss
+ Input 1 : gWGGPgNvJlgJzDlNGHCGPNZZgFBbsjbFFBwZwfhdZbZB
+ Input 2 : lHTlGMHlGCPNvClzGzJHvGcrMcVtLqMLcrrQVcVDrqrm
+Found character : D	With Count : 30
+ Input 0 : SrBpJFfldlFNslFJBZwsmwgVGGsCCVmZZD
+ Input 1 : jLtjvzLQMtWjbbQvDZZwGRJGgwggGZgv
+ Input 2 : MzqqjznQPqnnjznnctnFlSddPfHflhfBJFNdHd
+Found character : J	With Count : 36
+ Input 0 : mPNNGVCRngnSbgNw
+ Input 1 : WqsqlTssgvqvZWZzhsTzWhScdHtfJJnfbtSJwfczdtSS
+ Input 2 : sqTvhpqQvWZQLmDpDGMDGrgL
+Found character : g	With Count : 7
+ Input 0 : DQRcLQVLbbcbrFPcRtTBBBJnTZrrnmZTrMgJ
+ Input 1 : slGjjjdlhMfvdMQTvg
+ Input 2 : jlzNhWHhhWjHlwwwGLDSDtPQVtRzRbSzpp
+Found character : Q	With Count : 43
+ Input 0 : DzDgfvzfDczfHCHSlgHLCmWG
+ Input 1 : PrpNPJtpPMBssmmVdmSVVr
+ Input 2 : PSRMwPnMpBNtNBTnnZwDqzQFfwhjZZqfhh
+Found character : S	With Count : 45
+ Input 0 : fzfBwhBJFbCwbwwg
+ Input 1 : strtgtrPgmPgFRsMdRnZRMFn
+ Input 2 : mrmLPDvGmmtSLDgmSqvHchhcHQzcQQJHBfBh
+Found character : g	With Count : 7
+ Input 0 : NsgwPPDgsPHqsTqqmLbLrDRhmrRVrbVW
+ Input 1 : lFpGFtfFlvSFplGFzptSGSSlhZbhjhfrmWbhLhmLbCZVZjWr
+ Input 2 : ccplJQSGcSSpVFvNqqsqPNqPQPTwqd
+Found character : V	With Count : 48
+ Input 0 : HFhPNNZGqSZrCDBVZBCB
+ Input 1 : RJTtwczTzCRVQrRHpR
+ Input 2 : mfgblfltwgwwmlJgcHNnGhSbFNnFsFjFqG
+Found character : H	With Count : 34
+ Input 0 : tSRqNRHpHnMSTqpcmrWWfqfmrCQCrW
+ Input 1 : lhGDtbgVVgDsDbhfldfwrzrfcdzwcr
+ Input 2 : vtDDhsgFBTNZFBHS
+Found character : t	With Count : 20
+ Input 0 : LcNpLLBNgdmHGmsBCrRBQDDwnwRj
+ Input 1 : hSWfZVhfPJJhfVWbhzbnQqQnRRRqPvCCrjvjwj
+ Input 2 : ztJSSJhzzSTJrZSbzzJTfzbZmLmggdmNMFNpmtmMGFFGNpmt
+Found character : r	With Count : 18
+ Input 0 : TRdFfLbTnLvZVlZvznQV
+ Input 1 : pgJGprJNhghhNjjPgPNrhNqqlVVlQVVQqQjfzBfQvZzB
+ Input 2 : rmGmSwJPwJprrNDbsfMRsdTDcDWHfM
+Found character : f	With Count : 6
+ Input 0 : QMpZZTtwMBttJMMbVqPpqLqbVlbqqN
+ Input 1 : rjCFGrdGRwdDHSnqflPVLqqVNllrfl
+ Input 2 : DHGDRvhvwTZhJWBQ
+Found character : w	With Count : 23
+ Input 0 : LcQCCpLQVhrdcFQCJrmmmwDwvDtJJnnw
+ Input 1 : TsZqqTzMRqZjfsjTTDjsNJnmnStRSHnnSJmnJSNH
+ Input 2 : sMMZZbDjZFdbVCFphV
+Found character : D	With Count : 30
+ Input 0 : FCcdFFGBsdDrbMNSmSdmQR
+ Input 1 : tVttHVLhvVgfTTtffNSMQRMZSRmMQNmHSb
+ Input 2 : gngvvwJtVVTvVvvvfwvJThhCzGcnsCjmCDmscPcGCsGsmz
+Found character : m	With Count : 13
+ Input 0 : fsnzRNZswZszPRZSLflPpDhlhvgWHmjWvJjh
+ Input 1 : bVcCqjbdjbcMdBrddrQphvHHmHWlggpWpppqJJ
+ Input 2 : FBTdFQGrTjLNsNtL
+Found character : j	With Count : 10
+ Input 0 : MSWWgMdgdbWbbfdgsPmddgCmSLZvSFvLQvnLrFNZvZFLlLLl
+ Input 1 : hjpJjGthjRNRptwJJqVBllnvrrlTTQFZqnTZnn
+ Input 2 : tjDGHwhHHjwjjJGpwjwjjJpwsdgffmbgMsmbDNcMcdmCPdsm
+Found character : N	With Count : 40
+ Input 0 : MlDrrgnTDLlCCmCRFgRSCR
+ Input 1 : HHhbbNQMccQFSNBmmpJNSJ
+ Input 2 : MwbMbshsswVbHQsbcVMcrtDllTlLqfTGVzLGrTlT
+Found character : M	With Count : 39
+ Input 0 : gSFzqQTpmVpQVpLFLrzJJRthlsQBlPsZsBhZst
+ Input 1 : rwrNDdbHdBhRhZbsjB
+ Input 2 : vvvMHwHcwGCwwNfMVSrqffWpSfSFzLmT
+Found character : r	With Count : 18
+ Input 0 : RNgMgRCCgCfPNfvNgVQmhPVWWjWjLLdLBj
+ Input 1 : JhJqqqwGDchsBVbdjldmBLmG
+ Input 2 : schZzDwTJzFTsctHFMtfftgMttpM
+Found character : h	With Count : 8
+ Input 0 : GHHWqWFWfWHqbRWsFZFmqZbhNjNDNppNjrjDcQdbpddhjr
+ Input 1 : wCLCVPfwgVSnPNrQhnDcjcNpDD
+ Input 2 : TPgLlggJLVwPVVPPwgTwvtSCFmzGGqzGZsGRqWBGfFRFJFRB
+Found character : f	With Count : 6
+ Input 0 : LfFLmGTPHBfpHmzBLdZfBfZTbWWttWSDJtWVDJDtSWJzVCCV
+ Input 1 : RssRRRhrRwQqMQQwnPngQrwvVSjttjJSjSVtWWCWjbVb
+ Input 2 : hQPnnRnQgNcQqqQQcsZTNTLpdZZfpZFHNpBp
+Found character : P	With Count : 42
+ Input 0 : VTCVVnwfFTvFmTCvWwJHdlhHWBJhJBRWNHgh
+ Input 1 : ZbSMZbctGtScQSZsSpZpPpplhBhtdJDRDJjhdtlRJRjNRj
+ Input 2 : rLsbBQSMBGspPGcMPQvnqmwzwmCVLmqVmwTF
+Found character : B	With Count : 28
+ Input 0 : GVrrQVHHHQGTllQjPHGrlCQpZZpJFWZFzzjBssDJghzhFZ
+ Input 1 : NSMmWmtqMWqSNbcctdLcdghpgpppssZgbgzpFzJJFs
+ Input 2 : cfLqLwMRdtNLMlQrvflWTQPffQ
+Found character : W	With Count : 49
+ Input 0 : FjtGflGsbNqjsmjGGGbmqQQQBQBTjdpTpJTWvJBddj
+ Input 1 : CPrVRMnvvLSRHLnBpwdWTRBQwQzBzR
+ Input 2 : SnZMZPcHMlqchsvGGb
+Found character : v	With Count : 22
+ Input 0 : nnJnswzPCtmZDCpmhphD
+ Input 1 : rSVVLQQQGQjwpdmdNmpS
+ Input 2 : VvBcQvGcQgGLBgWrwznfJsncltJsJnssPM
+Found character : w	With Count : 23
+ Input 0 : dhbwLStzSGmmmzJJvFgJNvnrgvhv
+ Input 1 : VTsTsRscRsVBMRVTTsjZVPCnDNvfrPfDvNCfBrPNDJ
+ Input 2 : scHHQTpJZjHwzLSHHtqHSt
+Found character : J	With Count : 36
+ Input 0 : MHmFsBDmGpGTBfmCfWCffhzgvf
+ Input 1 : wcjwnRLPZRVbtCjtNttGCh
+ Input 2 : ZLGVJRrnPPPwQwPppqDHFpBFTpqFDr
+Found character : G	With Count : 33
+ Input 0 : GzMgVfGRdRVngDjhqcjctrtrzzzs
+ Input 1 : QbQSHwHSLbWwJJFwJPLPSWTQjrhqtjflThccsclCcscCCmmj
+ Input 2 : JFbNSbLvHHLQFLvwQJFWSBVgMNGdBBnBMVfddpGngB
+Found character : f	With Count : 6
+ Input 0 : sZHNJwMsvHswwvMWqBzhChWPMBzd
+ Input 1 : bHQQQRDHRcRcDljttBldlPBdggBCqB
+ Input 2 : QjnDbDjjjncRjbQnfZpvssZNHnppFNpvvp
+Found character : H	With Count : 34
+ Input 0 : NdmfPNMHMdNMHcffHBCwwsvsRRllvwlcqjwscw
+ Input 1 : VLhVGLpLShgvrjwFhjqfls
+ Input 2 : pppnnQtVpGZVWtzGgVzgSSfnCCDmdPBMDbmmDMmdNMBmWNmm
+Found character : f	With Count : 6
+ Input 0 : rrfgCrrMllfnBhBrdCFfWLFmmVFVWQvWwtwV
+ Input 1 : TmSGSqNzvwwTFVvj
+ Input 2 : NSGSmNbDzpmSpbHmSJqqlMgdMndcgdccdpgllRRh
+Found character : m	With Count : 13
+ Input 0 : bbPtLnLcLJzTjcJbbTcttLcSgwmvWfVvfVvBgfmWVJMJMJMW
+ Input 1 : ZsDNNGDRsrHzpNRwMlgRlgmMWvffWM
+ Input 2 : FGzQpZGGLFjnSFbF
+Found character : z	With Count : 26
+ Input 0 : DQZVDdWWNBtgWnJCnL
+ Input 1 : SSHSmbHRFqGrmqJrbbGzjmzCwrvgvwnBwnCvprwvpwwPvv
+ Input 2 : qFFFSmsRRzzFjcFsSsjmzJzflhlZTTThdhVflZlVDDhMcN
+Found character : J	With Count : 36
+ Input 0 : cdvrFddqDtDvqgCDtFtrvvvFSmShPShJVJmMJSJbVBgTlmbM
+ Input 1 : GzjpHzGHHfQNfJSlPQbJBSTJBM
+ Input 2 : HWpspsWjNsGRHfpwNszzLfGqnCnZtdvvcZvwqFCcZqMZCv
+Found character : M	With Count : 39
+ Input 0 : rhHhDhhDrRNwDRhNRLRqNPHjHSpVpVlljSSMnlHnjS
+ Input 1 : sVVBsFBJBtBSPSjtjPPZZS
+ Input 2 : JmddVTzsffcGNwzCqNqR
+Found character : V	With Count : 48
+ Input 0 : nQfqFtZWFZnFJWfpGqhDsGLLPLVbrPhr
+ Input 1 : CzjwMTgBgTNSGLVVDPbjbS
+ Input 2 : wMCmgNNdgvzGdRQcFGFdfJ
+Found character : G	With Count : 33
+ Input 0 : CbqCDnwFpDpCVfBPmPffPfRfpB
+ Input 1 : svcsjlGJGnlnvjvzgQQgGzsZPhBRcRPhWfBZBhPhWRRhPN
+ Input 2 : sJngnjSGGTGzgJGrrbCqLHrCLwSFqV
+Found character : n	With Count : 14
+ Input 0 : hnRnJrwMHnQRRRwMhRrnJRBLZtBPdPSdtZZjjstsLHBP
+ Input 1 : pBBzzcbTbzCcFzTvlSCZLCtSvvttdZ
+ Input 2 : FWmNzBFNDnRqNRDM
+Found character : B	With Count : 28
+ Input 0 : lvzlSPRDSpDJmNwNGgFpfsFN
+ Input 1 : WBHrtrLBbhWHtdrFwFFsjzwfFjsdsF
+ Input 2 : HWnrHnTWhWTCTzTBnRZqDDDCqZcclRvSJR
+Found character : z	With Count : 26
+ Input 0 : qcdVbpcMFQcdMGcMFjjpbCnCGmCnJHDHDGJChzCJCJ
+ Input 1 : wWwlSfBRgRNBDPJnCgCrgzms
+ Input 2 : tBTfTRwlwRLNwTRmWtNwQFZtqcjcdcqpbdQMqMdd
+Found character : m	With Count : 13
+ Input 0 : jJRzwDdwFdJddcjjFCFvQLvNlBhSBhCC
+ Input 1 : gMMpbHpmnHpWfnlCSBQCPmPllQSs
+ Input 2 : nHWHVfTGdTSjZzDT
+Found character : S	With Count : 45
+ Input 0 : sCVTsBPltgDSbLvRMMDT
+ Input 1 : WNrjNmWZwmZwfVLvLRbRNvMp
+ Input 2 : mrHGrmnjqVzjGqdmCltlhFFllgsHBPCg
+Found character : V	With Count : 48
+ Input 0 : wbglgTFRblnMRltJBNrDDWQbtdbN
+ Input 1 : dqCpcjPLGfHZQBJNGGvQDZ
+ Input 2 : SPssjVSqPCLpScfCgFRVmTlRwndlRwTR
+Found character : d	With Count : 4
+ Input 0 : hWMWMhTTDgWMzGMszQShGWJPCQmPVCNPffPfVJftqNQC
+ Input 1 : nbnHHwLrnswwPVCPZV
+ Input 2 : nsRvFHLsvplvrcsSWDDDddjjDlMTjT
+Found character : s	With Count : 19
+ Input 0 : HRCnhWZhCddgwRcwhdWZHHQLJzSLsSzjJwSjztsmtzsmLF
+ Input 1 : VlVVNNVqTlMVbTVVMqvqvrDTjQfFtjstJmzftfzsSbtStJQb
+ Input 2 : pQvvPpBqNBccPWWhcWWc
+Found character : Q	With Count : 43
+ Input 0 : glJTndVWCTDDVFvnVndVlCvwmBmqBBwQmwPwmMPggGsPGm
+ Input 1 : NhcSrhNZHhZzRtHcNRrSMSMSFBMGmsQQGLMPPF
+ Input 2 : hcpRzbcHjRhRbZRzZRztzRpJVdCdnfCnlFvdDTnJCVDjWd
+Found character : F	With Count : 32
+ Input 0 : dqWvjjBdWWqMjdvvMJjWWjMGgcfchhzrhwbrwShwgzSqNb
+ Input 1 : mmmmsVTlVlsLQmnpsNcfgfwNLgczhcGhzw
+ Input 2 : RslpsnGGGlWdCZFMMRWR
+Found character : G	With Count : 33
+ Input 0 : pfSpZSrdSMVDVVLMMDDZpdgRWMPGqqPGqmqqGGhGHNRN
+ Input 1 : wwQBwtjvvJlvsnbTbvBRHgPmlqhlqWWHqZZgNm
+ Input 2 : JnQwJvjTtzTZwJnbzzfCrfLCfdfdddfD
+Found character : Z	With Count : 52
+ Input 0 : PZcnljZFTVmQdlQh
+ Input 1 : JCLLqBBCSNCCqzJNzStBpStBmsdhVTdmVWsWmdhfLhWVdfrR
+ Input 2 : BpMzzqSzppMMqpJqqgzPFcjZjnTjgcjbPjPDPZ
+Found character : T	With Count : 46
+ Input 0 : HLHWmqBHHqWbMHFtbgWcdhspPcPchndPpn
+ Input 1 : ZRVSQZRfVZGRgnfsdhLgLndL
+ Input 2 : jzJRwJRSJJvSlZQGRVwlSGZDMqmmCCCmtNbCmtCMzFNLbF
+Found character : L	With Count : 38
+ Input 0 : fDhlBhhZmQRRfHwLdjHFFWQQjQ
+ Input 1 : ZMTssVVzvbCqJddsLwwH
+ Input 2 : TzgTbgGGzztMbbvzvVbGvSPBrlShRrfnNrnBDlNcRDZRZB
+Found character : Z	With Count : 52
+ Input 0 : bjfqGfvFfcHvRwGFRHjbgQtddlQljWpWnQgdWWll
+ Input 1 : TSPVVSVwSzSDTDlntDndnlWddt
+ Input 2 : hTrrNCBCVrCrrVshThHHbZvFGscwbfFGRJcZ
+Found character : w	With Count : 23
+ Input 0 : jNhMjcgvMNgWggvttcFtchvPFFzdPPrQrrGGQQszRPQrRG
+ Input 1 : wSCqCmmppbTwPnGHrQdrGCCD
+ Input 2 : LlqwGmGScLcVthVt
+Found character : G	With Count : 33
+ Input 0 : dGGrWWDqmCnwCCQMQrMbFHbMHsPFgPVZbgFPgg
+ Input 1 : tLRTBwfvTBJcZFNFZRHSHPVN
+ Input 2 : zjJLTvjcwDzqqhGD
+Found character : w	With Count : 23
+ Input 0 : DzrWszFFrtBBhnhNCClHlnHbSbmlSn
+ Input 1 : ZLwLcVVZcLVpvRwLgMLpLJgPmmQSNSTNbtTvQmCHQCClCHCt
+ Input 2 : cfgZJwwVLJZPPVpRwzhzrrfGGBrGtDrBsf
+Found character : t	With Count : 20
+ Input 0 : BTsdCQsQnwwdcCqqdCnsFvGFpFBvGzrLLmmzpvfG
+ Input 1 : pjZjgPVlJVMVtgJSWLPvfFFFbNNmNbvbmL
+ Input 2 : ggVplgJtHSSggdCHsscChhdnnR
+Found character : p	With Count : 16
+ Input 0 : JddZcSlvvGFJNWVWFgQgVtFWhg
+ Input 1 : nDqsHqCszwjCCPMnfhfBhtdWggfg
+ Input 2 : bqppHqqHHbPLjLCppbwDdRNvdmcTmlNZGGbTTcNv
+Found character : d	With Count : 4
+ Input 0 : lcZDSvztcHHcMSZVHVvMZBqBNNFNhBNTTmssBqBcFB
+ Input 1 : bbGJQdQPpGfQJQdJfLFhmznhzLLNTFhNhf
+ Input 2 : JGpWpPJddbPpPwpjbtZSzltDgWDSgvtrVv
+Found character : z	With Count : 26
+ Input 0 : lJcNlNjPcmtFzHtHBJFg
+ Input 1 : VPZdwGGWVrsdPWhWwhzzCzzFppDFMBtttFCr
+ Input 2 : wshsLVfWTnGswdhwcmRjRmScqTcjlPNq
+Found character : P	With Count : 42
+ Input 0 : BsBshRZQQsVdsZQZSdsPDwJDHNNHBztNNFMGGwMF
+ Input 1 : nSTpLjcvHppzwwNt
+ Input 2 : jcqncjjvfmgrCfvqrnZbmdmSsdbVWlsmhRdW
+Found character : S	With Count : 45
+ Input 0 : FjjqRZjZFZWFqPvNvvPQpmbPDCmt
+ Input 1 : GSnHSnrScncHhrtncGshVbmTmbpVvppCmpCTmTCmCC
+ Input 2 : rHfnddwdfctlzFFgwqlj
+Found character : t	With Count : 20
+ Input 0 : wBwlBmmhwRVThVBmFHnvHMnfsmFfHq
+ Input 1 : jzwGSGJNZCCssHfsCPfv
+ Input 2 : GJbzbZdbwJdtdQphRVWQ
+Found character : w	With Count : 23
+ Input 0 : ztFZccVHFWHHLSDBpSBPhhZw
+ Input 1 : fmjsCmqnNTJnvbTvLRPDlCpBSPBpRShl
+ Input 2 : JqsGTSNJGqvqvNvttGQQGdFrQctrrF
+Found character : S	With Count : 45
+ Input 0 : mNZqjTFrZqrTNTTGSSSbrhrhRFRHcnLCzcCdHcLBdccHLzRC
+ Input 1 : JDDfJswJDWsvgVgwpWnRBlBzGCnlCLBlcCDl
+ Input 2 : vVGpfQWJpsPQMVgvppVwgWPJrqSZTrZqhTQTrhjbjqSSjZqt
+Found character : G	With Count : 33
+ Input 0 : fMSDzDHzpDDVsStdDgwwFZFrrMPCNngCZP
+ Input 1 : WmLnbWmvvWTTLWWQWRGQvLvrPFZJcgJFCZNrCgGCFCPNPF
+ Input 2 : QLhlqhljWvRQbbqlqnfStnHdBqVVfzpq
+Found character : n	With Count : 14
+ Input 0 : qWZtSQTSvJJvBfJVBBVFNDNHbbdRVPdpNFRF
+ Input 1 : fGcwwmCgsLhgwLchbpHdrrrphdPRPh
+ Input 2 : gMjllmcjwsLMgcwlMnSWzSqjSZJqZqZfjQWv
+Found character : f	With Count : 6
+ Input 0 : cdRHPjRFRdFVHGcFfFTHQTHVLSQBsbsqSCLqllBJqqbSqLJC
+ Input 1 : WwWppWgtNrnzzWDmrrmNvWJClJSSbqLJJCGbsCgJbLLg
+ Input 2 : MnvWpmwvWnvtGPjVRcHRRHMj
+Found character : G	With Count : 33
+ Input 0 : dLMDhdHGrcLTvvvstB
+ Input 1 : nPqgGGNPqRgRSjgmlWjbbTTPPBvpvpTcswwsTF
+ Input 2 : NRGmgjRnWgnZJqllmSqjnqSDhQzVrdQHDfDrDJQDMHDJzM
+Found character : G	With Count : 33
+ Input 0 : RgmcPmGNQwwNmSRwPPgfmrBlCDlGbvFFvtrCsvlrBB
+ Input 1 : nfdVnjHdMWnTqflFtbjrllrlsCDl
+ Input 2 : TZJVMhnfMnVMHnpRRNRzgJRzSzgwPR
+Found character : f	With Count : 6
+ Input 0 : nTbsblzlnGllmsNnbDwbcWQWwWBFJBQcWQvPWFJM
+ Input 1 : HRZRdSRdCdLdRftrHHZfSQBMWJMgMzQPFWMJCFWgvQ
+ Input 2 : HVzrLrrjRjLGnlTnlDlsjj
+Found character : z	With Count : 26
+ Input 0 : RQdTdZhWqlZhTdWTqblhNmTMVnnrQsnnpvgMVMHMgHMrgP
+ Input 1 : fjSSfjcCzGNBjCjsnpMVpnpzvpzsHp
+ Input 2 : GGwLGSccwjwLwBcGLGSqZWmmdLZLWThmRNZmWR
+Found character : N	With Count : 40
+ Input 0 : ncmBrmfdfcVcfGnQdVWRBRvgqNvDvWqzLRqg
+ Input 1 : PlpPbSbLFPLpFstsbqRqZMqWZqMWSDRzvq
+ Input 2 : sjtjHCwJwlHfdfjccmmLLQ
+Found character : L	With Count : 38
+ Input 0 : tGMtLHQGWzLHFVQtVfQtMWtbgrZNbdfSbccggrcTjTrfbm
+ Input 1 : swRChnwqhBCCCmSjcNSdcd
+ Input 2 : vnlnqDRlsRnJJqswJvGMFVMMdWtpVJFMQQFL
+Found character : d	With Count : 4
+ Input 0 : ffcHLzGmfvqqfWfF
+ Input 1 : rJrrRSPCPMCrPRQMNNWJQjJCnqFVVVTStqVnSBdqppBVtpqd
+ Input 2 : jNQQPjQMCRQwwQbRQbjMgwbNhwWZHHmzmlchlHHHDcLmWzhD
+Found character : W	With Count : 49
+ Input 0 : JzvrRHHJvCRZFPFnPgsQVVQNzQTQDttVsB
+ Input 1 : GSMjpqdbGNppBtDhPN
+ Input 2 : MbmqMwGbZPmPHJmv
+Found character : P	With Count : 42
+ Input 0 : ggVSVWzCNbbNCbRM
+ Input 1 : DfVhVsVQcQDmpmQTTQLjPjMjbDGNlbRMlNGG
+ Input 2 : sftTFJJccnphcfncTsfBvwZvrzgzZzZvBrVnzq
+Found character : V	With Count : 48
+ Input 0 : qqlClBNSCNSRQMvdrwFvnBrr
+ Input 1 : GDfhDtszhhsThpTDzsfpprMrFvQvrnnfvQrwHFbfFH
+ Input 2 : VtggWhpsmGVTGJWMjWjNjPWjLL
+Found character : M	With Count : 39
+ Input 0 : NSnShnjsswSsRPNsrnwcwMHfFwGqbvqCbFfg
+ Input 1 : LDJtzzmgVVlvqGbzvFfzff
+ Input 2 : mlJmQQpmJpZpBJJdjBNhrnnRdTTgNN
+Found character : g	With Count : 7
+ Input 0 : RtRRvbhDFPHHlhtPhRvPRtqjmzqzzwLjHQHLLLQVmVjq
+ Input 1 : WNNBBZfgfWnqVQwNqzmQcm
+ Input 2 : MZGfzSrTTnWrrWsTWnfSGbGllPCbGlJRvlPllCtt
+Found character : z	With Count : 26
+ Input 0 : phgcNfqgfpZsjjpdsS
+ Input 1 : brHHnWPbDPDbTPlDJJvJJPrMVVzRSdFzwdZZzFnsdzzVdVZs
+ Input 2 : SbStvJMDQgNmmtgg
+Found character : S	With Count : 45
+ Input 0 : lzDMDhfFRlfMFTfMGPMbFTlMpBHrmpjjCFjmBmrqBjtCmjjq
+ Input 1 : VvVswLLHZnJJwdndNsSSNBpCpjqjmNgrmCNtmmqm
+ Input 2 : nHcZWcSVsScTDlPPlTPb
+Found character : H	With Count : 34
+ Input 0 : DFMQSlMDpSpFDtDFccHvmqzvbHZjJmvzmmQH
+ Input 1 : CSgffrPssdgqRbqzzRqZ
+ Input 2 : dsdsfGsrBPsTVcMctMVNNhtStW
+Found character : S	With Count : 45
+ Input 0 : MDWRDWpgDvWpNptvNMnJCHJHMwHCndJfZn
+ Input 1 : blcrqTFmmcbhLTTTmlBZbjBJdBfBnCbQBdfn
+ Input 2 : TzlnhcnzTmhLRvSDsRzDPzWR
+Found character : n	With Count : 14
+ Input 0 : nwmmPnnPDjclhhjfFzzzwqbFFNHwVqVq
+ Input 1 : vSQrbpWCvMWQQWQMLgFJVHqzBzJVNqzBFL
+ Input 2 : CvCvQtWWQmcbtntPcb
+Found character : b	With Count : 2
+ Input 0 : qzvtzCCtLsLLzmQCHqpSsHSmfrnNrTrNWWMNGnWZTMZGBvWn
+ Input 1 : PglVFJwPhbcghVTBpBnWWhWnTMhB
+ Input 2 : FgjcJccVpwDcwFgVDsqzddqLqSDSCQQL
+Found character : p	With Count : 16
+ Input 0 : PLHsSVGGPvSLTffjMJWJJBjfBL
+ Input 1 : gNhwgTqDcqwpDqNhFpDFhFWfnndjcMJjMWzzBtntJBnW
+ Input 2 : DFhhQRRwbCbwRQChppmTHCVGTlslrsvrrSVZ
+Found character : T	With Count : 46
+ Input 0 : hHnRfSMmsSVrFvQqrmDPgr
+ Input 1 : jjcBzjZLpWccJLczBjZjWGwCnNzDvrgPCgQvFggvqrQFnr
+ Input 2 : jtZGpLwjWBpBWcfMTttfbHRnHTbT
+Found character : n	With Count : 14
+ Input 0 : swSHffFTVrJlHFSWrTpMZMPhMNBqBhTvhhqZ
+ Input 1 : bQbLQGGjQLdRCcQjGZBzpzBZqMBBBVdBqh
+ Input 2 : RjQDQGmgmVVbVcjjmjgcnWtJfrwsfrtHlwswnfHSFw
+Found character : V	With Count : 48
+ Input 0 : bVHbbMFDcbDbcmbbHVRbMRFgzSmdzSSTBtTjBdQTzlSldQjT
+ Input 1 : nqpqCMwJffqQSzTBQlqd
+ Input 2 : wvJhnnfrfsJrCNffvspRrPPFMbPMRRPPMZgZHR
+Found character : M	With Count : 39
+ Input 0 : FnJZnssHvMdJWJpW
+ Input 1 : mlDlllGrSGmttwlGvZgrzZNWgggzTzdT
+ Input 2 : bCltZCthtRcbcFbjFL
+Found character : Z	With Count : 52
+ Input 0 : JGmHrJwGzzpllRZdzZLRcW
+ Input 1 : htbPSbVtFbbgjhffgPSfTVSDcHDDDLWscRdsZjdZcRssWc
+ Input 2 : vhfFbFvVHbtTVgFPhmJBCvBNrqBBrGCqQB
+Found character : H	With Count : 34
+ Input 0 : BcNQcvcBchSQNccLLvhTqbJZTrHrrrzzqTZMZMFZ
+ Input 1 : tpHDsnDRslllCCHtwnpsfjRgrJrVMfMmMrFrzVJFzrVZbZrr
+ Input 2 : tnDpjCwPLNSPdhPH
+Found character : H	With Count : 34
+ Input 0 : qnjvvBwBhSSFPgDQLVVDqgLr
+ Input 1 : WbszTbHTbsbHJWHLLMVZmJPQDrvmZL
+ Input 2 : ctlRbtCWWtvlSfjljjhBnBNB
+Found character : v	With Count : 22
+ Input 0 : TsnvssDDQlRbzMzjDMqHwq
+ Input 1 : tSGjZCfFZtCFLtVGWGZFbcqwHbhWdbzbwHbdwbdw
+ Input 2 : ZGBFJFZVBLjStZPBBZLRvlmsPTvsgrrnrTllvs
+Found character : j	With Count : 10
+ Input 0 : PgQdNsQFsdNwWqQBsQrTrTLpbrnTpGngnbTG
+ Input 1 : hCzzMJVDmfzmBDMCfSfhTMGcnpnTcjGrpjbMGjbL
+ Input 2 : CVVfvCflSHNHvPdBHW
+Found character : B	With Count : 28
+ Input 0 : DwlMjMNjStgmthMghg
+ Input 1 : PTlpHnJJTcZvTTbHZWZTvpqdHhmLgrgdfrhLLsmshmsLts
+ Input 2 : vncqTbPqcpCnbCPvccZbDBCGzzNBwjDlVVGFjjVR
+Found character : l	With Count : 12
+ Input 0 : QsdGGCztZVRddPgndf
+ Input 1 : DrNNBbwNHNwlbjFbbCNjNwDWWDPPVfDMgfmVMfnMWmmP
+ Input 2 : rvJBbbBNcLCtJZQL
+Found character : C	With Count : 29
+ Input 0 : NfLlqLhbNPddLPqLhpgHwFFwFHHTwRHWwPFTrT
+ Input 1 : MSMSCnjBnBjCscjVDVljTvHmmWnrwTrwFTrvTWTT
+ Input 2 : JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp
+Found character : l	With Count : 12
+empty string
+Final Count = 2805
