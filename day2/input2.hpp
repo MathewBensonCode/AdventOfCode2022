@@ -1,4 +1,7 @@
-B Y
+#include <string>
+using namespace std::string_literals;
+constexpr auto inputdata=
+R"(B Y
 A Y
 B Z
 A Z
@@ -2497,4 +2500,4 @@ C X
 A Y
 A Z
 B Y
-A Y
+A Y)";

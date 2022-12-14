@@ -1,18 +1,21 @@
+#include "input1.hpp"
 #include <array>
-#include <fstream>
 #include <iostream>
+#include <sstream>
 
 int main() {
-  std::ifstream file{"input.txt"};
-  if (!file)
+  std::stringstream inputstream{inputdata};
+
+  if (!inputstream) {
     return 1;
+  }
 
-  std::array<unsigned int, 3> highest{};
+  std::array<std::size_t, 3> highest{};
 
-  auto gethighest = [&](const unsigned int number) {
+  auto gethighest = [&](const std::size_t number) {
     std::cout << "\t sum = " << number;
     bool stored = false;
-    unsigned int prevhigh{};
+    std::size_t prevhigh{};
 
     for (auto &high : highest) {
       if (high == 0) {
@@ -20,12 +23,12 @@ int main() {
         break;
       }
 
-      if (number > high && stored == false) {
+      if (number > high && !stored) {
         prevhigh = high;
         high = number;
         stored = true;
       }
-      if (prevhigh > high && stored == true) {
+      if (prevhigh > high && stored) {
         auto temp = high;
         high = prevhigh;
         prevhigh = temp;
@@ -40,11 +43,11 @@ int main() {
     }
   };
 
-  unsigned int sum{};
+  std::size_t sum{};
 
-  while (!file.eof()) {
+  while (!inputstream.eof()) {
     std::string line;
-    std::getline(file, line);
+    std::getline(inputstream, line);
 
     std::cout << "\ninput : " << line;
     if (line.length() == 0) {
@@ -53,19 +56,15 @@ int main() {
       printhighest();
       continue;
     }
-    unsigned int inputnum = std::stoi(line);
+    auto inputnum = std::stoul(line);
     sum += inputnum;
     std::cout << "\t number : " << inputnum;
   }
 
-  std::cout << "\n\nTop 3" << '\n';
-
-  auto totalhighest{0};
+  std::size_t totalhighest{0};
   for (auto high : highest) {
     totalhighest += high;
   }
 
-  printhighest();
-
-  std::cout << "Total 3 highest = " << totalhighest << '\n';
+  std::cout << "\nTotal of 3 highest = " << totalhighest << '\n';
 }
