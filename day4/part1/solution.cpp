@@ -1,11 +1,11 @@
-#include <fstream>
 #include <iostream>
 #include <sstream>
+#include "input4.hpp"
 
 int main() {
-  std::ifstream inputfile{"input"};
+  std::stringstream inputstringstream{inputdata};
 
-  if (!inputfile) {
+  if (!inputstringstream) {
     std::cerr << "Input File Not Found\n";
     return 1;
   }
@@ -24,8 +24,8 @@ int main() {
     }
   };
 
-  auto getlinedata = [&](std::string linestring) {
-    char delimiter; 
+  auto getlinedata = [&](const std::string &linestring) {
+    char delimiter{}; 
     std::stringstream linestream{linestring};
     getpair(pair1, linestream);
     linestream.get(delimiter);
@@ -34,9 +34,9 @@ int main() {
     }
   };
 
-  while (!inputfile.eof()) {
+  while (!inputstringstream.eof()) {
     std::string linestring{};
-    std::getline(inputfile, linestring);
+    std::getline(inputstringstream, linestring);
 
     if (linestring.length() == 0) {
       continue;

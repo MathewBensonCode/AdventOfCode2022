@@ -1,0 +1,4 @@
+Checks:          '*,-altera-*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm*,-readability-function-cognitive-complexity'
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle:     none
