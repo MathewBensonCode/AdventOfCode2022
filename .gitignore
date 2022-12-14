@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# compile_commands
+compile_commands.json
+
+# my_executables
+day*_solution*
+
+# build artifacts
+.cache/
+CMakeFiles/
