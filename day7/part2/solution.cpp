@@ -15,17 +15,18 @@ struct file {
 struct directory : public file {
   std::shared_ptr<directory> parent{};
   std::vector<std::shared_ptr<file>> contents{};
+};
 
-  };
-
-std::size_t operator+(const std::size_t & value1, const std::shared_ptr<directory>& other){
-    return value1 + other->size;
-  }
-
+std::size_t operator+(const std::size_t &value1,
+                      const std::shared_ptr<file> &other) {
+  return value1 + other->size;
+}
 
 int main() {
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();
   current_directory->name = "/";
+
+  const auto root_directory = current_directory;
 
   std::vector<std::shared_ptr<directory>> directories;
 
@@ -134,17 +135,35 @@ int main() {
 
   const std::size_t disk_limit{70000000};
 
-  std::size_t current_stored = std::accumulate(std::begin(directories), std::end(directories), 0U);
+  auto rootdircollection = root_directory->contents;
 
-  std::size_t sum{0};
+  std::size_t current_stored = std::accumulate(std::begin(rootdircollection),
+                                               std::end(rootdircollection), 0U);
 
-  for(auto & dir : directories){
-      sum += dir->size;
+  std::cout << "\nTotal Available Space => " << disk_limit << '\n';
+
+  std::cout << "Current Stored => " << current_stored << '\n';
+
+  const auto target_space_removal{30000000};
+
+  std::cout << "Desired Space Removal => " << target_space_removal << '\n';
+
+  const std::size_t target =
+      target_space_removal - (disk_limit - current_stored);
+
+  std::cout << "Target Reduction => " << target << '\n';
+
+  std::size_t smallest_dir_to_remove{target_space_removal};
+
+  for (auto &dir : directories) {
+    auto dirsize = dir->size;
+    if (dirsize >= target) {
+        if(dirsize < smallest_dir_to_remove)
+        {
+            smallest_dir_to_remove = dirsize;
+        }
+    }
   }
 
-  std::cout << "Sum of dirs => " << sum << '\n';
-  
-  const std::size_t target = current_stored - disk_limit;
-
-  std::cout << "Target Reduction => " << target <<'\n';
+  std::cout<<"Smallest dir size => "<<smallest_dir_to_remove<<'\n';
 }
