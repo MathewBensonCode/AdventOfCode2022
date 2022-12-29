@@ -35,6 +35,8 @@ enable_sanitizers(project_options)
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
 
+include(cmake/CreateTargetLink.cmake)
+
 add_subdirectory(day1)
 add_subdirectory(day2)
 add_subdirectory(day3)
@@ -43,6 +45,7 @@ add_subdirectory(day5)
 add_subdirectory(day6)
 add_subdirectory(day7)
 add_subdirectory(day8)
+add_subdirectory(day9)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)
