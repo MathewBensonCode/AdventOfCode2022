@@ -90,9 +90,9 @@ int main() {
       if (find_trees_less(value)) {
         results.push_back(value);
         continue;
-      } else {
+      }  
         break;
-      }
+     
     }
 
     return results;
