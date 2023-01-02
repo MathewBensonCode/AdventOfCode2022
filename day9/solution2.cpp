@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string_view>
 
+namespace {
+
 struct point {
   std::size_t x;
   std::size_t y;
@@ -67,6 +69,7 @@ direction operator-(const point &head, const point &tail) {
 
   return direction::none;
 }
+} // namespace
 
 int main() {
   std::string_view inputstringview{inputdata};
@@ -78,7 +81,7 @@ int main() {
   const auto center_point{grid_width / 2};
   const point starting_point{center_point, center_point};
 
-  std::array<std::array<std::size_t, grid_width>, grid_width> tail_counter{};
+  std::array<std::array<short, grid_width>, grid_width> tail_counter{};
   tail_counter.at(center_point).at(center_point)++;
 
   point head{starting_point};
@@ -193,7 +196,6 @@ int main() {
 
       fmt::print("HEAD at x={}, y={}\n", head.x, head.y);
 
-
       point &initial_point = tails.at(0);
       move_tail(head, initial_point);
 
@@ -217,9 +219,9 @@ int main() {
   for (auto line : data_view) {
     std::string linestring(line.begin(), line.end());
     std::stringstream linestream{linestring};
-    char direction;
+    char direction{};
     linestream >> direction;
-    std::size_t moves;
+    std::size_t moves{};
     linestream >> moves;
 
     move_head(direction, moves);

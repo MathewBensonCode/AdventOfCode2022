@@ -75,11 +75,11 @@ int main() {
   auto data_view = inputstringview | std::views::all | std::views::split('\n') |
                    std::views::drop(1) |
                    std::views::take(number_of_input_lines);
-  const std::size_t grid_width{500};
+  const std::size_t grid_width{600};
   const auto center_point{grid_width / 2};
   const point starting_point{center_point, center_point};
 
-  std::array<std::array<std::size_t, grid_width>, grid_width> tail_counter{};
+  std::array<std::array<short, grid_width>, grid_width> tail_counter{};
 
   tail_counter.at(center_point).at(center_point)++;
 
@@ -209,9 +209,9 @@ int main() {
   for (auto line : data_view) {
     std::string linestring(line.begin(), line.end());
     std::stringstream linestream{linestring};
-    char direction;
+    char direction{};
     linestream >> direction;
-    std::size_t moves;
+    std::size_t moves{};
     linestream >> moves;
 
     move_head(direction, moves);
