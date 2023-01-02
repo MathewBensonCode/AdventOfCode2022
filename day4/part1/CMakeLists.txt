@@ -1,4 +1,0 @@
-add_executable(day4_solution1 solution.cpp)
-target_link_libraries(day4_solution1 PRIVATE input4 project_options project_warnings)
-
-CreateTargetLink(day4_solution1)

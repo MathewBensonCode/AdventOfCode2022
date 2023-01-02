@@ -1,5 +1,8 @@
-add_library(input7 INTERFACE input7.hpp)
-target_include_directories(input7 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-add_subdirectory(part1)
-add_subdirectory(part2)
+add_executable(day7_solution1 solution1.cpp)
+target_link_libraries(day7_solution1 PRIVATE project_options project_warnings)
+CreateTargetLink(day7_solution1)
+
+add_executable(day7_solution2 solution2.cpp)
+target_link_libraries(day7_solution2 PRIVATE project_options project_warnings)
+CreateTargetLink(day7_solution2)
 

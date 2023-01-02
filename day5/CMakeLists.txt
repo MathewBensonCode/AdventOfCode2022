@@ -1,5 +1,8 @@
-add_library(input5 INTERFACE input5.hpp)
-target_include_directories(input5 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-add_subdirectory(part1)
-add_subdirectory(part2)
+add_executable(day5_solution1 solution1.cpp)
+target_link_libraries(day5_solution1 PRIVATE project_options project_warnings)
+CreateTargetLink(day5_solution1)
+
+add_executable(day5_solution2 solution2.cpp)
+target_link_libraries(day5_solution2 PRIVATE project_options project_warnings)
+CreateTargetLink(day5_solution2)
 

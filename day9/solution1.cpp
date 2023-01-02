@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string_view>
 
+namespace {
 struct point {
   std::size_t x;
   std::size_t y;
@@ -67,7 +68,7 @@ direction operator-(const point &head, const point &tail) {
 
   return direction::none;
 }
-
+} // namespace
 int main() {
   std::string_view inputstringview{inputdata};
   const auto number_of_input_lines{2000};
@@ -207,7 +208,7 @@ int main() {
 
   for (auto line : data_view) {
     std::string linestring(line.begin(), line.end());
-    std::stringstream linestream{linestring}; 
+    std::stringstream linestream{linestring};
     char direction;
     linestream >> direction;
     std::size_t moves;

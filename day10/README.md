@@ -180,6 +180,7 @@ noop
 noop
 noop
 ```
+
 The interesting signal strengths can be determined as follows:
 
     During the 20th cycle, register X has the value 21, so the signal strength is 20 * 21 = 420. (The 20th cycle occurs in the middle of the second addx -1, so the value of register X is the starting value, 1, plus all of the other addx values up to that point: 1 + 15 - 11 + 6 - 3 + 5 - 1 - 8 + 13 + 4 = 21.)
@@ -210,11 +211,11 @@ Cycle  81 -> ######################################## <- Cycle 120
 Cycle 121 -> ######################################## <- Cycle 160
 Cycle 161 -> ######################################## <- Cycle 200
 Cycle 201 -> ######################################## <- Cycle 240
-
+```
 So, by carefully timing the CPU instructions and the CRT drawing operations, you should be able to determine whether the sprite is visible the instant each pixel is drawn. If the sprite is positioned such that one of its three pixels is the pixel currently being drawn, the screen produces a lit pixel (#); otherwise, the screen leaves the pixel dark (.).
 
 The first few pixels from the larger example above are drawn as follows:
-
+```
 Sprite position: ###.....................................
 
 Start cycle   1: begin executing addx 15
@@ -311,16 +312,16 @@ During cycle 21: CRT draws pixel in position 20
 Current CRT row: ##..##..##..##..##..#
 End of cycle 21: finish executing addx -1 (Register X is now 20)
 Sprite position: ...................###..................
-
+```
 Allowing the program to run to completion causes the CRT to produce the following image:
-
+```
 ##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.
 ####....####....####....####....####....
 #####.....#####.....#####.....#####.....
 ######......######......######......####
 #######.......#######.......#######.....
-
+```
 Render the image given by your program. What eight capital letters appear on your CRT?
 
 Your puzzle answer was ZRARLFZU.

@@ -1,5 +1,8 @@
-add_library(input3 INTERFACE input3.hpp)
-target_include_directories(input3 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-add_subdirectory(part1)
-add_subdirectory(part2)
+add_executable(day3_solution1 solution1.cpp)
+target_link_libraries(day3_solution1 PRIVATE project_options project_warnings)
+CreateTargetLink(day3_solution1)
+
+add_executable(day3_solution2 solution2.cpp)
+target_link_libraries(day3_solution2 PRIVATE project_options project_warnings)
+CreateTargetLink(day3_solution2)
 
