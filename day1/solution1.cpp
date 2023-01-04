@@ -1,38 +1,30 @@
 #include "input1.hpp"
-#include <array>
+#include <algorithm>
 #include <iostream>
-#include <sstream>
+#include <numeric>
+#include <ranges>
+#include <string_view>
 
 int main() {
-  std::stringstream inputstream{inputdata};
 
-  if (!inputstream) {
-    return 1;
-  }
+  constexpr std::string_view inputstringview{inputdata};
+  constexpr std::string_view section_delimiter{"\n\n"};
+  constexpr std::string_view line_delimiter{"\n"};
 
-  std::size_t highest{};
-  std::size_t sum{};
+  auto sections =
+      inputstringview | std::views::split(section_delimiter) |
+      std::views::transform([&line_delimiter](const auto &section) {
+        auto lines =
+            section | std::views::split(line_delimiter) |
+            std::views::transform([](const auto &line) {
+              return std::string(line.begin(), line.end());
+            }) |
+            std::views::transform([](const auto &linestring) {
+              return linestring.length() > 0 ? std::stoi(linestring) : 0;
+            });
 
-  while (!inputstream.eof()) {
-    std::string line;
-    std::getline(inputstream, line);
+        return std::accumulate(lines.begin(), lines.end(), 0);
+      });
 
-    std::cout << "\ninput : " << line;
-
-    if (line.length() == 0) {
-      std::cout<<"\t\tSum = "<<sum<<'\n';
-
-      if (sum > highest) {
-        highest = sum;
-      }
-        sum = 0;
-        continue;
-    }
-
-    auto inputnum = std::stoul(line);
-    sum += inputnum;
-    std::cout << "\t number : " << inputnum;
-  }
-
-  std::cout << "Highest = " << highest << '\n';
+  std::cout << "Hightest Element = " << *(std::ranges::max_element(sections));
 }

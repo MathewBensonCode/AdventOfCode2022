@@ -1,70 +1,34 @@
 #include "input1.hpp"
-#include <array>
 #include <iostream>
-#include <sstream>
+#include <numeric>
+#include <ranges>
+#include <string_view>
+#include <functional>
+#include <algorithm>
 
 int main() {
-  std::stringstream inputstream{inputdata};
 
-  if (!inputstream) {
-    return 1;
-  }
+  constexpr std::string_view inputstringview{inputdata};
+  constexpr std::string_view section_delimiter{"\n\n"};
+  constexpr std::string_view line_delimiter{"\n"};
 
-  std::array<std::size_t, 3> highest{};
+  auto sections =
+      inputstringview | std::views::split(section_delimiter) |
+      std::views::transform([&line_delimiter](const auto &section) {
+        auto lines =
+            section | std::views::split(line_delimiter) |
+            std::views::transform([](const auto &line) {
+              return std::string(line.begin(), line.end());
+            }) |
+            std::views::transform([](const auto &linestring) {
+              return linestring.length() > 0 ? std::stoi(linestring) : 0;
+            });
 
-  auto gethighest = [&](const std::size_t number) {
-    std::cout << "\t sum = " << number;
-    bool stored = false;
-    std::size_t prevhigh{};
+        return std::accumulate(lines.begin(), lines.end(), 0);
+      });
 
-    for (auto &high : highest) {
-      if (high == 0) {
-        high = number;
-        break;
-      }
-
-      if (number > high && !stored) {
-        prevhigh = high;
-        high = number;
-        stored = true;
-      }
-      if (prevhigh > high && stored) {
-        auto temp = high;
-        high = prevhigh;
-        prevhigh = temp;
-      }
-    }
-  };
-
-  auto printhighest = [&]() {
-    std::cout << "\nHighest => :\n";
-    for (auto high : highest) {
-      std::cout << '\t' << high;
-    }
-  };
-
-  std::size_t sum{};
-
-  while (!inputstream.eof()) {
-    std::string line;
-    std::getline(inputstream, line);
-
-    std::cout << "\ninput : " << line;
-    if (line.length() == 0) {
-      gethighest(sum);
-      sum = 0;
-      printhighest();
-      continue;
-    }
-    auto inputnum = std::stoul(line);
-    sum += inputnum;
-    std::cout << "\t number : " << inputnum;
-  }
-
-  std::size_t totalhighest{0};
-  for (auto high : highest) {
-    totalhighest += high;
-  }
-
-  std::cout << "\nTotal of 3 highest = " << totalhighest << '\n';
+  std::ranges::sort(sections);
+  auto top3 = sections | std::views::take(3) | std::views::common;
+  auto highest3 = std::accumulate(top3.begin(), top3.end(), 0);
+  std::cout << "Sum of Hightest 3 Elements = " << highest3<<'\n';
 }
