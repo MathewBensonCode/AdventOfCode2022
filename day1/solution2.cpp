@@ -27,8 +27,11 @@ int main() {
         return std::accumulate(lines.begin(), lines.end(), 0);
       });
 
-  std::ranges::sort(sections);
-  auto top3 = sections | std::views::take(3) | std::views::common;
+  std::vector<int> results;
+  std::ranges::copy(sections, std::back_inserter(results));
+
+  std::ranges::sort(results, std::ranges::greater());
+  auto top3 = results | std::views::take(3) | std::views::common;
   auto highest3 = std::accumulate(top3.begin(), top3.end(), 0);
   std::cout << "Sum of Hightest 3 Elements = " << highest3<<'\n';
 }

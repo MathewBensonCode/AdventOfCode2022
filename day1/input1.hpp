@@ -1,5 +1,3 @@
-#include <string>
-using namespace std::literals;
 constexpr auto inputdata=R"(2936
 2154
 1578
