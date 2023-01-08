@@ -1,16 +1,21 @@
 #include "input3.hpp"
 #include <array>
 #include <iostream>
-#include <sstream>
+#include <ranges>
 
-int main() {
-  std::stringstream inputstringstream{inputdata};
-
+namespace{
   const auto compartment_size{53};
   const auto small_letter_offset{96};
   const auto capital_letter_offset{38};
   const auto small_capital_boundary{27};
 
+  constexpr std::string_view line_delimiter{"\n"};
+}
+
+int main() {
+
+  auto lines = inputdata | std::views::all | std::views::split(line_delimiter);
+ 
   std::size_t count{};
 
   std::size_t compartment_index{};
@@ -33,10 +38,8 @@ int main() {
     return static_cast<char>(value + capital_letter_offset);
   };
 
-  while (!inputstringstream.eof()) {
-    std::string lineinput{};
-
-    std::getline(inputstringstream, lineinput);
+  for(const auto &line : lines){
+    std::string_view lineinput{line.begin(),line.end()};
 
     auto linelength = lineinput.size();
     if (linelength == 0) {

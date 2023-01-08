@@ -1,6 +1,6 @@
-#include <string>
-using namespace std::string_literals;
-constexpr auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
+#include <string_view>
+using namespace std::string_view_literals;
+static constexpr auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
 gRTRnCRsFNGbTzLjwcSTMmSz
 dGgsRWPGdWgZJqBBqhfpPq
 HNCNJHCWJRRLqNJWlfrrrwsmlwGmmf
@@ -299,4 +299,4 @@ DrNNBbwNHNwlbjFbbCNjNwDWWDPPVfDMgfmVMfnMWmmP
 rvJBbbBNcLCtJZQL
 NfLlqLhbNPddLPqLhpgHwFFwFHHTwRHWwPFTrT
 MSMSCnjBnBjCscjVDVljTvHmmWnrwTrwFTrvTWTT
-JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)";
+JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)"sv;

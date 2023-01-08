@@ -7,13 +7,11 @@
 #include <algorithm>
 
 int main() {
-
-  constexpr std::string_view inputstringview{inputdata};
   constexpr std::string_view section_delimiter{"\n\n"};
   constexpr std::string_view line_delimiter{"\n"};
 
   auto sections =
-      inputstringview | std::views::split(section_delimiter) |
+      inputdata | std::views::split(section_delimiter) |
       std::views::transform([&line_delimiter](const auto &section) {
         auto lines =
             section | std::views::split(line_delimiter) |
