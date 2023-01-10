@@ -7,32 +7,21 @@
 
 namespace {
 
-using pairs = std::pair<std::size_t, std::size_t>;
 
-const auto print_line = [](const std::string_view &line, const pairs &pair1,
-                           const pairs &pair2) {
-  std::cout << "\n\nInput : " << line << '\n';
-
-  std::cout << "Pair 1 : " << pair1.first << "-" << pair1.second << '\n';
-  std::cout << "Pair 2 : " << pair2.first << "-" << pair2.second << '\n';
-};
-
-const auto getpair = [](pairs &pair, std::istream &input) {
-  input >> pair.first;
+const auto getpair = [](std::istream &input) {
+  std::size_t first{};
+  input >> first;
   input.get();
-  input >> pair.second;
+  std::size_t second{};
+  input >> second;
+  return std::make_pair(first, second);
 };
 
-const auto getlinedata = [](const auto &line)->bool {
-  std::pair<std::size_t, std::size_t> pair1;
-  std::pair<std::size_t, std::size_t> pair2;
-  const auto linestring{std::string{line.begin(), line.end()}};
-  std::stringstream linestream{linestring};
-  getpair(pair1, linestream);
+const auto getlinedata = [](const auto &line){
+  std::stringstream linestream{std::string{line.begin(), line.end()}};
+  const auto pair1 = getpair(linestream);
   linestream.get();
-  getpair(pair2, linestream);
-
-  print_line(linestring, pair1, pair2);
+  const auto pair2 = getpair(linestream);
 
   return (!((pair1.second < pair2.first) || // pair1 before pair2
             (pair1.first > pair2.second))); // pair1 after pair2

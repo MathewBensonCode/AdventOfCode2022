@@ -51,7 +51,7 @@ int main() {
     std::cout << "\nStacks => \n";
 
     std::size_t counter{1};
-    for (auto &stack : crate_containers) {
+    for (const auto &stack : crate_containers) {
       std::cout << "Stack " << counter << " => ";
       for (auto crate : stack) {
         std::cout << " | " << crate;
