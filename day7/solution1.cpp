@@ -7,19 +7,25 @@
 #include <sstream>
 #include <vector>
 
+namespace {
 struct file {
   std::string name{};
   std::size_t size{};
 };
 
 struct directory : public file {
-  std::shared_ptr<directory> parent{};
+  std::weak_ptr<directory> parent{};
   std::vector<std::shared_ptr<file>> contents{};
 };
 
-std::size_t operator+(const std::size_t& sum, const std::shared_ptr<directory> & dir){
-    return sum + dir->size;
-}
+const auto add_dir_size = [](const std::size_t &sum,
+                             const std::shared_ptr<directory> &dir) {
+  return sum + dir->size;
+};
+
+constexpr std::string_view line_delimiter{"\n"};
+
+} // namespace
 
 int main() {
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();
@@ -54,13 +60,17 @@ int main() {
 
   auto change_directory = [&](const std::string &destination) {
     if (destination == "..") {
-      current_directory = current_directory->parent;
+      current_directory = current_directory->parent.lock();
       std::cout << "Changed to Parent Directory : " << current_directory->name
                 << '\n';
-      std::size_t sum{0};
-      for (auto &dir : current_directory->contents) {
-        sum += dir->size;
-      }
+
+      const auto &contents = current_directory->contents;
+
+      std::size_t sum{
+          std::accumulate(contents.begin(), contents.end(), std::size_t{},
+                          [](std::size_t previous_sum, const auto &dir) {
+                            return previous_sum + dir->size;
+                          })};
 
       if (current_directory->size != sum) {
         current_directory->size = sum;
@@ -70,7 +80,7 @@ int main() {
 
     } else {
 
-      for (auto &dir : current_directory->contents) {
+      for (const auto &dir : current_directory->contents) {
         if (dir->name == destination) {
           auto cast_directory = std::static_pointer_cast<directory>(dir);
 
@@ -85,11 +95,10 @@ int main() {
     }
   };
 
-  std::stringstream inputstringstream{inputdata};
+  auto lines = std::views::split(inputdata, line_delimiter);
 
-  while (!inputstringstream.eof()) {
-    std::string linestring{};
-    std::getline(inputstringstream, linestring);
+  for(const auto &line: lines){
+    std::string linestring{line.begin(), line.end()};
 
     if (linestring.length() > 0) {
       std::istringstream linestream{linestring};
@@ -135,17 +144,16 @@ int main() {
   auto less_directories = [](const auto &directory) {
     return directory->size <= limit;
   };
-  auto viewdirectories = std::ranges::views::all(directories) |
-                         std::ranges::views::filter(less_directories);
 
-  std::size_t sum{};
+  auto viewdirectories = directories | std::views::filter(less_directories);
 
-  for (auto &dir : viewdirectories) {
-    sum += dir->size;
-  }
+  const auto sum = std::accumulate(viewdirectories.begin(), viewdirectories.end(),
+                      std::size_t{}, add_dir_size);
 
   std::cout << "Sum of dirs => " << sum << '\n';
 
-  auto totalvalue = std::accumulate(std::begin(directories), std::end(directories), 0);
-  std::cout << "Total Storage Sum => " << totalvalue<<'\n';
+  auto totalvalue = std::accumulate(std::begin(directories),
+                                    std::end(directories), 0, add_dir_size);
+
+  std::cout << "Total Storage Sum => " << totalvalue << '\n';
 }

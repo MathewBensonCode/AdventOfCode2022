@@ -13,7 +13,7 @@ struct file {
 };
 
 struct directory : public file {
-  std::shared_ptr<directory> parent{};
+  std::weak_ptr<directory> parent{};
   std::vector<std::shared_ptr<file>> contents{};
 };
 
@@ -56,13 +56,14 @@ int main() {
 
   auto change_directory = [&](const std::string &destination) {
     if (destination == "..") {
-      current_directory = current_directory->parent;
+      current_directory = current_directory->parent.lock();
       std::cout << "Changed to Parent Directory : " << current_directory->name
                 << '\n';
-      std::size_t sum{0};
-      for (auto &dir : current_directory->contents) {
-        sum += dir->size;
-      }
+
+      const auto &contents = current_directory->contents;
+      std::size_t sum{std::accumulate(
+          contents.begin(), contents.end(), std::size_t{},
+          [](std::size_t previous_sum, const auto &dir) { return previous_sum + dir->size; })};
 
       if (current_directory->size != sum) {
         current_directory->size = sum;
@@ -87,7 +88,7 @@ int main() {
     }
   };
 
-  std::stringstream inputstringstream{inputdata};
+  std::stringstream inputstringstream{std::string{inputdata}};
 
   while (!inputstringstream.eof()) {
     std::string linestring{};
@@ -155,7 +156,7 @@ int main() {
 
   std::size_t smallest_dir_to_remove{target_space_removal};
 
-  for (auto &dir : directories) {
+  for (const auto &dir : directories) {
     auto dirsize = dir->size;
     if (dirsize >= target) {
         if(dirsize < smallest_dir_to_remove)
