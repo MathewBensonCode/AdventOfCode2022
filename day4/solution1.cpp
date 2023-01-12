@@ -1,58 +1,49 @@
 #include "input4.hpp"
+#include <algorithm>
+#include <charconv>
 #include <iostream>
-#include <sstream>
+#include <iterator>
+#include <ranges>
 
 namespace {
-using pairs = std::pair<std::size_t, std::size_t>;
+constexpr auto line_delimiter{"\n"sv};
+constexpr auto pair_delimiter{","sv};
+constexpr auto num_delimiter{"-"sv};
 
-const auto getpair = [](pairs &pair, std::istream &input) {
-  char delimiter{};
-  input >> pair.first;
-  input.get(delimiter);
-  if (delimiter == '-') {
-    input >> pair.second;
-  }
+const auto getpair = [](const auto &pair) {
+  auto numbers = pair | std::views::split(num_delimiter) |
+                 std::views::transform([](const auto &num) {
+                   int number{};
+                   std::from_chars(num.begin(), num.end(), number);
+                   return number;
+                 });
+
+  const auto first = std::ranges::begin(numbers);
+  const auto second = std::next(first);
+
+  return std::make_pair(*first, *second);
 };
 
-const auto getlinedata = [](const std::string &linestring, pairs &pair1,
-                            pairs &pair2) {
-  char delimiter{};
-  std::istringstream linestream{linestring};
-  getpair(pair1, linestream);
-  linestream.get(delimiter);
-  if (delimiter == ',') {
-    getpair(pair2, linestream);
-  }
+const auto getlinedata = [](const auto &linestring) {
+  auto pairs = linestring | std::views::split(pair_delimiter) |
+               std::views::transform(getpair);
+
+  const auto itr1 = pairs.begin();
+  const auto pair1 = *itr1;
+
+  const auto itr2 = std::next(itr1);
+  const auto pair2 = *itr2;
+
+  return (((pair1.first <= pair2.first) &&
+           (pair1.second >= pair2.second)) || // pair2 fits in pair1
+          ((pair1.first >= pair2.first) &&
+           (pair1.second <= pair2.second))); // pair1 fits in pair2
 };
+
 } // namespace
 
 int main() {
-
-  std::istringstream inputstringstream{std::string{inputdata}};
-
-  std::size_t count{};
-  std::pair<std::size_t, std::size_t> pair1;
-  std::pair<std::size_t, std::size_t> pair2;
-
-  while(!inputstringstream.eof()){
-    std::string line;
-    std::getline(inputstringstream, line);
-
-    getlinedata(line, pair1, pair2);
-
-    std::cout << "\nInput : " << line << '\n';
-
-    std::cout << "Pair 1 : " << pair1.first << "-" << pair1.second << '\n';
-    std::cout << "Pair 2 : " << pair2.first << "-" << pair2.second << '\n';
-
-    if (((pair1.first <= pair2.first) &&
-         (pair1.second >= pair2.second)) || // pair2 fits in pair1
-        ((pair1.first >= pair2.first) &&
-         (pair1.second <= pair2.second))) { // pair1 fits in pair2
-      std::cout << " Found Match \n";
-      count++;
-    }
-  }
-
+  auto lines = inputdata | std::views::split(line_delimiter);
+  const auto count{std::ranges::count_if(lines, getlinedata)};
   std::cout << "Total Found : " << count << '\n';
-}
+} // namespace
