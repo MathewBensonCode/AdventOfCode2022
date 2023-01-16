@@ -1,5 +1,6 @@
 #include "input11.hpp"
 #include <algorithm>
+#include <boost/multiprecision/cpp_int.hpp>
 #include <charconv>
 #include <cstdint>
 #include <fmt/core.h>
@@ -9,10 +10,8 @@
 #include <ranges>
 #include <string_view>
 #include <vector>
-#include <boost/multiprecision/cpp_int.hpp>
 
-using namespace boost::multiprecistion;
-using checked_uint = number<cpp_int_backend<10240, 10240, unsigned_magnitude, checked, void>>;
+using checked_uint = boost::multiprecision::cpp_int;
 
 namespace {
 struct Monkey {
@@ -114,14 +113,15 @@ const std::size_t num_of_monkeys{8};
 
 const auto print_monkeys = [](const auto &monkeys, const auto &monkey_counter) {
   std::size_t counter{0};
- /* for (const auto &monkey : monkeys) {
-    fmt::print("Monkey {} Items => ", counter);
-    for (const auto &item : monkey.items) {
-      std::cout << item << "|";
-    }
-  */  fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
-    counter++;
-  }
+  /* for (const auto &monkey : monkeys) {
+     fmt::print("Monkey {} Items => ", counter);
+     for (const auto &item : monkey.items) {
+       std::cout << item << "|";
+     }
+   */
+  fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
+  counter++;
+  // }
 };
 
 } // namespace
@@ -136,7 +136,7 @@ int main() {
 
   std::ranges::copy(monkeys, monkey_store.begin());
 
- // print_monkeys(monkey_store, monkey_move_counter);
+  // print_monkeys(monkey_store, monkey_move_counter);
 
   for (const auto index : std::views::iota(1, 10001)) {
     fmt::print("\nAfter Round: {}\n", index);
@@ -155,18 +155,17 @@ int main() {
         }
         monkey_move_counter.at(monkey_index)++;
       }
-            monkey_index++;
+      monkey_index++;
     }
-    
+
     print_monkeys(monkey_store, monkey_move_counter);
+    std::ranges::sort(monkey_move_counter, std::ranges::greater());
+
+    const auto first = monkey_move_counter.at(0);
+    const auto second = monkey_move_counter.at(1);
+
+    fmt::print("Top 2 multiplied =>{} * {} => {}\n", first, second,
+               first * second);
     fmt::print("\n-------\n");
   }
-
-  std::ranges::sort(monkey_move_counter, std::ranges::greater());
-
-  const auto first = monkey_move_counter.at(0);
-  const auto second = monkey_move_counter.at(1);
-
-  fmt::print("Top 2 multiplied =>{} * {} => {}\n", first, second,
-             first * second);
 }
