@@ -1,8 +1,7 @@
-#include <string>
-using namespace std::string_literals;
+#include <string_view>
+using namespace std::literals::string_view_literals;
 
-constexpr auto inputdata = R"(
-$ cd /
+constexpr auto inputdata = R"($ cd /
 $ ls
 dir bhtvbj
 dir bmlllrl
@@ -1032,4 +1031,4 @@ $ cd nwqgchw
 $ ls
 21374 lhfsc.lrh
 121726 wdcsgg.cjt
-)";
+)"sv;

@@ -219,8 +219,8 @@ int main() {
 
   std::size_t tail_location_count{};
   fmt::print("Tail Locations\n");
-  for (auto &line : tail_counter) {
-    for (auto &location : line) {
+  for (const auto &line : tail_counter) {
+    for (const auto &location : line) {
       if (location > 0) {
         tail_location_count++;
         continue;
