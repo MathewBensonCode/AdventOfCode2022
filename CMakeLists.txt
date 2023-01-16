@@ -47,6 +47,7 @@ add_subdirectory(day7)
 add_subdirectory(day8)
 add_subdirectory(day9)
 add_subdirectory(day10)
+add_subdirectory(day11)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)

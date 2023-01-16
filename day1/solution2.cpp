@@ -4,6 +4,7 @@
 #include <numeric>
 #include <ranges>
 #include <vector>
+#include <charconv>
 
 namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
@@ -12,10 +13,9 @@ constexpr std::string_view line_delimiter{"\n"};
 const auto get_section_data = [](const auto &section) {
   auto lines = section | std::views::split(line_delimiter) |
                std::views::transform([](const auto &line) {
-                 return std::string(line.begin(), line.end());
-               }) |
-               std::views::transform([](const auto &linestring) {
-                 return linestring.length() > 0 ? std::stoi(linestring) : 0;
+                    int number{};
+                    std::from_chars(line.begin(), line.end(), number);
+                    return number;
                });
   return std::accumulate(lines.begin(), lines.end(), 0);
 };

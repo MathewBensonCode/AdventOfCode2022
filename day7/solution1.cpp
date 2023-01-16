@@ -95,7 +95,7 @@ int main() {
     }
   };
 
-  auto lines = std::views::split(inputdata, line_delimiter);
+ auto lines = inputdata | std::views::split(line_delimiter);
 
   for(const auto &line: lines){
     std::string linestring{line.begin(), line.end()};

@@ -7,12 +7,14 @@
 #include <vector>
 
 int main() {
-  const std::string_view dataview{inputdata};
+  constexpr std::string_view dataview{inputdata};
+  constexpr std::string_view delim{"\n"};
+
   const auto array_width{99};
 
-  constexpr auto delim{'\n'};
   auto split_view = dataview | std::views::split(delim) | std::views::drop(1) |
                     std::views::take(array_width);
+
   auto reverse_split_view = dataview | std::views::reverse |
                             std::views::split(delim) | std::views::drop(1) |
                             std::views::take(array_width);
@@ -90,9 +92,8 @@ int main() {
       if (find_trees_less(value)) {
         results.push_back(value);
         continue;
-      }  
-        break;
-     
+      }
+      break;
     }
 
     return results;
@@ -132,7 +133,7 @@ int main() {
   for (std::size_t row_index{}; row_index < array_width; ++row_index) {
     for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
 
-    std::cout << "Row = " << row_index << "\t| Col = "<<col_index<<'\n';
+      std::cout << "Row = " << row_index << "\t| Col = " << col_index << '\n';
 
       std::cout << "Left to Right";
       auto lines_ltr = get_left_to_right_view(row_index, col_index);
