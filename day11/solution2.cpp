@@ -11,7 +11,8 @@
 #include <vector>
 #include <boost/multiprecision/cpp_int.hpp>
 
-using checked_uint = boost::multiprecision::cpp_int;
+using namespace boost::multiprecistion;
+using checked_uint = number<cpp_int_backend<10240, 10240, unsigned_magnitude, checked, void>>;
 
 namespace {
 struct Monkey {
@@ -113,12 +114,12 @@ const std::size_t num_of_monkeys{8};
 
 const auto print_monkeys = [](const auto &monkeys, const auto &monkey_counter) {
   std::size_t counter{0};
-  for (const auto &monkey : monkeys) {
+ /* for (const auto &monkey : monkeys) {
     fmt::print("Monkey {} Items => ", counter);
     for (const auto &item : monkey.items) {
       std::cout << item << "|";
     }
-    fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
+  */  fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
     counter++;
   }
 };
@@ -135,7 +136,7 @@ int main() {
 
   std::ranges::copy(monkeys, monkey_store.begin());
 
-  print_monkeys(monkey_store, monkey_move_counter);
+ // print_monkeys(monkey_store, monkey_move_counter);
 
   for (const auto index : std::views::iota(1, 10001)) {
     fmt::print("\nAfter Round: {}\n", index);
