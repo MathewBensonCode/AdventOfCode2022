@@ -4,8 +4,6 @@ target_link_libraries(day11_solution1 PRIVATE fmt::fmt-header-only
                                               project_options project_warnings)
 createtargetlink(day11_solution1)
 
-find_package(Boost REQUIRED)
-
 add_executable(day11_solution2 solution2.cpp)
 target_link_libraries(
   day11_solution2
@@ -13,6 +11,5 @@ target_link_libraries(
     fmt::fmt-header-only
     project_options
     project_warnings
-    Boost::boost
 )
 createtargetlink(day11_solution2)
