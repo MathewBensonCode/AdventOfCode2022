@@ -13,8 +13,9 @@ constexpr std::string_view line_delimiter{"\n"};
 const auto get_section_data = [](const auto &section) {
   auto lines = section | std::views::split(line_delimiter) |
                std::views::transform([](const auto &line) {
+                    std::string_view line_string{line.begin(), line.end()};
                     int number{};
-                    std::from_chars(line.begin(), line.end(), number);
+                    std::from_chars(line_string.begin(), line_string.end(), number);
                     return number;
                });
   return std::accumulate(lines.begin(), lines.end(), 0);
