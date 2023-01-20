@@ -12,10 +12,10 @@ constexpr std::string_view line_delimiter{"\n"};
 const auto get_section_data = [](const auto &section) {
   auto lines = section | std::views::split(line_delimiter) |
                std::views::transform([](const auto &line) {
-                  std::string_view line_string{line.begin(), line.end()};
-                  int number{};
-                  std::from_chars(line_string.begin(), line_string.end(), number);
-                  return number;
+                       int number{};
+                       std::string_view line_string{line.begin(), line.end()};
+                       std::from_chars(line_string.data(), line_string.data()+line_string.size(), number);
+                       return number;
                });
 
   return std::accumulate(lines.begin(), lines.end(), 0);
@@ -27,5 +27,7 @@ int main() {
   auto sections = inputdata | std::views::split(section_delimiter) |
                   std::views::transform(get_section_data);
 
-  std::cout << "Hightest Element = " << *(std::ranges::max_element(sections));
+  auto count = *(std::ranges::max_element(sections));
+
+  std::cout << "Highest Element = " << count <<'\n';
 }

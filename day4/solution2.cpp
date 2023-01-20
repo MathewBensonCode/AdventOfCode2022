@@ -1,9 +1,9 @@
 #include "input4.hpp"
 #include <algorithm>
+#include <charconv>
 #include <fstream>
 #include <iostream>
 #include <ranges>
-#include <charconv>
 
 namespace {
 
@@ -14,8 +14,9 @@ constexpr auto num_delimiter{"-"sv};
 const auto getpair = [](const auto &pair) {
   auto numbers = pair | std::views::split(num_delimiter) |
                  std::views::transform([](const auto &num) {
+                   std::string_view num_string{num.begin(), num.end()};
                    int number{};
-                   std::from_chars(num.begin(), num.end(), number);
+                   std::from_chars(num_string.data(), num_string.data()+num_string.size(), number);
                    return number;
                  });
 
@@ -25,9 +26,9 @@ const auto getpair = [](const auto &pair) {
   return std::make_pair(*first, *second);
 };
 
-const auto getlinedata = [](const auto &line){
-  auto pairs = line | std::views::split(pair_delimiter) |
-               std::views::transform(getpair);
+const auto getlinedata = [](const auto &line) {
+  auto pairs =
+      line | std::views::split(pair_delimiter) | std::views::transform(getpair);
 
   const auto itr1 = pairs.begin();
   const auto pair1 = *itr1;
