@@ -57,7 +57,8 @@ const auto get_operation = [](const auto &operation_string) {
 
 const auto get_num_from_string = [](const auto &item) {
   std::size_t number{};
-  std::from_chars(item.begin(), item.end(), number);
+  std::string_view item_string{item.begin(), item.end()};
+  std::from_chars(item_string.data(), item_string.data()+item_string.size(), number);
   return number;
 };
 
