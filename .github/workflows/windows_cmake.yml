@@ -35,44 +35,66 @@ jobs:
 
     - name: Day1
       working-directory: ${{github.workspace}}/build
-      run: day1/day1_solution1.exe & day1/day1_solution2.exe
+      run: |
+        day1/day1_solution1.exe
+        day1/day1_solution2.exe
       
     - name: Day2
       working-directory: ${{github.workspace}}/build
-      run: day2/day2_solution1.exe & day2/day2_solution2.exe
+      run: |
+        day2/day2_solution1.exe
+        day2/day2_solution2.exe
       
     - name: Day3
       working-directory: ${{github.workspace}}/build
-      run: day3/day3_solution1.exe & day3/day3_solution2.exe
+      run: |
+        day3/day3_solution1.exe 
+        day3/day3_solution2.exe
       
     - name: Day4
       working-directory: ${{github.workspace}}/build
-      run: day4/day4_solution1.exe & day4/day4_solution2.exe
+      run: |
+        day4/day4_solution1.exe 
+        day4/day4_solution2.exe
       
     - name: Day5
       working-directory: ${{github.workspace}}/build
-      run: day5/day5_solution1.exe & day5/day5_solution2.exe
+      run: |
+        day5/day5_solution1.exe
+        day5/day5_solution2.exe
       
     - name: Day6
       working-directory: ${{github.workspace}}/build
-      run: day6/day6_solution1.exe & day6/day6_solution2.exe
+      run: |
+        day6/day6_solution1.exe
+        day6/day6_solution2.exe
       
     - name: Day7
       working-directory: ${{github.workspace}}/build
-      run: day7/day7_solution1.exe & day7/day7_solution2.exe
+      run: |
+        day7/day7_solution1.exe
+        day7/day7_solution2.exe
       
     - name: Day8
       working-directory: ${{github.workspace}}/build
-      run: day8/day8_solution1.exe & day8/day8_solution2.exe
+      run: |
+        day8/day8_solution1.exe
+        day8/day8_solution2.exe
       
     - name: Day9
       working-directory: ${{github.workspace}}/build
-      run: day9/day9_solution1.exe & day9/day9_solution2.exe
+      run: |
+        day9/day9_solution1.exe
+        day9/day9_solution2.exe
       
     - name: Day10
       working-directory: ${{github.workspace}}/build
-      run: day10/day10_solution1.exe & day10/day10_solution2.exe
+      run: |
+        day10/day10_solution1.exe
+        day10/day10_solution2.exe
       
     - name: Day11
       working-directory: ${{github.workspace}}/build
-      run: day11/day11_solution1.exe & day11/day11_solution2.exe
+      run: |
+        day11/day11_solution1.exe
+        day11/day11_solution2.exe
