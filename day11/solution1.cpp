@@ -8,6 +8,7 @@
 #include <ranges>
 #include <string_view>
 #include <vector>
+#include <array>
 
 namespace {
 struct Monkey {

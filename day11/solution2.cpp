@@ -9,6 +9,7 @@
 #include <ranges>
 #include <string_view>
 #include <vector>
+#include <array>
 
 namespace {
 struct Monkey {
@@ -47,7 +48,7 @@ const auto get_operation = [](const auto &operation_string) {
   if (second_operand == "old") {
     operand2 = 0;
   } else {
-    std::from_chars(second_operand.data(), second_operand.data()+second_operand.size(), operand2);
+    std::from_chars(second_operand.data(), second_operand.data(), operand2);
   }
 
   return [operand2, operation](const std::size_t old) {
