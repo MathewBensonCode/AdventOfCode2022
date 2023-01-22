@@ -93,9 +93,9 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: |
         echo "Day 8 - Solution 1"
-        day/day8_solution1.exe
+        day8/day8_solution1.exe
         echo "Day 8 - Solution 2"
-        day/day8_solution2.exe
+        day8/day8_solution2.exe
       
     - name: Day9
       working-directory: ${{github.workspace}}/build
