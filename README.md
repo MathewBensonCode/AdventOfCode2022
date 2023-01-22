@@ -1,5 +1,9 @@
 # AdventOfCode2022
 
+[![CMake-Windows-MSVC](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/windows_cmake.yml/badge.svg)](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/windows_cmake.yml)
+
+[![CMake-Linux-GCC](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/cmake.yml/badge.svg)](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/cmake.yml)
+
 These are my C++ Solutions to Advent of Code 2022
 
 ## Code Structure
