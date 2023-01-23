@@ -1,22 +1,20 @@
 #include "input11.hpp"
 #include <algorithm>
 #include <charconv>
-#include <cstdint>
 #include <fmt/core.h>
 #include <functional>
 #include <iostream>
 #include <iterator>
+#include <numeric>
 #include <ranges>
 #include <string_view>
 #include <vector>
-#include <boost/multiprecision/cpp_int.hpp>
-
-using checked_uint = boost::multiprecision::cpp_int;
+#include <array>
 
 namespace {
 struct Monkey {
-  std::vector<checked_uint> items{};
-  std::function<checked_uint(checked_uint)> item_operation{};
+  std::vector<std::size_t> items{};
+  std::function<std::size_t(std::size_t)> item_operation{};
   std::size_t test{};
   std::size_t true_monkey{};
   std::size_t false_monkey{};
@@ -38,7 +36,7 @@ const auto get_operation = [](const auto &operation_string) {
   const std::string_view myoperator{op_operator.begin(), op_operator.end()};
   const std::string_view second_operand{second_op.begin(), second_op.end()};
 
-  std::function<checked_uint(checked_uint, checked_uint)> operation{};
+  std::function<std::size_t(std::size_t, std::size_t)> operation{};
   if (myoperator == "+") {
     operation = std::plus<>();
   }
@@ -50,17 +48,18 @@ const auto get_operation = [](const auto &operation_string) {
   if (second_operand == "old") {
     operand2 = 0;
   } else {
-    std::from_chars(second_operand.begin(), second_operand.end(), operand2);
+    std::from_chars(second_operand.data(), second_operand.data()+second_operand.size(), operand2);
   }
 
-  return [operand2, operation](const checked_uint old) {
+  return [operand2, operation](const std::size_t old) {
     return std::invoke(operation, old, (operand2 == 0 ? old : operand2));
   };
 };
 
 const auto get_num_from_string = [](const auto &item) {
   std::size_t number{};
-  std::from_chars(item.begin(), item.end(), number);
+  std::string_view item_string{item.begin(), item.end()};
+  std::from_chars(item_string.data(), item_string.data()+item_string.size(), number);
   return number;
 };
 
@@ -116,7 +115,7 @@ const auto print_monkeys = [](const auto &monkeys, const auto &monkey_counter) {
   for (const auto &monkey : monkeys) {
     fmt::print("Monkey {} Items => ", counter);
     for (const auto &item : monkey.items) {
-      std::cout << item << "|";
+        fmt::print("{} |", item);
     }
     fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
     counter++;
@@ -137,7 +136,13 @@ int main() {
 
   print_monkeys(monkey_store, monkey_move_counter);
 
-  for (const auto index : std::views::iota(1, 10001)) {
+  std::size_t lcm{monkey_store.at(0).test};
+  for (std::size_t index{1}; index < num_of_monkeys - 1; ++index) {
+    lcm = std::lcm(lcm, monkey_store.at(index).test);
+  }
+
+  const std::size_t required_rounds{10000};
+  for (std::size_t index{1}; index < required_rounds + 1; ++index) {
     fmt::print("\nAfter Round: {}\n", index);
 
     std::size_t monkey_index{};
@@ -146,6 +151,7 @@ int main() {
         auto item = monkey.items.back();
         monkey.items.pop_back();
         item = monkey.item_operation(item);
+        item %= lcm;
 
         if ((item % monkey.test) == 0) {
           monkey_store.at(monkey.true_monkey).items.push_back(item);
@@ -154,9 +160,9 @@ int main() {
         }
         monkey_move_counter.at(monkey_index)++;
       }
-            monkey_index++;
+      monkey_index++;
     }
-    
+
     print_monkeys(monkey_store, monkey_move_counter);
     fmt::print("\n-------\n");
   }

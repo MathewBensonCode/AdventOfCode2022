@@ -37,6 +37,24 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
+include(cmake/CompileStandardLibraryHeaderUnits.cmake)
+
+#add -fmodule-ts for gcc
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+target_compile_options(project_options INTERFACE -fmodules-ts -flang-info-include-translate)
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+target_compile_options(project_options INTERFACE "/translateInclude 
+/headerUnit:angle iostream=./iostream.ifc
+/headerUnit:angle string_view=./string_view.ifc
+/headerUnit:angle algorithm=./algorithm.ifc
+/headerUnit:angle ranges=./ranges.ifc
+")
+endif()
+
+find_package(fmt REQUIRED)
+
+target_link_libraries(project_options INTERFACE fmt::fmt)
+
 add_subdirectory(day1)
 add_subdirectory(day2)
 add_subdirectory(day3)

@@ -1,9 +1,10 @@
 #include "input4.hpp"
 #include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <ranges>
 #include <charconv>
+#include <fstream>
+#include <ranges>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 
 namespace {
 
@@ -14,8 +15,9 @@ constexpr auto num_delimiter{"-"sv};
 const auto getpair = [](const auto &pair) {
   auto numbers = pair | std::views::split(num_delimiter) |
                  std::views::transform([](const auto &num) {
+                   std::string_view num_string{num.begin(), num.end()};
                    int number{};
-                   std::from_chars(num.begin(), num.end(), number);
+                   std::from_chars(num_string.data(), num_string.data()+num_string.size(), number);
                    return number;
                  });
 
@@ -25,9 +27,9 @@ const auto getpair = [](const auto &pair) {
   return std::make_pair(*first, *second);
 };
 
-const auto getlinedata = [](const auto &line){
-  auto pairs = line | std::views::split(pair_delimiter) |
-               std::views::transform(getpair);
+const auto getlinedata = [](const auto &line) {
+  auto pairs =
+      line | std::views::split(pair_delimiter) | std::views::transform(getpair);
 
   const auto itr1 = pairs.begin();
   const auto pair1 = *itr1;
@@ -35,8 +37,15 @@ const auto getlinedata = [](const auto &line){
   const auto itr2 = std::next(itr1);
   const auto pair2 = *itr2;
 
-  return (!((pair1.second < pair2.first) || // pair1 before pair2
+  fmt::print("Pair 1 => {} | Pair 2 => {} ", pair1, pair2);
+
+  const bool found = (!((pair1.second < pair2.first) || // pair1 before pair2
             (pair1.first > pair2.second))); // pair1 after pair2
+   if (found){
+       fmt::print("| Found");
+   }
+   fmt::print("\n");
+   return found;
 };
 
 } // namespace
@@ -44,5 +53,5 @@ const auto getlinedata = [](const auto &line){
 int main() {
   auto lines = inputdata | std::views::split(line_delimiter);
   auto count = std::ranges::count_if(lines, getlinedata);
-  std::cout << "Total Found : " << count << '\n';
+  fmt::print("Total Found : {} \n", count);
 }

@@ -1,7 +1,7 @@
 #include "input3.hpp"
 #include <array>
-#include <iostream>
 #include <ranges>
+#include <fmt/core.h>
 
 namespace {
 const auto compartment_size{53};
@@ -45,9 +45,9 @@ int main() {
     auto first_half = lineinput.substr(0, halflength);
     auto second_half = lineinput.substr(halflength);
 
-    std::cout << "\nLine input : \n" << lineinput << '\n';
-    std::cout << "First_Half => " << first_half << '\n';
-    std::cout << "Second_Half => " << second_half << '\n';
+    fmt::print("Line input : {}\n\n", lineinput);
+    fmt::print("First_Half => {}\n", first_half);
+    fmt::print("Second_Half => {}\n", second_half);
 
     for (std::size_t index = 0; index < halflength; ++index) {
       const auto first_half_char_index =
@@ -62,11 +62,10 @@ int main() {
     for (std::size_t index = 1; index < compartment_size; ++index) {
       if (first_compartment.at(index) > 0 && second_compartment.at(index) > 0) {
         count += index;
-        std::cout << "Found character : " << calculate_char(index)
-                  << "\tWith Count : " << index << '\n';
+        fmt::print("Found character : {}\tWith Count : {} \n", static_cast<char>(calculate_char(index)), index);
       }
     }
   }
 
-  std::cout << "Final Count = " << count << '\n';
+  fmt::print("Final Count = {}\n", count);
 }

@@ -1,6 +1,6 @@
 #include "input2.hpp"
 #include <functional>
-#include <iostream>
+#include <fmt/core.h>
 #include <map>
 #include <numeric>
 #include <ranges>
@@ -55,6 +55,8 @@ const auto get_game_score = [](const auto &game) {
   roundscore += win_draw_lose(myvalue);
   roundscore += moves(gameoutcome);
 
+  fmt::print("Game => {} | Score => {} \n", gameoutcome, roundscore);
+
   return roundscore;
 };
 
@@ -67,5 +69,5 @@ int main() {
 
   const auto gamescore{std::accumulate(games.begin(), games.end(), 0)};
 
-  std::cout << "Games Total Score => " << gamescore << '\n';
+  fmt::print("Games Total Score => {}\n", gamescore);
 }

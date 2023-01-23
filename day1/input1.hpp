@@ -2241,5 +2241,4 @@ constexpr auto inputdata=R"(2936
 6217
 10094
 1445
-9978
-)"sv;
+9978)"sv;

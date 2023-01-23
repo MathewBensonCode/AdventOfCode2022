@@ -1,4 +1,5 @@
 #include "input8.hpp"
+#include <algorithm>
 #include <array>
 #include <iostream>
 #include <sstream>
@@ -16,11 +17,11 @@ int main() {
     return col + (row * array_width);
   };
 
-  auto print_found = [&](const std::string &name){
-      std::cout<<name<<'\n';
-     for (std::size_t row_index{0}; row_index < array_width; ++row_index) {
+  auto print_found = [&](const std::string &name) {
+    std::cout << name << '\n';
+    for (std::size_t row_index{0}; row_index < array_width; ++row_index) {
       for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
-          std::cout<<printstore.at(row_index).at(col_index);
+        std::cout << printstore.at(row_index).at(col_index);
       }
       std::cout << '\n';
     }
@@ -46,9 +47,8 @@ int main() {
   auto count_trees_left_to_right = [&]() {
     for (std::size_t row_index{0}; row_index < array_width; ++row_index) {
       char highest_tree{};
-      char current_tree{};
       for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
-        current_tree = datastore.at(row_index).at(col_index);
+        const auto current_tree = datastore.at(row_index).at(col_index);
 
         if ((col_index == 0) || (current_tree > highest_tree)) {
           highest_tree = current_tree;
@@ -68,9 +68,8 @@ int main() {
   auto count_trees_top_to_bottom = [&]() {
     for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
       char highest_tree{};
-      char current_tree{};
       for (std::size_t row_index{0}; row_index < array_width; ++row_index) {
-        current_tree = datastore.at(row_index).at(col_index);
+        char current_tree = datastore.at(row_index).at(col_index);
 
         if ((row_index == 0) || (current_tree > highest_tree)) {
           highest_tree = current_tree;
@@ -87,19 +86,17 @@ int main() {
 
   count_trees_top_to_bottom();
 
-auto count_trees_right_to_left = [&]() {
+  auto count_trees_right_to_left = [&]() {
     for (auto row_index{0}; row_index < array_width; ++row_index) {
       char highest_tree{};
-      char current_tree{};
-      for (auto col_index{array_width-1}; col_index >= 0; --col_index) {
+      for (auto col_index{array_width - 1}; col_index >= 0; --col_index) {
         auto rowval = static_cast<std::size_t>(row_index);
         auto colval = static_cast<std::size_t>(col_index);
-        current_tree = datastore.at(rowval).at(colval);
+        const auto current_tree = datastore.at(rowval).at(colval);
 
         if ((colval == array_width) || (current_tree > highest_tree)) {
           highest_tree = current_tree;
-          visible_tree_count_store.at(
-              get_index_for_array(rowval, colval))++;
+          visible_tree_count_store.at(get_index_for_array(rowval, colval))++;
           printstore.at(rowval).at(colval) = current_tree;
           continue;
         }
@@ -114,16 +111,14 @@ auto count_trees_right_to_left = [&]() {
   auto count_trees_bottom_to_top = [&]() {
     for (auto col_index{0}; col_index < array_width; ++col_index) {
       char highest_tree{};
-      char current_tree{};
-      for (auto row_index{array_width-1}; row_index >=0 ; --row_index) {
+      for (auto row_index{array_width - 1}; row_index >= 0; --row_index) {
         auto rowval = static_cast<std::size_t>(row_index);
         auto colval = static_cast<std::size_t>(col_index);
-        current_tree = datastore.at(rowval).at(colval);
+        const auto current_tree = datastore.at(rowval).at(colval);
 
         if ((rowval == array_width) || (current_tree > highest_tree)) {
           highest_tree = current_tree;
-          visible_tree_count_store.at(
-              get_index_for_array(rowval, colval))++;
+          visible_tree_count_store.at(get_index_for_array(rowval, colval))++;
           printstore.at(rowval).at(colval) = current_tree;
           continue;
         }
@@ -135,12 +130,8 @@ auto count_trees_right_to_left = [&]() {
 
   count_trees_bottom_to_top();
 
-  std::size_t visible_tree_count{};
+  const auto visible_tree_count = std::ranges::count_if(
+      visible_tree_count_store, [](const auto tree) { return tree > 0; });
 
-  for (auto &tree : visible_tree_count_store) {
-    if (tree > 0) {
-      visible_tree_count++;
-    }
-  }
   std::cout << "\nViewable Trees => " << visible_tree_count << '\n';
 }

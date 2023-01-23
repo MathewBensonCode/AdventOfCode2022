@@ -1,23 +1,32 @@
 #include "input1.hpp"
 #include <algorithm>
+#include <charconv>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 #include <iostream>
 #include <numeric>
 #include <ranges>
 #include <vector>
-#include <charconv>
 
 namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
 constexpr std::string_view line_delimiter{"\n"};
 
 const auto get_section_data = [](const auto &section) {
-  auto lines = section | std::views::split(line_delimiter) |
-               std::views::transform([](const auto &line) {
-                    int number{};
-                    std::from_chars(line.begin(), line.end(), number);
-                    return number;
-               });
-  return std::accumulate(lines.begin(), lines.end(), 0);
+  auto lines =
+      section | std::views::split(line_delimiter) |
+      std::views::transform([](const auto &line) {
+        std::string_view line_string{line.begin(), line.end()};
+        int number{};
+        std::from_chars(line_string.data(),
+                        line_string.data() + line_string.size(), number);
+        fmt::print("# {}\n", number);
+        return number;
+      });
+
+  const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
+  fmt::print("Section Sum => {}\n\n", section_sum);
+  return section_sum;
 };
 
 } // namespace
@@ -33,5 +42,5 @@ int main() {
   std::ranges::sort(results, std::ranges::greater());
   auto top3 = results | std::views::take(3) | std::views::common;
   auto highest3 = std::accumulate(top3.begin(), top3.end(), 0);
-  std::cout << "Sum of Hightest 3 Elements = " << highest3 << '\n';
+  fmt::print("Highest 3 Elements = {}\n With sum => {}", top3, highest3);
 }

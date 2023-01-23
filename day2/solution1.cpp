@@ -1,9 +1,9 @@
 #include "input2.hpp"
 #include <algorithm>
-#include <iostream>
 #include <numeric>
 #include <ranges>
 #include <string>
+#include <fmt/core.h>
 
 namespace {
 constexpr auto line_delimiter{"\n"sv};
@@ -17,13 +17,13 @@ constexpr auto scissors_score{3};
 
 const auto mymoves = [](char move) {
   if (move == 'X') {
-    return 1;
+    return rock_score;
   }
   if (move == 'Y') {
-    return 2;
+    return paper_score;
   }
   if (move == 'Z') {
-    return 3;
+    return scissors_score;
   }
   return 0;
 };
@@ -48,6 +48,8 @@ const auto get_game_score = [](const auto &game) {
   roundscore += mymoves(myvalue);
   roundscore += win_lose(gameoutcome);
 
+  fmt::print("Game => {} | Score => {}\n", gameoutcome, roundscore);
+
   return roundscore;
 };
 
@@ -58,5 +60,5 @@ int main() {
                std::views::transform(get_game_score) | std::views::common;
 
   auto gamescore = std::accumulate(games.begin(), games.end(), 0);
-  std::cout << "Games Total Score => " << gamescore << '\n';
+  fmt::print("Games Total Score => {}\n", gamescore);
 }
