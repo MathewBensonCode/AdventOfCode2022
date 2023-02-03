@@ -6,6 +6,7 @@
 #include <iostream>
 #include <numeric>
 #include <ranges>
+#include <string_view>
 #include <vector>
 
 namespace {
@@ -24,7 +25,7 @@ const auto get_section_data = [](const auto &section) {
         return number;
       });
 
-  const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
+  const auto section_sum = std::accumulate(lines.begin(), lines.end(), std::size_t{});
   fmt::print("Section Sum => {}\n\n", section_sum);
   return section_sum;
 };
@@ -33,7 +34,8 @@ const auto get_section_data = [](const auto &section) {
 
 int main() {
 
-  auto sections = inputdata | std::views::split(section_delimiter) |
+  auto sections = std::string_view{inputdata} |
+                  std::views::split(section_delimiter) |
                   std::views::transform(get_section_data);
 
   std::vector<int> results{};
