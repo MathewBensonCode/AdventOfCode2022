@@ -2,6 +2,8 @@
 #include <array>
 #include <fmt/core.h>
 #include <ranges>
+#include <string_view>
+#include <numeric>
 
 namespace {
 const auto compartment_size{53};
@@ -10,44 +12,34 @@ const auto capital_letter_offset{38};
 const auto small_capital_boundary{27};
 
 constexpr std::string_view line_delimiter{"\n"};
-} // namespace
 
-int main() {
+const auto calculate_index = [](unsigned char letter) {
+  auto value = static_cast<std::size_t>(letter);
 
-  auto lines = inputdata | std::views::all | std::views::split(line_delimiter);
+  if (value > small_letter_offset) {
+    return value - small_letter_offset;
+  }
+  return value - capital_letter_offset;
+};
 
-  std::size_t count{};
+const auto calculate_char = [](std::size_t value) {
+  if (value < small_capital_boundary) {
+    return static_cast<char>(value + small_letter_offset);
+  }
+  return static_cast<char>(value + capital_letter_offset);
+};
+
 
   std::size_t compartment_index{};
 
   std::array<std::array<std::size_t, compartment_size>, 3> compartments{};
 
-  auto calculate_index = [](unsigned char letter) {
-    auto value = static_cast<std::size_t>(letter);
 
-    if (value > small_letter_offset) {
-      return value - small_letter_offset;
-    }
-    return value - capital_letter_offset;
-  };
-
-  auto calculate_char = [](std::size_t value) {
-    if (value < small_capital_boundary) {
-      return static_cast<char>(value + small_letter_offset);
-    }
-    return static_cast<char>(value + capital_letter_offset);
-  };
-
-  for (const auto &line : lines) {
+const auto get_count = [](const auto &line){
+    std::size_t count{};
     std::string_view lineinput{line.begin(), line.end()};
 
-    auto linelength = lineinput.size();
-    if (linelength == 0) {
-      fmt::print("empty string\n");
-      break;
-    };
-
-    for (std::size_t index = 0; index < linelength; ++index) {
+    for (std::size_t index = 0; index < lineinput.size(); ++index) {
       auto char_index =
           calculate_index(static_cast<unsigned char>(lineinput[index]));
 
@@ -58,7 +50,7 @@ int main() {
 
     if (compartment_index < 2) {
       compartment_index++;
-      continue;
+      return std::size_t{};
     }
 
     for (std::size_t index = 1; index < compartment_size; ++index) {
@@ -75,6 +67,17 @@ int main() {
     compartments[0].fill(0);
     compartments[1].fill(0);
     compartments[2].fill(0);
-  }
+
+    return count;
+};
+
+} // namespace
+
+int main() {
+
+  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter) | std::views::transform(get_count) |std::views::common;
+
+  const auto count = std::accumulate(lines.begin(), lines.end(), std::size_t{});
+  
   fmt::print("Final Count = {}\n", count);
 }

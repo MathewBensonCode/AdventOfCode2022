@@ -1,6 +1,3 @@
-#include <string>
-using namespace std::string_literals;
-
 constexpr auto inputdata = R"(
 [W] [V]     [P]                    
 [B] [T]     [C] [B]     [G]        

@@ -1,129 +1,104 @@
 #include "input5.hpp"
+#include <algorithm>
 #include <array>
-#include <iostream>
-#include <sstream>
-#include <stack>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
+#include <iterator>
+#include <ranges>
+#include <string_view>
 #include <vector>
 
-int main() {
-  std::stringstream inputstringstream{inputdata};
+namespace {
+constexpr std::string_view section_delimiter{"\n\n"};
+constexpr std::string_view line_delimiter{"\n"};
+constexpr std::string_view space_delimiter{" "};
+const auto stack_count{9};
+constexpr auto stride{4};
 
-  std::size_t line_counter{0};
-  const std::size_t number_of_stacks{9};
-  const std::size_t data_line_end{8};
-  const std::size_t move_line_length{20};
-  std::size_t stack_location{data_line_end - 1};
+const auto to_string_view = [](const auto &data) {
+  return std::string_view{data.begin(), data.end()};
+};
 
-  std::array<std::vector<char>, number_of_stacks> crate_containers{};
+const auto fill_stacks = [](const std::string_view datasection,
+                            auto &stack_container) {
+  auto lines = datasection | std::views::split(line_delimiter) |
+               std::views::take(stack_count) |
+               std::views::transform(to_string_view);
 
-  auto fill_stacks = [&](const std::string &crate_data) {
-    const auto stride{4};
+  for (const auto &line : lines) {
+    auto itr = line.begin();
+    auto stack_counter{0};
+    if (!line.empty()) {
+      std::advance(itr, 1);
 
-    for (std::size_t line_index{0}; line_index < data_line_end + 1;
-         ++line_index) {
-      char value = crate_data.substr(1 + (line_index * stride), 1)[0];
-      if (value != ' ') {
-        auto &crate = crate_containers.at(line_index);
-        if (crate.size() < stack_location) {
-          crate.resize(stack_location + 1);
+      while (std::distance(itr, line.end()) > 1) {
+        const auto value = *itr;
+        if (value != ' ') {
+          stack_container.at(stack_counter).push_back(value);
         }
-        crate.at(stack_location) = value;
-      }
-      std::cout << value << ' ';
+
+        if (std::distance(itr, line.end()) == 2) {
+          break;
+        }
+        std::advance(itr, stride);
+        stack_counter++;
+      };
     }
-    stack_location--;
-    std::cout << '\n';
-  };
-
-  auto print_top_values = [&crate_containers] {
-    std::cout << "\nTop Values => ";
-    for (auto &stack : crate_containers) {
-      if (!stack.empty()) {
-        std::cout << stack.back() << ' ';
-      } else {
-        std::cout << "  ";
-      }
-    }
-    std::cout << "\n\n";
-  };
-
-  auto print_stacks = [&crate_containers] {
-    std::cout << "\nStacks => \n";
-
-    std::size_t counter{1};
-    for (const auto &stack : crate_containers) {
-      std::cout << "Stack " << counter << " => ";
-      for (auto crate : stack) {
-        std::cout << " | " << crate;
-      }
-      counter++;
-      std::cout << '\n';
-    }
-  };
-
-  auto move_crates = [&crate_containers](const std::string &move_instructions) {
-    std::stringstream movestream{move_instructions};
-
-    std::string movestring;
-    movestream >> movestring;
-    std::size_t number_of_moves{};
-    movestream >> number_of_moves;
-
-    std::cout<<'\n' << movestring<<' ' << number_of_moves << ' ';
-
-    std::string from_string{};
-    movestream >> from_string;
-    std::size_t from_index{};
-
-    movestream >> from_index;
-    std::cout << from_string<<' ' << from_index << ' ';
-
-    std::string to_string{};
-    movestream >> to_string;
-    std::size_t to_index{};
-    movestream >> to_index;
-
-    std::cout << to_string<<' ' << to_index << '\n';
-
-    for (std::size_t index{0}; index < number_of_moves; ++index) {
-      auto &from_stack = crate_containers.at(from_index - 1);
-      auto &to_stack = crate_containers.at(to_index - 1);
-
-      if (!from_stack.empty()) {
-        auto value = from_stack.back();
-        to_stack.push_back(value);
-        from_stack.pop_back();
-      }
-      else
-      {
-          std::cout<<"\t\t\t----> From Stack Empty\n";
-      }
-    }
-  };
-
-  while (!inputstringstream.eof()) {
-    std::string linestring{};
-
-    std::getline(inputstringstream, linestring);
-
-    if (linestring.length() == 0) {
-      continue;
-    }
-
-    if (line_counter < data_line_end) {
-      fill_stacks(linestring);
-      line_counter++;
-      continue;
-    }
-
-    if (linestring.length() > move_line_length) {
-      print_top_values();
-      continue;
-    }
-
-    move_crates(linestring);
-    line_counter++;
-    print_stacks();
-    print_top_values();
   }
+
+  for (auto &vec : stack_container) {
+    std::ranges::reverse(vec);
+  }
+};
+
+const auto print_stacks = [](const auto &stack_container) {
+  fmt::print("\nStack Status\n");
+  auto stack_number{1};
+  for (const auto &vec : stack_container) {
+    fmt::print("{} => {}\n", stack_number, vec);
+    stack_number++;
+  }
+
+  fmt::print("\n--------\n\n");
+};
+
+const auto process_moves = [](const auto moves, auto &stack_container) {
+  auto lines = moves | std::views::split(line_delimiter) |
+               std::views::transform(to_string_view);
+
+  for (const auto line : lines) {
+    auto values = line | std::views::split(space_delimiter) |
+                  std::views::drop(1) | std::views::take(1) |
+                  std::views::drop(1) | std::views::take(1) |
+                  std::views::drop(1) | std::views::take(1);
+
+    fmt::print("I will Move {} from {} to {}", values.begin(), *(std::next(values.begin())), *(std::next(std::next(values.begin()))));
+  }
+};
+
+} // namespace
+
+int main() {
+  auto sections = std::string_view{inputdata} |
+                  std::views::split(section_delimiter) |
+                  std::views::transform(to_string_view);
+
+  const auto data_section = sections.front();
+
+  std::array<std::vector<char>, stack_count> data_store{};
+
+  for (auto &vec : data_store) {
+    vec.reserve(stack_count);
+  }
+
+  fmt::print("Original Values => {}\n\n", data_section);
+
+  fill_stacks(std::string_view{data_section.begin(), data_section.end()},
+              data_store);
+
+  print_stacks(data_store);
+
+  const auto move_section = *(std::next(sections.begin()));
+
+  process_moves(move_section, data_store);
 }

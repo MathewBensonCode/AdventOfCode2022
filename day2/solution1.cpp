@@ -2,8 +2,10 @@
 #include <algorithm>
 #include <numeric>
 #include <ranges>
-#include <string>
 #include <fmt/core.h>
+#include <string_view>
+
+using namespace std::literals::string_view_literals;
 
 namespace {
 constexpr auto line_delimiter{"\n"sv};
@@ -56,7 +58,7 @@ const auto get_game_score = [](const auto &game) {
 } // namespace
 
 int main() {
-  auto games = inputdata | std::views::split(line_delimiter) |
+  auto games = std::string_view{inputdata} | std::views::split(line_delimiter) |
                std::views::transform(get_game_score) | std::views::common;
 
   auto gamescore = std::accumulate(games.begin(), games.end(), 0);

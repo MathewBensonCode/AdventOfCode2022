@@ -1,5 +1,4 @@
-#include <string_view>
-using namespace std::string_view_literals;
+
 static constexpr auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
 gRTRnCRsFNGbTzLjwcSTMmSz
 dGgsRWPGdWgZJqBBqhfpPq
@@ -299,4 +298,4 @@ DrNNBbwNHNwlbjFbbCNjNwDWWDPPVfDMgfmVMfnMWmmP
 rvJBbbBNcLCtJZQL
 NfLlqLhbNPddLPqLhpgHwFFwFHHTwRHWwPFTrT
 MSMSCnjBnBjCscjVDVljTvHmmWnrwTrwFTrvTWTT
-JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)"sv;
+JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)";

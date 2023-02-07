@@ -22,6 +22,7 @@ const auto get_section_data = [](const auto &section) {
         fmt::print("# {}\n", number);
         return number;
       });
+
   const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
   fmt::print("Section Sum => {}\n\n", section_sum);
   return section_sum;

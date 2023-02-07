@@ -17,7 +17,7 @@ struct directory : public file {
   std::vector<std::shared_ptr<file>> contents{};
 };
 
-std::size_t operator+(const std::size_t &value1,
+std::size_t operator+(const std::size_t value1,
                       const std::shared_ptr<file> &other) {
   return value1 + other->size;
 }
@@ -61,9 +61,11 @@ int main() {
                 << '\n';
 
       const auto &contents = current_directory->contents;
-      std::size_t sum{std::accumulate(
-          contents.begin(), contents.end(), std::size_t{},
-          [](std::size_t previous_sum, const auto &dir) { return previous_sum + dir->size; })};
+      std::size_t sum{
+          std::accumulate(contents.begin(), contents.end(), std::size_t{},
+                          [](std::size_t previous_sum, const auto &dir) {
+                            return previous_sum + dir->size;
+                          })};
 
       if (current_directory->size != sum) {
         current_directory->size = sum;
@@ -138,8 +140,9 @@ int main() {
 
   auto rootdircollection = root_directory->contents;
 
-  std::size_t current_stored = std::accumulate(std::begin(rootdircollection),
-                                               std::end(rootdircollection), 0U);
+  std::size_t current_stored =
+      std::accumulate(std::begin(rootdircollection),
+                      std::end(rootdircollection), std::size_t{});
 
   std::cout << "\nTotal Available Space => " << disk_limit << '\n';
 
@@ -159,12 +162,11 @@ int main() {
   for (const auto &dir : directories) {
     auto dirsize = dir->size;
     if (dirsize >= target) {
-        if(dirsize < smallest_dir_to_remove)
-        {
-            smallest_dir_to_remove = dirsize;
-        }
+      if (dirsize < smallest_dir_to_remove) {
+        smallest_dir_to_remove = dirsize;
+      }
     }
   }
 
-  std::cout<<"Smallest dir size => "<<smallest_dir_to_remove<<'\n';
+  std::cout << "Smallest dir size => " << smallest_dir_to_remove << '\n';
 }

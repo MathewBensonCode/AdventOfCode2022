@@ -1,9 +1,10 @@
 #include "input2.hpp"
-#include <functional>
 #include <fmt/core.h>
-#include <map>
 #include <numeric>
 #include <ranges>
+#include <string_view>
+
+using namespace std::literals::string_view_literals;
 
 namespace {
 constexpr auto line_delimiter{"\n"sv};
@@ -52,8 +53,7 @@ const auto get_game_score = [](const auto &game) {
 
   const auto myvalue = gameoutcome.back();
 
-  roundscore += win_draw_lose(myvalue);
-  roundscore += moves(gameoutcome);
+  roundscore += win_draw_lose(myvalue) + moves(gameoutcome);
 
   fmt::print("Game => {} | Score => {} \n", gameoutcome, roundscore);
 
@@ -64,7 +64,7 @@ const auto get_game_score = [](const auto &game) {
 
 int main() {
 
-  auto games = inputdata | std::views::split(line_delimiter) |
+  auto games = std::string_view{inputdata} | std::views::split(line_delimiter) |
                std::views::transform(get_game_score) | std::views::common;
 
   const auto gamescore{std::accumulate(games.begin(), games.end(), 0)};

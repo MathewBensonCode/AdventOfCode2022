@@ -5,6 +5,9 @@
 #include <fmt/ranges.h>
 #include <iterator>
 #include <ranges>
+#include <string_view>
+
+using namespace std::literals::string_view_literals;
 
 namespace {
 constexpr auto line_delimiter{"\n"sv};
@@ -54,7 +57,7 @@ const auto getlinedata = [](const auto &linestring) {
 } // namespace
 
 int main() {
-  auto lines = inputdata | std::views::split(line_delimiter);
+  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter);
   const auto count{std::ranges::count_if(lines, getlinedata)};
   fmt::print("Total Found : {}\n", count);
 } // namespace

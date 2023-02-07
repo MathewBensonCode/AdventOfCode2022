@@ -1,5 +1,3 @@
-#include <string_view>
-using namespace std::string_view_literals;
 constexpr auto inputdata=
 R"(B Y
 A Y
@@ -2500,4 +2498,4 @@ C X
 A Y
 A Z
 B Y
-A Y)"sv;
+A Y)";
