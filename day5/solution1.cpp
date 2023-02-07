@@ -1,6 +1,7 @@
 #include "input5.hpp"
 #include <algorithm>
 #include <array>
+#include <charconv>
 #include <fmt/core.h>
 #include <fmt/ranges.h>
 #include <iterator>
@@ -66,13 +67,35 @@ const auto process_moves = [](const auto moves, auto &stack_container) {
   auto lines = moves | std::views::split(line_delimiter) |
                std::views::transform(to_string_view);
 
+  const auto getnum = [](const auto text) {
+    int current_num{-1};
+    std::from_chars(text.data(), text.data() + text.size(), current_num);
+    return current_num;
+  };
+
   for (const auto line : lines) {
     auto values = line | std::views::split(space_delimiter) |
-                  std::views::drop(1) | std::views::take(1) |
-                  std::views::drop(1) | std::views::take(1) |
-                  std::views::drop(1) | std::views::take(1);
+                  std::views::transform(to_string_view) |
+                  std::views::transform(getnum) |
+                  std::views::filter([](const auto num) { return num > 0; });
 
-    fmt::print("I will Move {} from {} to {}", values.begin(), *(std::next(values.begin())), *(std::next(std::next(values.begin()))));
+    auto starting_point = values.begin();
+    const auto number_of_moves = *starting_point;
+    std::advance(starting_point, 1);
+    const auto from_stack_number = *starting_point;
+    std::advance(starting_point, 1);
+    const auto to_stack_number = *starting_point;
+
+    for (auto index{0}; index < number_of_moves; ++index) {
+      auto &from_vec = stack_container.at(from_stack_number - 1);
+      auto value = from_vec.back();
+      from_vec.pop_back();
+
+      auto &to_vec = stack_container.at(to_stack_number - 1);
+      to_vec.push_back(value);
+    }
+    fmt::print("\nAfter {} ", line);
+    print_stacks(stack_container);
   }
 };
 
@@ -96,9 +119,13 @@ int main() {
   fill_stacks(std::string_view{data_section.begin(), data_section.end()},
               data_store);
 
-  print_stacks(data_store);
-
   const auto move_section = *(std::next(sections.begin()));
 
   process_moves(move_section, data_store);
+
+  fmt::print("\nTop Values => ");
+  for (const auto &stack : data_store) {
+    auto top_value = stack.back();
+    fmt::print("{}|", top_value);
+  }
 }
