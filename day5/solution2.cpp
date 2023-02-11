@@ -28,7 +28,7 @@ const auto fill_stacks = [](const std::string_view datasection,
 
   for (const auto &line : lines) {
     auto itr = line.begin();
-    auto stack_counter{0};
+    std::size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);
 
@@ -63,11 +63,11 @@ const auto print_stacks = [](const auto &stack_container) {
   fmt::print("\nTop Values => ");
 
   for (const auto &vec : stack_container) {
-      if (!vec.empty()){
+    if (!vec.empty()) {
       fmt::print("{}|", vec.back());
       continue;
-      }
-      fmt::print(" |");
+    }
+    fmt::print(" |");
   }
 
   fmt::print("\n--------\n\n");
@@ -90,36 +90,36 @@ const auto process_moves = [](const auto moves, auto &stack_container) {
                   std::views::filter([](const auto num) { return num > 0; });
 
     auto starting_point = values.begin();
-    const auto number_of_moves = *starting_point;
+    const auto number_of_moves = static_cast<std::size_t>(*starting_point);
     std::advance(starting_point, 1);
-    const auto from_stack_number = *starting_point;
+    const auto from_stack_number = static_cast<std::size_t>(*starting_point);
     std::advance(starting_point, 1);
-    const auto to_stack_number = *starting_point;
+    const auto to_stack_number = static_cast<std::size_t>(*starting_point);
 
-    auto &from_stack = stack_container.at(from_stack_number-1);
-    auto &to_stack = stack_container.at(to_stack_number-1);
+    auto &from_container_stack = stack_container.at(from_stack_number - 1);
+    auto &to_container_stack = stack_container.at(to_stack_number - 1);
 
     std::vector<char> tempcontainer(number_of_moves);
 
-    auto move_crate_values = [](auto &from_stack,
-                                std::size_t moves,
+    auto move_crate_values = [](auto &from_stack, auto moves_number,
                                 auto &to_stack) {
-      for (std::size_t index{0}; index < moves; ++index) {
+      for (std::size_t index{0}; index < moves_number; ++index) {
 
         if (!from_stack.empty()) {
           auto value = from_stack.back();
           to_stack.push_back(value);
           from_stack.pop_back();
         } else {
-            fmt::print("\t\t\t----> From Stack Empty\n");
+          fmt::print("\t\t\t----> From Stack Empty\n");
         }
       }
     };
 
-    move_crate_values(from_stack, number_of_moves, tempcontainer);
-    move_crate_values(tempcontainer, number_of_moves, to_stack);
+    move_crate_values(from_container_stack, number_of_moves, tempcontainer);
+    move_crate_values(tempcontainer, number_of_moves, to_container_stack);
 
-    fmt::print("\nAfter move {} crates from stack {} to stack {} \n", number_of_moves, from_stack_number, to_stack_number);
+    fmt::print("\nAfter move {} crates from stack {} to stack {} \n",
+               number_of_moves, from_stack_number, to_stack_number);
     print_stacks(stack_container);
   }
 };
