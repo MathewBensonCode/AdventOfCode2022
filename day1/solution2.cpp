@@ -1,7 +1,7 @@
 #include "input1.hpp"
 #include <algorithm>
 #include <charconv>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <fmt/ranges.h>
 #include <iostream>
 #include <numeric>
@@ -9,11 +9,10 @@
 #include <string_view>
 #include <vector>
 
-namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
 constexpr std::string_view line_delimiter{"\n"};
 
-const auto get_section_data = [](const auto &section) {
+const auto get_section_sum = [](const auto &section) {
   auto lines =
       section | std::views::split(line_delimiter) |
       std::views::transform([](const auto &line) {
@@ -30,13 +29,12 @@ const auto get_section_data = [](const auto &section) {
   return section_sum;
 };
 
-} // namespace
 
 int main() {
 
   auto sections = std::string_view{inputdata} |
                   std::views::split(section_delimiter) |
-                  std::views::transform(get_section_data);
+                  std::views::transform(get_section_sum);
 
   std::vector<int> results{};
   std::ranges::copy(sections, std::back_inserter(results));

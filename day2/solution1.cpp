@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <numeric>
 #include <ranges>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <string_view>
 
 using namespace std::literals::string_view_literals;

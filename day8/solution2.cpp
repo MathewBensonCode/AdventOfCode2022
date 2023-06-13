@@ -1,16 +1,21 @@
 #include "input8.hpp"
 #include <algorithm>
 #include <array>
+#include <execution>
+#include <fmt/format.h>
 #include <iostream>
 #include <ranges>
 #include <sstream>
 #include <vector>
 
-int main() {
-  constexpr std::string_view dataview{inputdata};
-  constexpr std::string_view delim{"\n"};
+namespace {
+const std::size_t array_width{99};
+constexpr std::string_view dataview{inputdata};
+constexpr std::string_view delim{"\n"};
 
-  const auto array_width{99};
+} // namespace
+
+int main() {
 
   auto split_view = dataview | std::views::split(delim) | std::views::drop(1) |
                     std::views::take(array_width);
@@ -18,6 +23,7 @@ int main() {
   auto reverse_split_view = dataview | std::views::reverse |
                             std::views::split(delim) | std::views::drop(1) |
                             std::views::take(array_width);
+
   auto joint_view = split_view | std::views::join;
 
   bool found_one_already{};
@@ -130,8 +136,11 @@ int main() {
 
   std::size_t highest_scenic_score{};
 
-  for (std::size_t row_index{}; row_index < array_width; ++row_index) {
-    for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
+  auto span =
+      std::views::iota(std::size_t{}, array_width - 1) | std::views::common;
+
+  const auto traverse_rows = [&](const auto row_index) {
+    for (auto col_index : span) {
 
       std::cout << "Row = " << row_index << "\t| Col = " << col_index << '\n';
 
@@ -185,6 +194,9 @@ int main() {
       }
     }
     std::cout << '\n';
-  }
-  std::cout << " Highest Scenic Score ==> " << highest_scenic_score << '\n';
+  };
+
+  std::for_each(std::execution::par_unseq, span.begin(), span.end(), traverse_rows);
+
+  fmt::print(" Highest Scenic Score ==> {}\n", highest_scenic_score);
 }

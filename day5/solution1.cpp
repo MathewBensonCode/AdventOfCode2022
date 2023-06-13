@@ -128,4 +128,6 @@ int main() {
     auto top_value = stack.back();
     fmt::print("{}|", top_value);
   }
+
+  fmt::print("\n");
 }

@@ -1,5 +1,5 @@
 #include "input2.hpp"
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <numeric>
 #include <ranges>
 #include <string_view>

@@ -1,7 +1,7 @@
 #include "input1.hpp"
 #include <algorithm>
 #include <charconv>
-#include <fmt/core.h>
+#include <fmt/format.h>
 #include <numeric>
 #include <ranges>
 #include <string_view>
@@ -37,7 +37,7 @@ int main() {
 
   std::vector<int> sums{};
   std::ranges::copy(sections, std::back_inserter(sums));
-  auto count = *(std::ranges::max_element(sums));
+  const auto count = *(std::ranges::max_element(sums));
 
   fmt::print("Highest Element = {}\n ", count);
 };
