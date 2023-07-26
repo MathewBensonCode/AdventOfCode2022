@@ -28,7 +28,7 @@ const auto fill_stacks = [](const std::string_view datasection,
 
   for (const auto &line : lines) {
     auto itr = line.begin();
-    auto stack_counter{0};
+    std::size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);
 
@@ -87,11 +87,13 @@ const auto process_moves = [](const auto moves, auto &stack_container) {
     const auto to_stack_number = *starting_point;
 
     for (auto index{0}; index < number_of_moves; ++index) {
-      auto &from_vec = stack_container.at(from_stack_number - 1);
+      auto &from_vec =
+          stack_container.at(static_cast<unsigned>(from_stack_number - 1));
       auto value = from_vec.back();
       from_vec.pop_back();
 
-      auto &to_vec = stack_container.at(to_stack_number - 1);
+      auto &to_vec =
+          stack_container.at(static_cast<unsigned>(to_stack_number - 1));
       to_vec.push_back(value);
     }
     fmt::print("\nAfter {} ", line);

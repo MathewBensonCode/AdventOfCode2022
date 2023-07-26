@@ -1,7 +1,6 @@
 #include "input8.hpp"
 #include <algorithm>
 #include <array>
-#include <execution>
 #include <fmt/format.h>
 #include <iostream>
 #include <ranges>
@@ -196,7 +195,7 @@ int main() {
     std::cout << '\n';
   };
 
-  std::for_each(std::execution::par_unseq, span.begin(), span.end(), traverse_rows);
+  std::for_each(span.begin(), span.end(), traverse_rows);
 
   fmt::print(" Highest Scenic Score ==> {}\n", highest_scenic_score);
 }
