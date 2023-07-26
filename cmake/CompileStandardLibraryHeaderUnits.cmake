@@ -19,8 +19,7 @@ function(CreateMsvcCompilerFlags headername)
 target_compile_options(project_options INTERFACE /headerUnit:angle "${headername}=./${headername}.ifc")
 endfunction()
 
-
-set(SystemHeaders iostream vector memory algorithm iterator string_view numeric ranges string map charconv array sstream)
+set(SystemHeaders iostream vector memory algorithm iterator string numeric ranges string_view map charconv array sstream cmath cstdint cstring limits utility stdexcept system_error bit)
 
 foreach(headername ${SystemHeaders})
     CompileStandardLibraryHeaderUnit(${headername})
