@@ -97,7 +97,7 @@ int main() {
 
   auto lines = inputdata | std::views::split(line_delimiter);
 
-  for(const auto &line: lines){
+  for (const auto &line : lines) {
     std::string linestring{line.begin(), line.end()};
 
     if (linestring.length() > 0) {
@@ -147,7 +147,8 @@ int main() {
 
   auto viewdirectories = directories | std::views::filter(less_directories);
 
-  const auto sum = std::accumulate(viewdirectories.begin(), viewdirectories.end(),
+  const auto sum =
+      std::accumulate(viewdirectories.begin(), viewdirectories.end(),
                       std::size_t{}, add_dir_size);
 
   std::cout << "Sum of dirs => " << sum << '\n';
