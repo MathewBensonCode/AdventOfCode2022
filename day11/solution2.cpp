@@ -1,7 +1,6 @@
 #include "input11.hpp"
 #include <algorithm>
 #include <charconv>
-#include <fmt/core.h>
 #include <functional>
 #include <iostream>
 #include <iterator>
@@ -10,6 +9,7 @@
 #include <string_view>
 #include <vector>
 #include <array>
+import fmt;
 
 namespace {
 struct Monkey {

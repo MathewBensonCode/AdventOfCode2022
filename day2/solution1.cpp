@@ -1,9 +1,8 @@
 #include "input2.hpp"
-#include <algorithm>
 #include <numeric>
 #include <ranges>
-#include <fmt/format.h>
 #include <string_view>
+import fmt;
 
 using namespace std::literals::string_view_literals;
 

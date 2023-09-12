@@ -1,10 +1,9 @@
 #include "day3common.hpp"
 #include "input3.hpp"
-#include <algorithm>
 #include <array>
-#include <fmt/core.h>
 #include <numeric>
 #include <ranges>
+import fmt;
 
 namespace {
 using namespace day3;

@@ -1,15 +1,15 @@
 #include "input9.hpp"
 #include <array>
-#include <fmt/core.h>
+#include <string_view>
 #include <ranges>
 #include <sstream>
-#include <string_view>
+import fmt;
 
 namespace {
 
 struct point {
-  std::size_t x;
-  std::size_t y;
+  unsigned x;
+  unsigned y;
 };
 
 enum class direction {

@@ -1,9 +1,8 @@
-#include <algorithm>
 #include <charconv>
-#include <fmt/format.h>
 #include <numeric>
 #include <ranges>
 #include <string_view>
+import fmt;
 
 
 namespace day1{

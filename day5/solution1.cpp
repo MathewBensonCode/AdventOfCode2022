@@ -2,12 +2,11 @@
 #include <algorithm>
 #include <array>
 #include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
 #include <iterator>
 #include <ranges>
 #include <string_view>
 #include <vector>
+import fmt;
 
 namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
@@ -27,7 +26,7 @@ const auto fill_stacks = [](const std::string_view datasection,
                std::views::transform(to_string_view);
 
   for (const auto &line : lines) {
-    auto itr = line.begin();
+    const auto *itr = line.begin();
     std::size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);

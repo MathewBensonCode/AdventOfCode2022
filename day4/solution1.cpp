@@ -1,11 +1,10 @@
 #include "input4.hpp"
 #include <algorithm>
 #include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
 #include <iterator>
 #include <ranges>
 #include <string_view>
+import fmt;
 
 using namespace std::literals::string_view_literals;
 

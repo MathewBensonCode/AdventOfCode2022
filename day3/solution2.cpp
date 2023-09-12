@@ -1,9 +1,9 @@
 #include "day3common.hpp"
 #include "input3.hpp"
 #include <array>
-#include <fmt/core.h>
 #include <numeric>
 #include <ranges>
+import fmt;
 
 namespace {
 using namespace day3;
@@ -46,11 +46,16 @@ const auto get_count = [](const auto &line) {
 } // namespace
 
 int main() {
+  try {
+    auto lines = std::string_view{inputdata} |
+                 std::views::split(line_delimiter) |
+                 std::views::transform(get_count) | std::views::common;
 
-  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter) |
-               std::views::transform(get_count) | std::views::common;
+    const auto count =
+        std::accumulate(lines.begin(), lines.end(), std::size_t{});
+    fmt::print("Final Count = {}\n", count);
 
-  const auto count = std::accumulate(lines.begin(), lines.end(), std::size_t{});
-
-  fmt::print("Final Count = {}\n", count);
+  } catch (std::exception &e) {
+    fmt::print("Error => {}", e.what());
+  }
 }

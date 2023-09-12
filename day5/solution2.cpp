@@ -1,13 +1,10 @@
 #include "input5.hpp"
 #include <algorithm>
-#include <array>
 #include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
-#include <iterator>
-#include <ranges>
 #include <string_view>
+#include <ranges>
 #include <vector>
+import fmt;
 
 namespace {
 constexpr std::string_view section_delimiter{"\n\n"};

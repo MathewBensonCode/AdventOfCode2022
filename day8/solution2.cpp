@@ -1,11 +1,11 @@
 #include "input8.hpp"
 #include <algorithm>
 #include <array>
-#include <fmt/format.h>
 #include <iostream>
 #include <ranges>
 #include <sstream>
 #include <vector>
+import fmt;
 
 namespace {
 const std::size_t array_width{99};
@@ -16,10 +16,10 @@ constexpr std::string_view delim{"\n"};
 
 int main() {
 
-  auto split_view = dataview | std::views::split(delim) | std::views::drop(1) |
+  auto split_view = std::views::split(delim) | std::views::drop(1) |
                     std::views::take(array_width);
 
-  auto reverse_split_view = dataview | std::views::reverse |
+  auto reverse_split_view = std::views::reverse |
                             std::views::split(delim) | std::views::drop(1) |
                             std::views::take(array_width);
 
@@ -41,8 +41,8 @@ int main() {
     return false;
   };
 
-  auto get_left_to_right_view = [&](std::size_t row, std::size_t col) -> auto{
-    auto current_view = joint_view |
+  auto get_left_to_right_view = [&](std::size_t row, std::size_t col) -> auto {
+    auto current_view = dataview | joint_view |
                         std::views::drop((row * array_width) + col) |
                         std::views::take(array_width - col);
 
@@ -60,10 +60,10 @@ int main() {
     return results;
   };
 
-  auto get_right_to_left_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_right_to_left_view = [&](std::size_t row, std::size_t col) -> auto {
     std::vector<char> results{};
 
-    auto rowviews = split_view | std::views::drop(row);
+    auto rowviews = dataview | split_view | std::views::drop(row);
 
     auto myview = rowviews.begin();
     auto current_view =
@@ -79,10 +79,10 @@ int main() {
     return results;
   };
 
-  auto get_top_to_bottom_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_top_to_bottom_view = [&](std::size_t row, std::size_t col) -> auto {
     std::vector<char> results{};
     found_one_already = false;
-    auto rowviews = split_view | std::views::drop(row);
+    auto rowviews = dataview | split_view | std::views::drop(row);
 
     auto first_selected = *(rowviews.begin()) | std::views::drop(col);
 
@@ -104,7 +104,7 @@ int main() {
     return results;
   };
 
-  auto get_bottom_to_top_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_bottom_to_top_view = [&](std::size_t row, std::size_t col) -> auto {
     std::vector<char> results{};
     auto rowviews =
         reverse_split_view | std::views::drop(array_width - (row + 1));
@@ -117,7 +117,7 @@ int main() {
 
     auto remaining_views = rowviews | std::views::drop(1);
 
-    for (auto myrow : remaining_views) {
+    for (const auto &myrow : remaining_views) {
       auto selected = myrow | std::views::drop(array_width - (col + 1));
 
       auto value = *(selected.begin());

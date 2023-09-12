@@ -1,6 +1,8 @@
 #include "header1.hpp"
 #include "input1.hpp"
+#include <algorithm>
 #include <vector>
+import fmt;
 
 using namespace day1;
 

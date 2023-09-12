@@ -1,7 +1,8 @@
 #include "header1.hpp"
 #include "input1.hpp"
-#include <fmt/ranges.h>
 #include <vector>
+#include <algorithm>
+import fmt;
 
 int main() {
 
