@@ -1,14 +1,12 @@
-#include "header1.hpp"
-#include "input1.hpp"
-#include <vector>
-#include <algorithm>
+import day1lib;
+import std;
 import fmt;
 
 int main() {
 
   using namespace day1;
 
-  auto sections = std::string_view{inputdata} |
+  auto sections = input_string |
                   std::views::split(section_delimiter) |
                   std::views::transform(get_section_sum);
 

@@ -1,15 +1,18 @@
-#include <charconv>
-#include <numeric>
-#include <ranges>
-#include <string_view>
+module;
+
+#include "input1.hpp"
+
+export module day1lib;
+
+import std;
 import fmt;
 
-
 namespace day1{
-constexpr std::string_view section_delimiter{"\n\n"};
-constexpr std::string_view line_delimiter{"\n"};
+export constexpr std::string_view input_string{inputdata};
+export constexpr std::string_view section_delimiter{"\n\n"};
+export constexpr std::string_view line_delimiter{"\n"};
 
-const auto get_section_sum = [](const auto &section) {
+export const auto get_section_sum{ [](const auto &section) {
   auto lines =
       section | std::views::split(line_delimiter) |
       std::views::transform([](const auto &line) {
@@ -24,6 +27,7 @@ const auto get_section_sum = [](const auto &section) {
   const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
   fmt::print("Section Sum => {}\n\n", section_sum);
   return section_sum;
+}
 };
 
 } // namespace
