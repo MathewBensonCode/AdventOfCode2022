@@ -1,3 +1,7 @@
+## Sub-folders
+std.module/
+fmt/
+
 # Prerequisites
 *.d
 
