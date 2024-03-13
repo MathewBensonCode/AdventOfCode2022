@@ -1,11 +1,5 @@
 #include "input7.hpp"
-#include <iostream>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <ranges>
-#include <sstream>
-#include <vector>
+import std;
 
 struct file {
   std::string name{};

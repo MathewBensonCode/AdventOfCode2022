@@ -12,7 +12,7 @@ export constexpr std::string_view input_string{inputdata};
 export constexpr std::string_view section_delimiter{"\n\n"};
 export constexpr std::string_view line_delimiter{"\n"};
 
-export const auto get_section_sum{ [](const auto &section) {
+export auto get_section_sum(const auto &section) {
   auto lines =
       section | std::views::split(line_delimiter) |
       std::views::transform([](const auto &line) {
@@ -28,6 +28,5 @@ export const auto get_section_sum{ [](const auto &section) {
   fmt::print("Section Sum => {}\n\n", section_sum);
   return section_sum;
 }
-};
 
 } // namespace

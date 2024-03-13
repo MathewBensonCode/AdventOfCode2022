@@ -1,6 +1,20 @@
 cmake_minimum_required(VERSION 3.26)
 
 project(AdventOfCode2022 CXX)
+
+if(CMAKE_VERSION VERSION_LESS 3.28)
+  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
+    set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
+        "aa1f7df0-828a-4fcd-9afc-2dc80491aca7")
+  else()
+    set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
+        "2182bf5c-ef0d-489a-91da-49dbc3090d2a")
+  endif()
+  set(CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP 1)
+else()
+  cmake_policy(VERSION 3.28)
+endif()
+
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
@@ -8,7 +22,9 @@ include(cmake/PreventInSourceBuilds.cmake)
 add_library(project_options INTERFACE)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE "Enable -ftime-trace to generate time tracing .json files on clang" OFF)
+  option(ENABLE_BUILD_WITH_TIME_TRACE
+         "Enable -ftime-trace to generate time tracing .json files on clang"
+         OFF)
   if(ENABLE_BUILD_WITH_TIME_TRACE)
     target_compile_options(project_options INTERFACE -ftime-trace)
   endif()
@@ -37,42 +53,21 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-#include(cmake/CompileStandardLibraryHeaderUnits.cmake)
+# include(cmake/CompileStandardLibraryHeaderUnits.cmake)
 
-if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
-  set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API "aa1f7df0-828a-4fcd-9afc-2dc80491aca7")
-else ()
-  set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API "2182bf5c-ef0d-489a-91da-49dbc3090d2a")
-endif()
-set(CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP 1)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CXX_STANDARD_REQUIRED ON)
+# add_library(std)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  string(
-    CONCAT
-      CMAKE_EXPERIMENTAL_CXX_SCANDEP_SOURCE
-      "<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -E -x c++ <SOURCE>"
-      " -MT <DYNDEP_FILE> -MD -MF <DEP_FILE>"
-      " -fmodules-ts -fdep-file=<DYNDEP_FILE> -fdep-output=<OBJECT> -fdep-format=trtbd"
-      " -o <PREPROCESSED_SOURCE>")
-  set(CMAKE_EXPERIMENTAL_CXX_MODULE_MAP_FORMAT "gcc")
-  set(CMAKE_EXPERIMENTAL_CXX_MODULE_MAP_FLAG
-      "-fmodules-ts -fmodule-mapper=<MODULE_MAP_FILE> -fdep-format=trtbd -x c++"
-  )
-endif()
+# target_sources(std PUBLIC FILE_SET CXX_MODULES FILES
+# standard_library_module.cpp)
 
-add_library(std)
+# target_link_libraries(std PUBLIC project_options project_warnings)
 
-#target_sources(std PUBLIC FILE_SET CXX_MODULES FILES standard_library_module.cpp)
-
-#target_link_libraries(std PUBLIC project_options project_warnings)
-
-#add_subdirectory(std.module)
+set(FMT_MODULE TRUE)
 
 add_subdirectory(fmt)
+add_subdirectory(std.module)
 
-#target_compile_options(fmt PUBLIC -fmodule-mapper=mapping)
+# target_compile_options(fmt PUBLIC -fmodule-mapper=mapping)
 
 target_link_libraries(project_options INTERFACE std fmt::fmt)
 
@@ -90,6 +85,3 @@ add_subdirectory(day11)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)
-
-
-

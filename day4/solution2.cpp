@@ -1,8 +1,5 @@
 #include "input4.hpp"
-#include <algorithm>
-#include <charconv>
-#include <ranges>
-#include <string_view>
+import std;
 import fmt;
 
 using namespace std::literals::string_view_literals;

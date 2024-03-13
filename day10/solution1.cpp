@@ -1,5 +1,5 @@
 #include "input10.hpp"
-#include <sstream>
+import std;
 import fmt;
 
 int main() {

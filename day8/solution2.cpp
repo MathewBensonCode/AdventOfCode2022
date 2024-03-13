@@ -1,10 +1,5 @@
 #include "input8.hpp"
-#include <algorithm>
-#include <array>
-#include <iostream>
-#include <ranges>
-#include <sstream>
-#include <vector>
+import std;
 import fmt;
 
 namespace {

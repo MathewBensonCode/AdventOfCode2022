@@ -1,8 +1,4 @@
 #include "day3common.hpp"
-#include "input3.hpp"
-#include <array>
-#include <numeric>
-#include <ranges>
 import fmt;
 
 namespace {

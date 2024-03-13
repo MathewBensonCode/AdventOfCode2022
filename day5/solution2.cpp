@@ -1,9 +1,5 @@
 #include "input5.hpp"
-#include <algorithm>
-#include <charconv>
-#include <string_view>
-#include <ranges>
-#include <vector>
+import std;
 import fmt;
 
 namespace {

@@ -1,11 +1,5 @@
 #include "input7.hpp"
-#include <iostream>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <ranges>
-#include <sstream>
-#include <vector>
+import std;
 
 namespace {
 struct file {
@@ -95,7 +89,7 @@ int main() {
     }
   };
 
-  auto lines = inputdata | std::views::split(line_delimiter);
+  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter);
 
   for (const auto &line : lines) {
     std::string linestring{line.begin(), line.end()};

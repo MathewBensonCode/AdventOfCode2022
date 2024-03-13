@@ -1,8 +1,5 @@
 #include "input9.hpp"
-#include <array>
-#include <ranges>
-#include <sstream>
-#include <string_view>
+import std;
 import fmt;
 
 namespace {

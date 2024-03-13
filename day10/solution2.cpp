@@ -1,6 +1,5 @@
 #include "input10.hpp"
-#include <array>
-#include <sstream>
+import std;
 import fmt;
 
 int main() {

@@ -1,11 +1,5 @@
 #include "input6.hpp"
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <ranges>
-#include <sstream>
-#include <string_view>
-#include <vector>
+import std;
 
 int main() {
 

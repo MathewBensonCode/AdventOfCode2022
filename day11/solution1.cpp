@@ -1,13 +1,5 @@
 #include "input11.hpp"
-#include <algorithm>
-#include <charconv>
-#include <functional>
-#include <iostream>
-#include <iterator>
-#include <ranges>
-#include <string_view>
-#include <vector>
-#include <array>
+import std;
 import fmt;
 
 namespace {

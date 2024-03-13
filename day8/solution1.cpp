@@ -1,8 +1,5 @@
 #include "input8.hpp"
-#include <algorithm>
-#include <array>
-#include <iostream>
-#include <sstream>
+import std;
 
 int main() {
   std::stringstream inputstringstream{inputdata};

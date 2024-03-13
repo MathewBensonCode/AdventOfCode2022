@@ -1,7 +1,5 @@
 #include "input2.hpp"
-#include <numeric>
-#include <ranges>
-#include <string_view>
+import std;
 import fmt;
 
 using namespace std::literals::string_view_literals;
@@ -57,9 +55,13 @@ const auto get_game_score = [](const auto &game) {
 } // namespace
 
 int main() {
-  auto games = std::string_view{inputdata} | std::views::split(line_delimiter) |
-               std::views::transform(get_game_score) | std::views::common;
-
-  auto gamescore = std::accumulate(games.begin(), games.end(), 0);
-  fmt::print("Games Total Score => {}\n", gamescore);
+  try {
+    auto games = std::string_view{inputdata} |
+                 std::views::split(line_delimiter) |
+                 std::views::transform(get_game_score) | std::views::common;
+    auto gamescore = std::accumulate(games.begin(), games.end(), 0);
+    fmt::print("Games Total Score => {}\n", gamescore);
+  } catch (std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
 }

@@ -1,4 +1,5 @@
-#include <string_view>
+#include "input3.hpp"
+import std;
 
 namespace day3{
 const auto compartment_size{53};
