@@ -1,5 +1,6 @@
 #include "input2.hpp"
 import std;
+import fmt;
 
 using namespace std::literals::string_view_literals;
 

@@ -1,7 +1,7 @@
 #include "input4.hpp"
-#include <string_view>
 
 import fmt;
+import std;
 
 using namespace std::literals::string_view_literals;
 

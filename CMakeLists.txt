@@ -1,19 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
-
-project(AdventOfCode2022 CXX)
-
-if(CMAKE_VERSION VERSION_LESS 3.28)
-  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
-    set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
-        "aa1f7df0-828a-4fcd-9afc-2dc80491aca7")
-  else()
-    set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
-        "2182bf5c-ef0d-489a-91da-49dbc3090d2a")
-  endif()
-  set(CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP 1)
-else()
-  cmake_policy(VERSION 3.28)
-endif()
+cmake_minimum_required(VERSION 3.28)
 
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
@@ -53,21 +38,15 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-# include(cmake/CompileStandardLibraryHeaderUnits.cmake)
-
-# add_library(std)
-
-# target_sources(std PUBLIC FILE_SET CXX_MODULES FILES
-# standard_library_module.cpp)
-
-# target_link_libraries(std PUBLIC project_options project_warnings)
-
 set(FMT_MODULE TRUE)
 
 add_subdirectory(fmt)
+
+target_compile_features(fmt PUBLIC cxx_std_23)
+
 add_subdirectory(std.module)
 
-# target_compile_options(fmt PUBLIC -fmodule-mapper=mapping)
+target_compile_features(std PUBLIC cxx_std_23)
 
 target_link_libraries(project_options INTERFACE std fmt::fmt)
 
