@@ -39,15 +39,17 @@ include(cmake/CreateTargetLink.cmake)
 
 #add_subdirectory(fmt)
 
-add_library(stdlib)
+#add_library(stdlib)
 
-target_sources(stdlib PUBLIC FILE_SET stdlibmodules TYPE CXX_MODULES FILES std.ixx)
+#target_sources(stdlib PUBLIC FILE_SET stdlibmodules TYPE CXX_MODULES FILES std.ixx)
 
-target_link_libraries(stdlib PRIVATE project_options)
+#target_link_libraries(stdlib PRIVATE project_options)
 
-target_link_libraries(project_options INTERFACE stdlib)
+add_subdirectory(std.module)
 
-add_subdirectory(day1)
+target_link_libraries(project_options INTERFACE std)
+
+#add_subdirectory(day1)
 add_subdirectory(day2)
 add_subdirectory(day3)
 add_subdirectory(day4)
