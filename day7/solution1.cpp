@@ -1,11 +1,5 @@
 #include "input7.hpp"
-#include <iostream>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <ranges>
-#include <sstream>
-#include <vector>
+import std;
 
 namespace {
 struct file {
@@ -95,9 +89,9 @@ int main() {
     }
   };
 
-  auto lines = inputdata | std::views::split(line_delimiter);
+  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter);
 
-  for(const auto &line: lines){
+  for (const auto &line : lines) {
     std::string linestring{line.begin(), line.end()};
 
     if (linestring.length() > 0) {
@@ -147,13 +141,14 @@ int main() {
 
   auto viewdirectories = directories | std::views::filter(less_directories);
 
-  const auto sum = std::accumulate(viewdirectories.begin(), viewdirectories.end(),
+  const auto sum =
+      std::accumulate(viewdirectories.begin(), viewdirectories.end(),
                       std::size_t{}, add_dir_size);
 
   std::cout << "Sum of dirs => " << sum << '\n';
 
-  auto totalvalue = std::accumulate(std::begin(directories),
-                                    std::end(directories), 0, add_dir_size);
+  const auto totalvalue = std::accumulate(std::begin(directories),
+                                    std::end(directories), std::size_t{}, add_dir_size);
 
   std::cout << "Total Storage Sum => " << totalvalue << '\n';
 }

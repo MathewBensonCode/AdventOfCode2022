@@ -1,5 +1,3 @@
-#include <string_view>
-using namespace std::literals::string_view_literals;
 constexpr auto inputdata=R"(Monkey 0:
   Starting items: 71, 56, 50, 73
   Operation: new = old * 11
@@ -55,4 +53,4 @@ Monkey 7:
   Test: divisible by 17
     If true: throw to monkey 1
     If false: throw to monkey 3
-)"sv;
+)";

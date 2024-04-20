@@ -1,20 +1,17 @@
 #include "input6.hpp"
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <ranges>
-#include <sstream>
-#include <string_view>
-#include <vector>
+import std;
 
 int main() {
 
   const auto width{14};
 
-  for (std::size_t index{0}; index < inputdata.length() - 4; ++index) {
+  const std::string_view inputdatastring{inputdata};
 
-    auto endlocation = width + index;
-    auto vals = std::ranges::views::all(inputdata) |
+  for (std::size_t index{0}; index < inputdatastring.length() - 4; ++index) {
+
+    const auto endlocation = width + index;
+
+    auto vals = inputdatastring |
                 std::ranges::views::drop(index) |
                 std::ranges::views::take(width);
 

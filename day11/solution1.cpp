@@ -1,14 +1,5 @@
 #include "input11.hpp"
-#include <algorithm>
-#include <charconv>
-#include <fmt/core.h>
-#include <functional>
-#include <iostream>
-#include <iterator>
-#include <ranges>
-#include <string_view>
-#include <vector>
-#include <array>
+import std;
 
 namespace {
 struct Monkey {
@@ -35,7 +26,7 @@ const auto get_operation = [](const auto &operation_string) {
   const std::string_view myoperator{op_operator.begin(), op_operator.end()};
   const std::string_view second_operand{second_op.begin(), second_op.end()};
 
-  std::function<int(int, int)> operation{};
+  std::function<std::size_t(std::size_t, std::size_t)> operation{};
   if (myoperator == "+") {
     operation = std::plus<>();
   }
@@ -48,7 +39,7 @@ const auto get_operation = [](const auto &operation_string) {
 
   std::size_t operand2{};
   if (second_operand == "old") {
-    operand2 = 0;
+    operand2 = std::size_t{};
   } else {
     std::from_chars(second_operand.data(), second_operand.data()+second_operand.size(), operand2);
   }
@@ -114,11 +105,11 @@ const std::size_t num_of_monkeys{8};
 const auto print_monkeys = [](const auto &monkeys, const auto&monkey_counter) {
     std::size_t counter{0};
   for (const auto &monkey : monkeys) {
-    fmt::print("Monkey {} Items => ", counter);
+    std::print("Monkey {} Items => ", counter);
     for (const auto &item : monkey.items) {
-      fmt::print("{}|", item);
+      std::print("{}|", item);
     }
-    fmt::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
+    std::print("\t Transaction Count => {}\n", monkey_counter.at(counter));
                
     counter++;
   }
@@ -127,7 +118,8 @@ const auto print_monkeys = [](const auto &monkeys, const auto&monkey_counter) {
 } // namespace
 
 int main() {
-  auto monkeys = inputdata | std::views::split(sectiondelimiter) |
+  const std::string_view inputdatastring{inputdata};
+  auto monkeys = inputdatastring | std::views::split(sectiondelimiter) |
                  std::views::transform(get_monkeys);
 
   std::array<Monkey, num_of_monkeys> monkey_store{};
@@ -138,7 +130,7 @@ int main() {
   print_monkeys(monkey_store, monkey_move_counter);
 
   for (const auto index : std::views::iota(1, 21)) {
-    fmt::print("\nRound: {}\n", index);
+    std::print("\nRound: {}\n", index);
 
     std::size_t monkey_index{};
     for (auto &monkey : monkey_store) {
@@ -158,7 +150,7 @@ int main() {
       monkey_index++;
     }
     print_monkeys(monkey_store, monkey_move_counter);
-    fmt::print("\n-------\n");
+    std::print("\n-------\n");
   }
 
   std::ranges::sort(monkey_move_counter, std::ranges::greater());
@@ -166,6 +158,6 @@ int main() {
   const auto first = monkey_move_counter.at(0);
   const auto second = monkey_move_counter.at(1); 
 
-  fmt::print("Top 2 multiplied =>{} * {} => {}\n", first, second, first * second);
+  std::print("Top 2 multiplied =>{} * {} => {}\n", first, second, first * second);
 
 }

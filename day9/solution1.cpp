@@ -1,9 +1,5 @@
 #include "input9.hpp"
-#include <array>
-#include <fmt/core.h>
-#include <ranges>
-#include <sstream>
-#include <string_view>
+import std;
 
 namespace {
 struct point {
@@ -120,50 +116,50 @@ int main() {
     switch (tail_direction) {
     case direction::left: {
       move_left(tail);
-      fmt::print("moved left\n");
+      std::print("moved left\n");
       break;
     }
     case direction::right: {
       move_right(tail);
-      fmt::print("moved right\n");
+      std::print("moved right\n");
       break;
     }
     case direction::none: {
-      fmt::print("no move\n");
+      std::print("no move\n");
       break;
     }
     case direction::up: {
       move_up(tail);
-      fmt::print("moved up\n");
+      std::print("moved up\n");
       break;
     }
     case direction::down: {
       move_down(tail);
-      fmt::print("moved down\n");
+      std::print("moved down\n");
       break;
     }
     case direction::up_left: {
       move_up_left(tail);
-      fmt::print("moved up_and_left\n");
+      std::print("moved up_and_left\n");
       break;
     }
     case direction::up_right: {
       move_up_right(tail);
-      fmt::print("moved up_and_right\n");
+      std::print("moved up_and_right\n");
       break;
     }
     case direction::down_left: {
       move_down_left(tail);
-      fmt::print("moved down_and_left\n");
+      std::print("moved down_and_left\n");
       break;
     }
     case direction::down_right: {
       move_down_right(tail);
-      fmt::print("moved down_and_right\n");
+      std::print("moved down_and_right\n");
       break;
     }
     }
-    fmt::print("Tail point at x={}, y={} | Head point at x={}, y={}\n", tail.x,
+    std::print("Tail point at x={}, y={} | Head point at x={}, y={}\n", tail.x,
                tail.y, head.x, head.y);
     tail_counter.at(tail.y).at(tail.x)++;
   };
@@ -186,7 +182,7 @@ int main() {
       direction_string = "Right";
     }
 
-    fmt::print("\n----\nmove Head in {} direction ->  {} times\n",
+    std::print("\n----\nmove Head in {} direction ->  {} times\n",
                direction_string, moves);
 
     for (std::size_t index{}; index < moves; ++index) {
@@ -218,7 +214,7 @@ int main() {
   }
 
   std::size_t tail_location_count{};
-  fmt::print("Tail Locations\n");
+  std::print("Tail Locations\n");
   for (const auto &line : tail_counter) {
     for (const auto &location : line) {
       if (location > 0) {
@@ -228,5 +224,5 @@ int main() {
     }
   }
 
-  fmt::print("Total Locations visited by tail = {} \n", tail_location_count);
+  std::print("Total Locations visited by tail = {} \n", tail_location_count);
 }

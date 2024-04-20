@@ -1,8 +1,6 @@
 #include "input2.hpp"
-#include <fmt/core.h>
-#include <numeric>
-#include <ranges>
-#include <string_view>
+
+import std;
 
 using namespace std::literals::string_view_literals;
 
@@ -55,7 +53,7 @@ const auto get_game_score = [](const auto &game) {
 
   roundscore += win_draw_lose(myvalue) + moves(gameoutcome);
 
-  fmt::print("Game => {} | Score => {} \n", gameoutcome, roundscore);
+  std::print("Game => {} | Score => {} \n", gameoutcome, roundscore);
 
   return roundscore;
 };
@@ -69,5 +67,5 @@ int main() {
 
   const auto gamescore{std::accumulate(games.begin(), games.end(), 0)};
 
-  fmt::print("Games Total Score => {}\n", gamescore);
+  std::print("Games Total Score => {}\n", gamescore);
 }

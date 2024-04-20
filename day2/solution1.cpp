@@ -1,9 +1,5 @@
 #include "input2.hpp"
-#include <algorithm>
-#include <numeric>
-#include <ranges>
-#include <fmt/core.h>
-#include <string_view>
+import std;
 
 using namespace std::literals::string_view_literals;
 
@@ -50,7 +46,7 @@ const auto get_game_score = [](const auto &game) {
   roundscore += mymoves(myvalue);
   roundscore += win_lose(gameoutcome);
 
-  fmt::print("Game => {} | Score => {}\n", gameoutcome, roundscore);
+  std::print("Game => {} | Score => {}\n", gameoutcome, roundscore);
 
   return roundscore;
 };
@@ -58,9 +54,13 @@ const auto get_game_score = [](const auto &game) {
 } // namespace
 
 int main() {
-  auto games = std::string_view{inputdata} | std::views::split(line_delimiter) |
-               std::views::transform(get_game_score) | std::views::common;
-
-  auto gamescore = std::accumulate(games.begin(), games.end(), 0);
-  fmt::print("Games Total Score => {}\n", gamescore);
+  try {
+    auto games = std::string_view{inputdata} |
+                 std::views::split(line_delimiter) |
+                 std::views::transform(get_game_score) | std::views::common;
+    auto gamescore = std::accumulate(games.begin(), games.end(), 0);
+    std::print("Games Total Score => {}\n", gamescore);
+  } catch (std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
 }

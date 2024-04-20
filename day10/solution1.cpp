@@ -1,6 +1,5 @@
-#include "fmt/core.h"
 #include "input10.hpp"
-#include <sstream>
+import std;
 
 int main() {
   std::istringstream inputstringstream{inputdata};
@@ -18,7 +17,7 @@ int main() {
     if (cycle_counter == next_cycle_point) {
       auto current_register_sum = next_cycle_point * register_value;
       register_value_sum += current_register_sum;
-      fmt::print("\tWith Cycles at {} & Register at {}, current Signal => {} "
+      std::print("\tWith Cycles at {} & Register at {}, current Signal => {} "
                  "\t and Sum of Signals => {}\n",
                  cycle_counter, register_value, current_register_sum,
                  register_value_sum);
@@ -31,7 +30,7 @@ int main() {
     inputstringstream >> command;
 
     if (command == "noop") {
-      fmt::print("{}\n", command);
+      std::print("{}\n", command);
       add_counter();
     }
 
@@ -41,7 +40,7 @@ int main() {
       int add_value{};
       inputstringstream >> add_value;
       register_value += add_value;
-      fmt::print("{} -> {} | register_value = {}\n", command, add_value,
+      std::print("{} -> {} | register_value = {}\n", command, add_value,
                  register_value);
     }
   }

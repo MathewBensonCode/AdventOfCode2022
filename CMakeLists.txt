@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.28)
 
 project(AdventOfCode2022 CXX)
+
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
@@ -8,7 +9,9 @@ include(cmake/PreventInSourceBuilds.cmake)
 add_library(project_options INTERFACE)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE "Enable -ftime-trace to generate time tracing .json files on clang" OFF)
+  option(ENABLE_BUILD_WITH_TIME_TRACE
+         "Enable -ftime-trace to generate time tracing .json files on clang"
+         OFF)
   if(ENABLE_BUILD_WITH_TIME_TRACE)
     target_compile_options(project_options INTERFACE -ftime-trace)
   endif()
@@ -16,9 +19,6 @@ endif()
 
 # Link this 'library' to use the warnings specified in CompilerWarnings.cmake
 add_library(project_warnings INTERFACE)
-
-# enable cache system
-include(cmake/Cache.cmake)
 
 # Add linker configuration
 include(cmake/Linker.cmake)
@@ -37,23 +37,15 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-include(cmake/CompileStandardLibraryHeaderUnits.cmake)
+#add_subdirectory(fmt)
 
-#add -fmodule-ts for gcc
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-target_compile_options(project_options INTERFACE -fmodules-ts -flang-info-include-translate)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-target_compile_options(project_options INTERFACE "/translateInclude 
-/headerUnit:angle iostream=./iostream.ifc
-/headerUnit:angle string_view=./string_view.ifc
-/headerUnit:angle algorithm=./algorithm.ifc
-/headerUnit:angle ranges=./ranges.ifc
-")
-endif()
+add_library(stdlib)
 
-find_package(fmt REQUIRED)
+target_sources(stdlib PUBLIC FILE_SET stdlibmodules TYPE CXX_MODULES FILES std.ixx)
 
-target_link_libraries(project_options INTERFACE fmt::fmt)
+target_link_libraries(stdlib PRIVATE project_options)
+
+target_link_libraries(project_options INTERFACE stdlib)
 
 add_subdirectory(day1)
 add_subdirectory(day2)
@@ -69,6 +61,3 @@ add_subdirectory(day11)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)
-
-
-

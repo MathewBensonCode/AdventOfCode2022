@@ -1,7 +1,5 @@
-#include "fmt/core.h"
 #include "input10.hpp"
-#include <array>
-#include <sstream>
+import std;
 
 int main() {
   std::istringstream inputstringstream{inputdata};
@@ -42,14 +40,14 @@ int main() {
       std::size_t add_value{};
       inputstringstream >> add_value;
       sprite_start_location += add_value;
-      fmt::print("sprite_start_location => {}\n", sprite_start_location);
+      std::print("sprite_start_location => {}\n", sprite_start_location);
     }
   }
 
   for (auto &row : pixel_array) {
     for (auto &character : row) {
-      fmt::print("{}", character);
+      std::print("{}", character);
     }
-    fmt::print("\n");
+    std::print("\n");
   }
 }

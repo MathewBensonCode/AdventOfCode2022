@@ -1,15 +1,11 @@
 #include "input9.hpp"
-#include <array>
-#include <fmt/core.h>
-#include <ranges>
-#include <sstream>
-#include <string_view>
+import std;
 
 namespace {
 
 struct point {
-  std::size_t x;
-  std::size_t y;
+  unsigned x;
+  unsigned y;
 };
 
 enum class direction {
@@ -177,7 +173,7 @@ int main() {
       direction_string = "Right";
     }
 
-    fmt::print("---\nMove Head in {} direction {} times\n", direction_string,
+    std::print("---\nMove Head in {} direction {} times\n", direction_string,
                moves);
 
     for (std::size_t index{}; index < moves; ++index) {
@@ -194,12 +190,12 @@ int main() {
         move_right(head);
       }
 
-      fmt::print("HEAD at x={}, y={}\n", head.x, head.y);
+      std::print("HEAD at x={}, y={}\n", head.x, head.y);
 
       point &initial_point = tails.at(0);
       move_tail(head, initial_point);
 
-      fmt::print("\tKnot {} at x={},y={}\n", 1, initial_point.x,
+      std::print("\tKnot {} at x={},y={}\n", 1, initial_point.x,
                  initial_point.y);
 
       for (std::size_t tail_index{}; tail_index < tail_length - 1;
@@ -207,7 +203,7 @@ int main() {
         auto &previous_point = tails.at(tail_index);
         auto &current_point = tails.at(tail_index + 1);
         move_tail(previous_point, current_point);
-        fmt::print("\tKnot {} at x={},y={}\n", tail_index + 2, current_point.x,
+        std::print("\tKnot {} at x={},y={}\n", tail_index + 2, current_point.x,
                    current_point.y);
       }
 
@@ -237,5 +233,5 @@ int main() {
     }
   }
 
-  fmt::print("Total Locations visited by tail = {} \n", tail_location_count);
+  std::print("Total Locations visited by tail = {} \n", tail_location_count);
 }

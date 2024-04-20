@@ -1,20 +1,12 @@
 #include "input5.hpp"
-#include <algorithm>
-#include <array>
-#include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
-#include <iterator>
-#include <ranges>
-#include <string_view>
-#include <vector>
+import std;
 
 namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
 constexpr std::string_view line_delimiter{"\n"};
 constexpr std::string_view space_delimiter{" "};
-const auto stack_count{9};
-constexpr auto stride{4};
+constexpr std::size_t stack_count{9};
+constexpr std::size_t stride{4};
 
 const auto to_string_view = [](const auto &data) {
   return std::string_view{data.begin(), data.end()};
@@ -28,7 +20,7 @@ const auto fill_stacks = [](const std::string_view datasection,
 
   for (const auto &line : lines) {
     auto itr = line.begin();
-    auto stack_counter{0};
+    std::size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);
 
@@ -52,28 +44,33 @@ const auto fill_stacks = [](const std::string_view datasection,
   }
 };
 
-const auto print_stacks = [](const auto &stack_container) {
-  fmt::print("\nStack Status\n");
-  auto stack_number{1};
+auto print_stacks = [](const auto &stack_container) {
+  std::print("\nStack Status\n");
+  unsigned stack_number{1};
   for (const auto &vec : stack_container) {
-    fmt::print("{} => {}\n", stack_number, vec);
+   std::print("{} =>| ", stack_number);
+   for( const auto& num: vec){
+       std::print("{}| ", num);
+   }
+
+   std::print("\n");
     stack_number++;
   }
 
-  fmt::print("\n--------\n\n");
+  std::print("\n--------\n\n");
 };
 
-const auto process_moves = [](const auto moves, auto &stack_container) {
+auto process_moves = [](const auto &moves, auto &stack_container) {
   auto lines = moves | std::views::split(line_delimiter) |
                std::views::transform(to_string_view);
 
-  const auto getnum = [](const auto text) {
+  auto getnum = [](const auto text) {
     int current_num{-1};
     std::from_chars(text.data(), text.data() + text.size(), current_num);
     return current_num;
   };
 
-  for (const auto line : lines) {
+  for (const auto& line : lines) {
     auto values = line | std::views::split(space_delimiter) |
                   std::views::transform(to_string_view) |
                   std::views::transform(getnum) |
@@ -87,14 +84,16 @@ const auto process_moves = [](const auto moves, auto &stack_container) {
     const auto to_stack_number = *starting_point;
 
     for (auto index{0}; index < number_of_moves; ++index) {
-      auto &from_vec = stack_container.at(from_stack_number - 1);
+      auto &from_vec =
+          stack_container.at(static_cast<unsigned>(from_stack_number - 1));
       auto value = from_vec.back();
       from_vec.pop_back();
 
-      auto &to_vec = stack_container.at(to_stack_number - 1);
+      auto &to_vec =
+          stack_container.at(static_cast<unsigned>(to_stack_number - 1));
       to_vec.push_back(value);
     }
-    fmt::print("\nAfter {} ", line);
+    std::print("\nAfter {} ", line);
     print_stacks(stack_container);
   }
 };
@@ -114,18 +113,20 @@ int main() {
     vec.reserve(stack_count);
   }
 
-  fmt::print("Original Values => {}\n\n", data_section);
+  //std::print("Original Values => {}\n\n", data_section);
 
-  fill_stacks(std::string_view{data_section.begin(), data_section.end()},
+  fill_stacks({data_section.begin(), data_section.end()},
               data_store);
 
   const auto move_section = *(std::next(sections.begin()));
 
   process_moves(move_section, data_store);
 
-  fmt::print("\nTop Values => ");
+  std::print("\nTop Values => ");
   for (const auto &stack : data_store) {
     auto top_value = stack.back();
-    fmt::print("{}|", top_value);
+    std::print("{}|", top_value);
   }
+
+  std::print("\n");
 }
