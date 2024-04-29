@@ -1,9 +1,9 @@
 #include "input3.hpp"
 #include <array>
-#include <fmt/core.h>
 #include <ranges>
 #include <string_view>
 #include <numeric>
+import fmt;
 
 namespace {
 const auto compartment_size{53};

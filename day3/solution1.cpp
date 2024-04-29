@@ -1,10 +1,10 @@
 #include "input3.hpp"
 #include <algorithm>
 #include <array>
-#include <fmt/core.h>
 #include <numeric>
 #include <ranges>
 #include <string_view>
+import fmt;
 
 namespace {
 const auto compartment_size{53};

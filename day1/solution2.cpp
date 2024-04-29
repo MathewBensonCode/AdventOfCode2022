@@ -1,48 +1,36 @@
 #include "input1.hpp"
 #include <algorithm>
-#include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
 #include <iostream>
 #include <numeric>
 #include <ranges>
-#include <string_view>
 #include <vector>
 
-namespace {
-constexpr std::string_view section_delimiter{"\n\n"};
-constexpr std::string_view line_delimiter{"\n"};
+import day1lib;
 
-const auto get_section_data = [](const auto &section) {
-  auto lines =
-      section | std::views::split(line_delimiter) |
-      std::views::transform([](const auto &line) {
-        std::string_view line_string{line.begin(), line.end()};
-        int number{};
-        std::from_chars(line_string.data(),
-                        line_string.data() + line_string.size(), number);
-        fmt::print("# {}\n", number);
-        return number;
-      });
-
-  const auto section_sum = std::accumulate(lines.begin(), lines.end(), std::size_t{});
-  fmt::print("Section Sum => {}\n\n", section_sum);
-  return section_sum;
-};
-
-} // namespace
+using namespace day1;
 
 int main() {
+  try {
+    auto sections = input_string | std::views::split(section_delimiter) |
+                    std::views::transform(get_section_sum);
 
-  auto sections = std::string_view{inputdata} |
-                  std::views::split(section_delimiter) |
-                  std::views::transform(get_section_data);
+    std::vector<int> results{};
+    std::ranges::copy(sections, std::back_inserter(results));
 
-  std::vector<int> results{};
-  std::ranges::copy(sections, std::back_inserter(results));
+    std::ranges::sort(results, std::ranges::greater());
+    auto top3 = results | std::views::take(3) | std::views::common;
+    auto highest3 = std::accumulate(top3.begin(), top3.end(), 0);
+    std::vector<int> top3results(3);
+    std::ranges::copy(top3, std::back_inserter(top3results));
+    fmt::print("Highest 3 Elements = ");
 
-  std::ranges::sort(results, std::ranges::greater());
-  auto top3 = results | std::views::take(3) | std::views::common;
-  auto highest3 = std::accumulate(top3.begin(), top3.end(), 0);
-  fmt::print("Highest 3 Elements = {}\n With sum => {}", top3, highest3);
+    for (auto value : top3results) {
+      fmt::print("{}\n", value);
+    }
+
+    fmt::print("With sum => {}", highest3);
+
+  } catch (std::exception &caught) {
+    std::cerr << "Error: " << caught.what() << "\n";
+  }
 }

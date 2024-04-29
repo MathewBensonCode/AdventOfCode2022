@@ -1,9 +1,9 @@
 #include "input9.hpp"
 #include <array>
-#include <fmt/core.h>
 #include <ranges>
 #include <sstream>
 #include <string_view>
+import fmt;
 
 namespace {
 

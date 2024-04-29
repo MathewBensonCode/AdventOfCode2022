@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.28)
 
 project(AdventOfCode2022 CXX)
 include(cmake/StandardProjectSettings.cmake)
@@ -37,21 +37,17 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-include(cmake/CompileStandardLibraryHeaderUnits.cmake)
+#include(cmake/CompileStandardLibraryHeaderUnits.cmake)
 
-#add -fmodule-ts for gcc
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-target_compile_options(project_options INTERFACE -fmodules-ts -flang-info-include-translate)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-target_compile_options(project_options INTERFACE "/translateInclude 
-/headerUnit:angle iostream=./iostream.ifc
-/headerUnit:angle string_view=./string_view.ifc
-/headerUnit:angle algorithm=./algorithm.ifc
-/headerUnit:angle ranges=./ranges.ifc
-")
+#find_package(fmt REQUIRED)
+
+#add_subdirectory(std.module)
+
+if (CMAKE_CXX_STANDARD LESS 20)
+  message(FATAL_ERROR "At least C++20 required but have ${CMAKE_CXX_STANDARD}")
 endif()
 
-find_package(fmt REQUIRED)
+add_subdirectory(fmt)
 
 target_link_libraries(project_options INTERFACE fmt::fmt)
 

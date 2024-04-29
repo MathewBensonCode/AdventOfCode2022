@@ -1,6 +1,6 @@
-#include "fmt/core.h"
 #include "input10.hpp"
 #include <sstream>
+import fmt;
 
 int main() {
   std::istringstream inputstringstream{inputdata};

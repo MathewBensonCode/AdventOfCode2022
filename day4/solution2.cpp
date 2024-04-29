@@ -1,11 +1,10 @@
 #include "input4.hpp"
 #include <algorithm>
 #include <charconv>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
-#include <fstream>
 #include <ranges>
 #include <string_view>
+
+import fmt;
 
 using namespace std::literals::string_view_literals;
 
@@ -42,7 +41,7 @@ const auto getlinedata = [](const auto &line) {
   const auto itr2 = std::next(itr1);
   const auto pair2 = *itr2;
 
-  fmt::print("Pair 1 => {} | Pair 2 => {} ", pair1, pair2);
+//  fmt::print("Pair 1 => {} | Pair 2 => {} ", pair1, pair2);
 
   const bool found = (!((pair1.second < pair2.first) || // pair1 before pair2
                         (pair1.first > pair2.second))); // pair1 after pair2

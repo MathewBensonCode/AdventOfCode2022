@@ -1,11 +1,11 @@
 #include "input7.hpp"
-#include <iostream>
 #include <map>
 #include <memory>
 #include <numeric>
 #include <ranges>
 #include <sstream>
 #include <vector>
+import fmt;
 
 namespace {
 struct file {
@@ -41,8 +41,8 @@ int main() {
     new_directory->parent = current_directory;
     current_directory->contents.push_back(new_directory);
     directories.push_back(new_directory);
-    std::cout << " Create New Directory : " << new_directory->name
-              << " | in : " << current_directory->name << '\n';
+    fmt::print(" Create New Directory : {} | in : {} \n", new_directory->name,
+               current_directory->name);
   };
 
   auto add_file = [&current_directory](const std::string &filename,
@@ -53,16 +53,14 @@ int main() {
     current_directory->contents.push_back(new_file);
     current_directory->size += filesize;
 
-    std::cout << "Created New File : " << new_file->name
-              << "  | in : " << current_directory->name
-              << " | With Size : " << filesize << '\n';
+    fmt::print("Created New File : {} | in : {} | With Size : {} \n",
+               new_file->name, current_directory->name, filesize);
   };
 
   auto change_directory = [&](const std::string &destination) {
     if (destination == "..") {
       current_directory = current_directory->parent.lock();
-      std::cout << "Changed to Parent Directory : " << current_directory->name
-                << '\n';
+      fmt::print("Changed to Parent Directory : {}\n", current_directory->name);
 
       const auto &contents = current_directory->contents;
 
@@ -74,8 +72,8 @@ int main() {
 
       if (current_directory->size != sum) {
         current_directory->size = sum;
-        std::cout << "\tUpdated directory size to : " << current_directory->size
-                  << '\n';
+        fmt::print("\tUpdated directory size to : {}\n",
+                   current_directory->size);
       }
 
     } else {
@@ -85,8 +83,7 @@ int main() {
           auto cast_directory = std::static_pointer_cast<directory>(dir);
 
           if (cast_directory) {
-            std::cout << "Changed to directory : " << cast_directory->name
-                      << '\n';
+              fmt::print("Changed to directory : {}\n", cast_directory->name);
             current_directory = cast_directory;
             break;
           }
@@ -97,13 +94,13 @@ int main() {
 
   auto lines = inputdata | std::views::split(line_delimiter);
 
-  for(const auto &line: lines){
+  for (const auto &line : lines) {
     std::string linestring{line.begin(), line.end()};
 
     if (linestring.length() > 0) {
       std::istringstream linestream{linestring};
 
-      std::cout << linestring << '\n';
+      fmt::print("{}\n", linestring);
 
       std::string first{};
       linestream >> first;
@@ -147,13 +144,14 @@ int main() {
 
   auto viewdirectories = directories | std::views::filter(less_directories);
 
-  const auto sum = std::accumulate(viewdirectories.begin(), viewdirectories.end(),
+  const auto sum =
+      std::accumulate(viewdirectories.begin(), viewdirectories.end(),
                       std::size_t{}, add_dir_size);
 
-  std::cout << "Sum of dirs => " << sum << '\n';
+  fmt::print("Sum of dirs => {}\n", sum);
 
-  auto totalvalue = std::accumulate(std::begin(directories),
-                                    std::end(directories), 0, add_dir_size);
+  const auto totalvalue = std::accumulate(
+      std::begin(directories), std::end(directories), 0, add_dir_size);
 
-  std::cout << "Total Storage Sum => " << totalvalue << '\n';
+  fmt::print("Total Storage Sum => {}\n", totalvalue);
 }
