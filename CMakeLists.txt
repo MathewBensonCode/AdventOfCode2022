@@ -1,6 +1,17 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.23.29.20240416 FATAL_ERROR)
+
+# Set experimental flag to enable `import std` support from CMake. This must be
+# enabled before C++ language support.
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
+    # This specific value changes as experimental support evolves. See
+    # `Help/dev/experimental.rst` in the CMake source corresponding to
+    # your CMake build for the exact value to use.
+    "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
 
 project(AdventOfCode2022 CXX)
+
+# Tell CMake that we explicitly want `import std`. This will initialize the
+# property on all targets declared after this to 1
 
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
@@ -37,19 +48,11 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-#add_subdirectory(fmt)
+target_compile_features(project_options INTERFACE cxx_std_23)
 
-#add_library(stdlib)
+set(CMAKE_CXX_MODULE_STD 1)
 
-#target_sources(stdlib PUBLIC FILE_SET stdlibmodules TYPE CXX_MODULES FILES std.ixx)
-
-#target_link_libraries(stdlib PRIVATE project_options)
-
-add_subdirectory(std.module)
-
-target_link_libraries(project_options INTERFACE std)
-
-#add_subdirectory(day1)
+add_subdirectory(day1)
 add_subdirectory(day2)
 add_subdirectory(day3)
 add_subdirectory(day4)
