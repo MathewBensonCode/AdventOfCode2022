@@ -3,19 +3,18 @@
 #include <iostream>
 #include <numeric>
 #include <ranges>
-#include <vector>
 
 import day1lib;
 
-using namespace day1;
-
 int main() {
   try {
-    auto sections = input_string | std::views::split(section_delimiter) |
-                    std::views::transform(get_section_sum);
+    //    const auto get_section_data = day1::get_section_sum{};
+    auto sections = std::views::split(day1::section_delimiter) |
+                    std::views::transform(day1::get_section_sum{});
 
     std::vector<int> results{};
-    std::ranges::copy(sections, std::back_inserter(results));
+    std::ranges::copy(day1::input_string | sections,
+                      std::back_inserter(results));
 
     std::ranges::sort(results, std::ranges::greater());
     auto top3 = results | std::views::take(3) | std::views::common;

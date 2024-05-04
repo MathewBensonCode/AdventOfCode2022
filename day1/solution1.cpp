@@ -6,34 +6,12 @@
 #include <string_view>
 #include <vector>
 
-import fmt;
-
-namespace {
-constexpr std::string_view section_delimiter{"\n\n"};
-constexpr std::string_view line_delimiter{"\n"};
-
-const auto get_section_data = [](const auto &section) {
-  auto lines =
-      section | std::views::split(line_delimiter) |
-      std::views::transform([](const auto &line) {
-        int number{};
-        std::string_view line_string{line.begin(), line.end()};
-        std::from_chars(line_string.data(),
-                        line_string.data() + line_string.size(), number);
-        fmt::print("# {}\n", number);
-        return number;
-      });
-
-  const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
-  fmt::print("Section Sum => {}\n\n", section_sum);
-  return section_sum;
-};
-
-} // namespace
+import day1lib;
 
 int main() {
-  auto sections = std::string_view{inputdata} |
-                  std::views::split(section_delimiter) |
+  constexpr auto get_section_data = day1::get_section_sum{};
+  auto sections = std::string_view{day1::input_string} |
+                  std::views::split(day1::section_delimiter) |
                   std::views::transform(get_section_data);
 
   std::vector<int> sums{};
