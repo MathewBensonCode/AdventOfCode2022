@@ -8,7 +8,6 @@ import day1lib;
 
 int main() {
   try {
-    //    const auto get_section_data = day1::get_section_sum{};
     auto sections = std::views::split(day1::section_delimiter) |
                     std::views::transform(day1::get_section_sum{});
 
