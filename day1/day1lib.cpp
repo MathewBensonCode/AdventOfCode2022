@@ -14,23 +14,12 @@ constexpr std::string_view line_delimiter{ "\n" };
 
 export struct get_section_sum
 {
-
-  get_section_sum() = default;
-  get_section_sum &operator=(const get_section_sum &) = delete;
-  get_section_sum &operator=(get_section_sum &&) = delete;
-  get_section_sum(const get_section_sum &) = default;
-  get_section_sum(get_section_sum &&) = default;
-  ~get_section_sum() = default;
-
   auto operator()(const auto &section)
   {
     auto lines =
       section | std::views::split(line_delimiter) | std::views::transform([](const auto &line) {
-        int number{};
-        std::string_view line_string{ line.begin(), line.end() };
-        std::from_chars(line_string.data(),
-          line_string.data() + line_string.size(),
-          number);
+        unsigned number{};
+        std::from_chars(line.begin(), line.end(), number);
         std::print("# {}\n", number);
         return number;
       });

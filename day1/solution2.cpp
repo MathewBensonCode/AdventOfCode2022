@@ -9,7 +9,7 @@ int main() {
     auto sections = input_string | std::views::split(section_delimiter) |
                     std::views::transform(get_section_sum{});
 
-    std::vector<int> results{};
+    std::vector<unsigned> results{};
     std::ranges::copy(sections, std::back_inserter(results));
 
     std::ranges::sort(results, std::ranges::greater());
