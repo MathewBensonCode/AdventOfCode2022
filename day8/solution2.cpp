@@ -70,7 +70,7 @@ int main()
           print_current(column);
 
           unsigned ltrsize{};
-          for(const auto& counter: lines_ltr){
+          for([[maybe_unused]]const auto& counter: lines_ltr){
               ltrsize++;
           }
 
@@ -98,7 +98,7 @@ int main()
           print_current(column);
 
           unsigned rtlsize{};
-          for(const auto& counter: lines_rtl){
+          for([[maybe_unused]]const auto& counter: lines_rtl){
               rtlsize++;
           }
 
@@ -126,7 +126,7 @@ int main()
           print_current(column);
 
           unsigned ttbsize{};
-          for(const auto& counter: lines_ttb){
+          for([[maybe_unused]]const auto& counter: lines_ttb){
               ttbsize++;
           }
 
@@ -154,7 +154,7 @@ int main()
           print_current(column);
 
           unsigned bttsize{};
-          for(const auto& counter: lines_btt){
+          for([[maybe_unused]]const auto& counter: lines_btt){
               bttsize++;
           }
           std::cout << " | count = " << bttsize << '\n';
