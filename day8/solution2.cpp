@@ -50,7 +50,7 @@ int main()
 
           std::cout << "Left to Right";
           bool found_one_already{ false };
-          auto lines_ltr = row | std::views::drop(col_index + 1) | std::views::take_while([&found_one_already, current](const auto next) {
+          auto lines_ltr = row | std::views::drop(col_index + 1) | std::views::take(array_width-(col_index+1)) | std::views::take_while([&found_one_already, current](const auto next) {
                   auto nextint = next - '0';
             if (!found_one_already) {
                 if (nextint < current) {
@@ -78,14 +78,14 @@ int main()
 
           std::cout << "Right to Left";
           found_one_already = false;
-          auto lines_rtl = row | std::views::reverse | std::views::drop(array_width - col_index) | std::views::take_while([&found_one_already, current ](const auto next) {
+          auto lines_rtl = row | std::views::reverse | std::views::drop(array_width - col_index) |  std::views::take_while([&found_one_already, current ](const auto next) {
                   auto nextint = next - '0';
             if (!found_one_already) {
                 if (nextint < current) {
                   std::cout << nextint;
                   return true;
               }
-                if (next == current) {
+                if (nextint == current) {
                   std::cout << nextint;
                   found_one_already = true;
                   return true;
