@@ -1,4 +1,10 @@
-static constexpr auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
+export module input3;
+
+import std;
+
+using namespace std::literals::string_view_literals;
+
+export const auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
 gRTRnCRsFNGbTzLjwcSTMmSz
 dGgsRWPGdWgZJqBBqhfpPq
 HNCNJHCWJRRLqNJWlfrrrwsmlwGmmf
@@ -297,4 +303,4 @@ DrNNBbwNHNwlbjFbbCNjNwDWWDPPVfDMgfmVMfnMWmmP
 rvJBbbBNcLCtJZQL
 NfLlqLhbNPddLPqLhpgHwFFwFHHTwRHWwPFTrT
 MSMSCnjBnBjCscjVDVljTvHmmWnrwTrwFTrvTWTT
-JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)";
+JCMMBzDMJcZZCjDzSBDNJgdfdQlqlLNdhgGLhp)"sv;

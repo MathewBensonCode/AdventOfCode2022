@@ -1,12 +1,15 @@
-#include "day3common.hpp"
+import day3common;
 import std;
+import input3;
 
 namespace {
 using namespace day3;
 
-const auto get_count = [](const auto &line) {
+struct get_count{
   std::size_t compartment_index{};
   std::array<std::array<std::size_t, compartment_size>, 3> compartments{};
+
+  auto operator()(const auto &line) {
   std::size_t count{};
   std::string_view lineinput{line.begin(), line.end()};
 
@@ -16,7 +19,7 @@ const auto get_count = [](const auto &line) {
     compartments.at(compartment_index).at(char_index)++;
   }
 
-  std::print(" Input {} : {}\n", compartment_index, lineinput);
+  std::print("Input {} : {}\n", compartment_index, lineinput);
 
   if (compartment_index < 2) {
     compartment_index++;
@@ -27,7 +30,7 @@ const auto get_count = [](const auto &line) {
     if (compartments.at(0).at(index) > 0 && compartments.at(1).at(index) > 0 &&
         compartments.at(2).at(index) > 0) {
       count += index;
-      std::print("Found character : {} \tWith Count : {} \n\n",
+      std::print("\nFound character : {} \tWith Count : {} \n\n",
                  calculate_char(index), index);
       break;
     }
@@ -38,20 +41,21 @@ const auto get_count = [](const auto &line) {
   compartments[2].fill(0);
 
   return count;
+}
 };
 } // namespace
 
 int main() {
   try {
-    auto lines = std::string_view{inputdata} |
+    auto lines = inputdata |
                  std::views::split(line_delimiter) |
-                 std::views::transform(get_count) | std::views::common;
+                 std::views::transform(get_count{}) | std::views::common;
 
     const auto count =
         std::accumulate(lines.begin(), lines.end(), std::size_t{});
     std::print("Final Count = {}\n", count);
 
   } catch (std::exception &e) {
-    std::print("Error => {}", e.what());
+    std::cerr<<"Error => "<< e.what();
   }
 }

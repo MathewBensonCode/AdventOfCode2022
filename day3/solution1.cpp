@@ -1,5 +1,6 @@
-#include "day3common.hpp"
+import day3common;
 import std;
+import input3;
 
 namespace {
 using namespace day3;
@@ -44,7 +45,7 @@ const auto get_char_count = [](const auto &line) {
 } // namespace
 
 int main() {
-  auto lines = std::string_view{inputdata} | std::views::split(line_delimiter) |
+  auto lines = inputdata | std::views::split(line_delimiter) |
                std::views::transform(get_char_count) | std::views::common;
 
   const auto final_count =

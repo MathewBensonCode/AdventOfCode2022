@@ -6,7 +6,7 @@ using namespace day1;
 int main() {
   try {
     auto sections = input_string | std::views::split(section_delimiter) |
-                    std::views::transform(get_section_sum);
+                    std::views::transform(get_section_sum{});
 
     std::vector<int> sums{};
     std::ranges::copy(sections, std::back_inserter(sums));

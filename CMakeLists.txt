@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23.29.20240416 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.29 FATAL_ERROR)
 
 # Set experimental flag to enable `import std` support from CMake. This must be
 # enabled before C++ language support.
@@ -8,7 +8,13 @@ set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
     # your CMake build for the exact value to use.
     "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 project(AdventOfCode2022 CXX)
+
 
 # Tell CMake that we explicitly want `import std`. This will initialize the
 # property on all targets declared after this to 1
@@ -47,8 +53,6 @@ enable_sanitizers(project_options)
 include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
-
-target_compile_features(project_options INTERFACE cxx_std_23)
 
 set(CMAKE_CXX_MODULE_STD 1)
 
