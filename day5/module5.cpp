@@ -21,7 +21,7 @@ auto fill_stacks(const std::string_view datasection, auto &stack_container) {
                std::views::transform(to_string_view{});
 
   for (const auto &line : lines) {
-    const auto *itr = line.begin();
+    auto itr = line.begin();
     std::size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);
