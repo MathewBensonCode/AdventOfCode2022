@@ -1,25 +1,14 @@
-#include "input7.hpp"
+import input7;
 import std;
+import module7;
 
-namespace {
-struct file {
-  std::string name{};
-  std::size_t size{};
-};
-
-struct directory : public file {
-  std::weak_ptr<directory> parent{};
-  std::vector<std::shared_ptr<file>> contents{};
-};
+using namespace day7;
 
 const auto add_dir_size = [](const std::size_t &sum,
                              const std::shared_ptr<directory> &dir) {
   return sum + dir->size;
 };
 
-constexpr std::string_view line_delimiter{"\n"};
-
-} // namespace
 
 int main() {
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();

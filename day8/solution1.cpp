@@ -1,4 +1,4 @@
-#include "input8.hpp"
+import input8;
 import std;
 
 int main() {

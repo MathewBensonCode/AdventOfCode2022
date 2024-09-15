@@ -1,9 +1,8 @@
-#include "input2.hpp"
+import input2;
 import std;
 
 using namespace std::literals::string_view_literals;
 
-namespace {
 constexpr auto line_delimiter{"\n"sv};
 constexpr auto winning_score{6};
 constexpr auto draw_score{3};
@@ -51,7 +50,6 @@ const auto get_game_score = [](const auto &game) {
   return roundscore;
 };
 
-} // namespace
 
 int main() {
   try {

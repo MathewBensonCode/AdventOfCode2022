@@ -1,20 +1,8 @@
-#include "input7.hpp"
+import input7;
 import std;
+import module7;
 
-struct file {
-  std::string name{};
-  std::size_t size{};
-};
-
-struct directory : public file {
-  std::weak_ptr<directory> parent{};
-  std::vector<std::shared_ptr<file>> contents{};
-};
-
-std::size_t operator+(const std::size_t value1,
-                      const std::shared_ptr<file> &other) {
-  return value1 + other->size;
-}
+using namespace day7;
 
 int main() {
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();

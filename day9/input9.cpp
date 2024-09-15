@@ -1,4 +1,6 @@
-constexpr auto inputdata = R"(
+export module input9;
+
+export constexpr auto inputdata = R"(
 D 2
 U 2
 L 2

@@ -1,4 +1,9 @@
-constexpr auto inputdata = R"(
+export module input5;
+import std;
+
+using namespace std::literals::string_view_literals;
+
+export constexpr auto inputdata = R"(
 [W] [V]     [P]                    
 [B] [T]     [C] [B]     [G]        
 [G] [S]     [V] [H] [N] [T]        
@@ -510,4 +515,4 @@ move 1 from 2 to 8
 move 2 from 2 to 5
 move 4 from 5 to 7
 move 5 from 6 to 1
-move 1 from 3 to 4)";
+move 1 from 3 to 4)"sv;

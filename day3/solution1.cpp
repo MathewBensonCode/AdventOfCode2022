@@ -1,4 +1,4 @@
-import day3common;
+import module3;
 import std;
 import input3;
 

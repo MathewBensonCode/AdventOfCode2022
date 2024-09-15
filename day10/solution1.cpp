@@ -1,4 +1,4 @@
-#include "input10.hpp"
+import input10;
 import std;
 
 int main() {

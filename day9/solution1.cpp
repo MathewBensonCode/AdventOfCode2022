@@ -1,4 +1,4 @@
-#include "input9.hpp"
+import input9;
 import std;
 
 namespace {

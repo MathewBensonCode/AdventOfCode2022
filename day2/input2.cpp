@@ -1,4 +1,10 @@
-constexpr auto inputdata=
+export module input2;
+
+import std;
+
+using namespace std::literals::string_view_literals;
+
+export constexpr auto inputdata=
 R"(B Y
 A Y
 B Z
@@ -2498,4 +2504,4 @@ C X
 A Y
 A Z
 B Y
-A Y)";
+A Y)"sv;

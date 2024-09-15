@@ -1,4 +1,6 @@
-constexpr auto inputdata=R"(
+export module input10;
+
+export constexpr auto inputdata=R"(
 addx 1
 noop
 addx 4

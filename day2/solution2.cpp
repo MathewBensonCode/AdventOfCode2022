@@ -1,5 +1,4 @@
-#include "input2.hpp"
-
+import input2;
 import std;
 
 using namespace std::literals::string_view_literals;

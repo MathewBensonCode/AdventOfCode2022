@@ -1,4 +1,6 @@
-constexpr auto inputdata = R"($ cd /
+export module input7;
+
+export const auto inputdata = R"($ cd /
 $ ls
 dir bhtvbj
 dir bmlllrl

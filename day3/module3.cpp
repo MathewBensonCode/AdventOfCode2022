@@ -1,4 +1,4 @@
-export module day3common;
+export module module3;
 
 import std;
 

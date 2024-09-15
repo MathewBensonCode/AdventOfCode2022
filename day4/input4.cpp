@@ -1,4 +1,10 @@
-constexpr auto inputdata=
+export module input4;
+
+import std;
+
+using namespace std::literals::string_view_literals;
+
+export constexpr auto inputdata=
 R"(17-99,18-24
 14-91,22-91
 63-76,66-83
@@ -998,4 +1004,4 @@ R"(17-99,18-24
 17-70,18-62
 1-94,1-99
 1-78,1-1
-3-97,2-2)";
+3-97,2-2)"sv;

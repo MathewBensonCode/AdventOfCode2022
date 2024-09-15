@@ -1,4 +1,6 @@
-constexpr auto inputdata=R"(Monkey 0:
+export module input11;
+
+export constexpr auto inputdata=R"(Monkey 0:
   Starting items: 71, 56, 50, 73
   Operation: new = old * 11
   Test: divisible by 13
