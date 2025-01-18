@@ -4,24 +4,47 @@ import input1;
 
 using namespace day1;
 
-auto get_highest() {
+namespace
+{
 
-  auto sections = std::string_view{inputdata} |
-                  std::views::split(section_delimiter) |
-                  std::views::transform(get_section_sum{});
+consteval auto get_highest()
+{
+  constexpr std::string_view all_data{ inputdata };
+  std::vector<unsigned> sums{};
+  std::vector<unsigned> nums{};
 
-  return *(std::ranges::max_element(sections));
+    for (const auto *start_iterator{ all_data.begin() }; start_iterator != all_data.end(); std::ranges::advance(start_iterator, 1, all_data.end())) {
+
+      const auto *endline = std::ranges::find(start_iterator, all_data.end(), '\n');
+      unsigned number{};
+      std::from_chars(start_iterator, endline, number);
+
+        if (number > 0) {
+          start_iterator = endline;
+          nums.push_back(number);
+          continue;
+      }
+
+      const auto sum = std::reduce(nums.begin(), nums.end(), unsigned{});
+      nums.clear();
+      sums.push_back(sum);
+      start_iterator = endline;
+    }
+
+  return std::ranges::max(sums);
 };
+}// namespace
 
-int main() {
+int main()
+{
 
-  try {
+    try {
 
-    auto highest = get_highest();
+      auto highest = get_highest();
 
-    std::print("Highest Element = {}\n ", highest);
+      std::print("Highest Element = {}\n ", highest);
 
-  } catch (std::exception &e) {
-    std::cerr << "Error Occurred" << e.what() << '\n';
+    } catch (std::exception &e) {
+      std::cerr << "Error Occurred" << e.what() << '\n';
   }
 }

@@ -1,5 +1,5 @@
 add_library(modules4)
-target_sources(modules4 PUBLIC FILE_SET modules4 TYPE CXX_MODULES FILES module4.cpp input4.cpp)
+target_sources(modules4 PUBLIC FILE_SET modules4 TYPE CXX_MODULES FILES input4.cpp module4.cpp)
 target_link_libraries(modules4 PUBLIC project_options project_warnings)
 
 add_executable(day4_solution1 solution1.cpp)
