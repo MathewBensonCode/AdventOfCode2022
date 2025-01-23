@@ -1,4 +1,4 @@
-Checks:          '*,-altera-*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm*,-readability-function-cognitive-complexity, -boost-use-ranges'
+Checks:          '*,-altera-*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm*,-readability-function-cognitive-complexity, -boost-use-ranges, -misc-include-cleaner'
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
 FormatStyle:     none

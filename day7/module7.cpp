@@ -3,13 +3,13 @@ import std;
 
 export namespace day7 {
 struct file {
-  std::string name{};
+  std::string name;
   std::size_t size{};
 };
 
 struct directory : public file {
-  std::weak_ptr<directory> parent{};
-  std::vector<std::shared_ptr<file>> contents{};
+  std::weak_ptr<directory> parent;
+  std::vector<std::shared_ptr<file>> contents;
 };
 
 std::size_t operator+(const std::size_t value1,

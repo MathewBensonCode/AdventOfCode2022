@@ -2,6 +2,7 @@ import input8;
 import std;
 
 int main() {
+    try{
   std::stringstream inputstringstream{inputdata};
   const auto array_width{99};
   const auto counter_length{array_width * array_width};
@@ -131,4 +132,8 @@ int main() {
       visible_tree_count_store, [](const auto tree) { return tree > 0; });
 
   std::cout << "\nViewable Trees => " << visible_tree_count << '\n';
+}
+catch(std::exception& e){
+    std::cerr<<std::format("Exception : {}\n", e.what());
+}
 }

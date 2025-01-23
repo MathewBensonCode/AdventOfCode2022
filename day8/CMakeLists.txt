@@ -6,7 +6,8 @@ add_executable(day8_solution1 solution1.cpp)
 target_link_libraries(day8_solution1 PRIVATE module8)
 CreateTargetLink(day8_solution1)
 
+find_package(TBB REQUIRED)
 add_executable(day8_solution2 solution2.cpp)
-target_link_libraries(day8_solution2 PRIVATE module8)
+target_link_libraries(day8_solution2 PRIVATE module8 TBB::tbb)
 CreateTargetLink(day8_solution2)
 

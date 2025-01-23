@@ -1,3 +1,5 @@
+#include <algorithm>
+
 import input7;
 import std;
 import module7;
@@ -5,6 +7,7 @@ import module7;
 using namespace day7;
 
 int main() {
+    try{
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();
   current_directory->name = "/";
 
@@ -144,11 +147,13 @@ int main() {
   for (const auto &dir : directories) {
     auto dirsize = dir->size;
     if (dirsize >= target) {
-      if (dirsize < smallest_dir_to_remove) {
-        smallest_dir_to_remove = dirsize;
-      }
+      smallest_dir_to_remove = std::min(dirsize, smallest_dir_to_remove);
     }
   }
 
   std::cout << "Smallest dir size => " << smallest_dir_to_remove << '\n';
+}
+catch(std::exception &e){
+    std::cerr<<std::format("Exception : {}\n", e.what());
+}
 }
