@@ -1,7 +1,6 @@
 export module input1;
 
-export namespace day1 {
-constexpr auto inputdata = R"(2936
+export constexpr auto inputdata = R"(2936
 2154
 1578
 4820
@@ -2243,5 +2242,3 @@ constexpr auto inputdata = R"(2936
 10094
 1445
 9978)";
-
-}

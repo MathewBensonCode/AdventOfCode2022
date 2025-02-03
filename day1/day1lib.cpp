@@ -1,33 +1,29 @@
 export module day1lib;
+import input1;
 import std;
 
 namespace day1
 {
-
-struct string_to_int
-{
-  auto operator()(const auto &line) const
-  {
-    unsigned number{};
-    std::string_view line_string{line.begin(), line.end()};
-    std::from_chars(line_string.data(), line_string.data()+line_string.size(), number);
-    std::println("{}", number);
-    return number;
-  }
-};
+export constexpr std::string_view input_string{ inputdata };
+export constexpr std::string_view section_delimiter{ "\n\n" };
+export constexpr std::string_view line_delimiter{ "\n" };
 
 export struct get_section_sum
 {
 
-  unsigned operator()(const auto &section)
+  unsigned constexpr operator()(const auto &section)
   {
-    std::string_view line_delimiter{ "\n" };
-    auto lines = std::views::transform(
-      std::views::split(section, line_delimiter), string_to_int{});
+    auto lines =
+      section | std::views::split(line_delimiter) | std::views::transform([](const auto &line) {
+        unsigned number{};
+        std::string_view linestring{ line.begin(), line.end() };
+        std::from_chars(linestring.data(), (linestring.data() + linestring.size()), number);
+        std::print("# {}\n", number);
+        return number;
+      });
 
-    auto section_sum =
-      std::accumulate(lines.begin(), lines.end(), unsigned{});
-    std::println("Section Sum => {}\n", section_sum);
+    const auto section_sum = std::reduce(lines.begin(), lines.end(), unsigned{});
+    std::print("Section Sum => {}\n\n", section_sum);
     return section_sum;
   }
 };

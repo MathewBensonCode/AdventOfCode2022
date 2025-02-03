@@ -187,7 +187,7 @@ int main() {
       }
     };
 
-    std::for_each(span.begin(), span.end(), traverse_rows);
+    std::ranges::for_each(span, traverse_rows);
 
     std::print(" Highest Scenic Score ==> {}\n", highest_scenic_score);
   } catch (std::exception &e) {
