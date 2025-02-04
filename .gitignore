@@ -40,3 +40,5 @@ day*_solution*
 # build artifacts
 .cache/
 CMakeFiles/
+build/
+.vscode
