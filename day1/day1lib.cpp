@@ -1,6 +1,7 @@
 export module day1lib;
 import input1;
 import std;
+import input1;
 
 namespace day1
 {

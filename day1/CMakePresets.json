@@ -1,0 +1,15 @@
+{"version": 10,
+  "cmakeMinimumRequired": {"major": 3, "minor": 31},
+  "configurePresets": [
+    {
+        "name" : "default",
+        "displayName": "Default Windows",
+        "description": "Windows Msvc and Ninja to allow modules",
+        "generator": "Ninja",
+        "binaryDir": "${sourceDir}/build/",
+        "cacheVariables": {
+            "CMAKE_BUILD_TYPE":"Debug"
+        }
+    }
+  ]
+}

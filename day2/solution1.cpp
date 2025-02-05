@@ -56,8 +56,8 @@ int main() {
     auto games = std::string_view{inputdata} |
                  std::views::split(line_delimiter) |
                  std::views::transform(get_game_score) | std::views::common;
-    auto gamescore = std::accumulate(games.begin(), games.end(), 0);
-    std::print("Games Total Score => {}\n", gamescore);
+
+    std::println("Games Total Score => {}\n", std::reduce(games.begin(), games.end(), 0));
   } catch (std::exception &e) {
     std::cerr << e.what() << '\n';
   }
