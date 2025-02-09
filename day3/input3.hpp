@@ -1,6 +1,6 @@
 #include <string_view>
 using namespace std::string_view_literals;
-static constexpr auto inputdata=R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
+static constexpr auto inputdata = R"(hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
 gRTRnCRsFNGbTzLjwcSTMmSz
 dGgsRWPGdWgZJqBBqhfpPq
 HNCNJHCWJRRLqNJWlfrrrwsmlwGmmf

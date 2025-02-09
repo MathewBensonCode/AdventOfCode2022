@@ -1,4 +1,4 @@
-# AdventOfCode2022
+#AdventOfCode2022
 
 [![CMake-Windows-MSVC](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/windows_cmake.yml/badge.svg)](https://github.com/MathewBensonCode/AdventOfCode2022/actions/workflows/windows_cmake.yml)
 
@@ -35,4 +35,4 @@ cmake --build ../adventofcode2022build
 
 ## Required Libraries
 
-The fmt library is required to be installed on your operating system of choice. For windows this can be done via vcpkg and on other operating systems like linux it can be installed via the package manager. 
+The fmt library is required to be installed on your operating system of choice. For windows this can be done via vcpkg and on other operating systems like linux it can be installed via the package manager.

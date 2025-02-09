@@ -1,4 +1,4 @@
-constexpr auto inputdata=R"(
+constexpr auto inputdata = R"(
 addx 1
 noop
 addx 4

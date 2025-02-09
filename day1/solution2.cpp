@@ -6,29 +6,30 @@
 #include <ranges>
 #include <vector>
 
-namespace {
-constexpr std::string_view section_delimiter{"\n\n"};
-constexpr std::string_view line_delimiter{"\n"};
+namespace
+{
+constexpr std::string_view section_delimiter{ "\n\n" };
+constexpr std::string_view line_delimiter{ "\n" };
 
 const auto get_section_data = [](const auto &section) {
   auto lines =
-      section | std::views::split(line_delimiter) |
-      std::views::transform([](const auto &line) {
-        std::string_view line_string{line.begin(), line.end()};
-        int number{};
-        std::from_chars(line_string.data(),
-                        line_string.data() + line_string.size(), number);
-        return number;
-      });
+    section | std::views::split(line_delimiter) | std::views::transform([](const auto &line) {
+      std::string_view line_string{ line.begin(), line.end() };
+      int number{};
+      std::from_chars(line_string.data(),
+        line_string.data() + line_string.size(),
+        number);
+      return number;
+    });
   return std::accumulate(lines.begin(), lines.end(), 0);
 };
 
-} // namespace
+}// namespace
 
-int main() {
+int main()
+{
 
-  auto sections = inputdata | std::views::split(section_delimiter) |
-                  std::views::transform(get_section_data);
+  auto sections = inputdata | std::views::split(section_delimiter) | std::views::transform(get_section_data);
 
   std::vector<int> results{};
   std::ranges::copy(sections, std::back_inserter(results));

@@ -7,22 +7,26 @@
 #include <sstream>
 #include <vector>
 
-struct file {
+struct file
+{
   std::string name{};
   std::size_t size{};
 };
 
-struct directory : public file {
+struct directory : public file
+{
   std::weak_ptr<directory> parent{};
   std::vector<std::shared_ptr<file>> contents{};
 };
 
 std::size_t operator+(const std::size_t &value1,
-                      const std::shared_ptr<file> &other) {
+  const std::shared_ptr<file> &other)
+{
   return value1 + other->size;
 }
 
-int main() {
+int main()
+{
   std::shared_ptr<directory> current_directory = std::make_shared<directory>();
   current_directory->name = "/";
 
@@ -31,7 +35,7 @@ int main() {
   std::vector<std::shared_ptr<directory>> directories;
 
   auto add_directory = [&current_directory,
-                        &directories](const std::string &name) {
+                         &directories](const std::string &name) {
     auto new_directory = std::make_shared<directory>();
     new_directory->name = name;
     new_directory->parent = current_directory;
@@ -42,7 +46,7 @@ int main() {
   };
 
   auto add_file = [&current_directory](const std::string &filename,
-                                       const std::size_t filesize) {
+                    const std::size_t filesize) {
     auto new_file = std::make_shared<file>();
     new_file->name = filename;
     new_file->size = filesize;
@@ -61,110 +65,109 @@ int main() {
                 << '\n';
 
       const auto &contents = current_directory->contents;
-      std::size_t sum{std::accumulate(
-          contents.begin(), contents.end(), std::size_t{},
-          [](std::size_t previous_sum, const auto &dir) { return previous_sum + dir->size; })};
+      std::size_t sum{ std::accumulate(
+        contents.begin(), contents.end(), std::size_t{}, [](std::size_t previous_sum, const auto &dir) { return previous_sum + dir->size; }) };
 
-      if (current_directory->size != sum) {
-        current_directory->size = sum;
-        std::cout << "\tUpdated directory size to : " << current_directory->size
-                  << '\n';
+        if (current_directory->size != sum) {
+          current_directory->size = sum;
+          std::cout << "\tUpdated directory size to : " << current_directory->size
+                    << '\n';
       }
 
     } else {
 
-      for (auto &dir : current_directory->contents) {
-        if (dir->name == destination) {
-          auto cast_directory = std::static_pointer_cast<directory>(dir);
+        for (auto &dir : current_directory->contents) {
+            if (dir->name == destination) {
+              auto cast_directory = std::static_pointer_cast<directory>(dir);
 
-          if (cast_directory) {
-            std::cout << "Changed to directory : " << cast_directory->name
-                      << '\n';
-            current_directory = cast_directory;
-            break;
+                if (cast_directory) {
+                  std::cout << "Changed to directory : " << cast_directory->name
+                            << '\n';
+                  current_directory = cast_directory;
+                  break;
+              }
           }
         }
-      }
     }
   };
 
-  std::stringstream inputstringstream{std::string{inputdata}};
+  std::stringstream inputstringstream{ std::string{ inputdata } };
 
-  while (!inputstringstream.eof()) {
-    std::string linestring{};
-    std::getline(inputstringstream, linestring);
+    while (!inputstringstream.eof()) {
+      std::string linestring{};
+      std::getline(inputstringstream, linestring);
 
-    if (linestring.length() > 0) {
-      std::istringstream linestream{linestring};
+        if (linestring.length() > 0) {
+          std::istringstream linestream{ linestring };
 
-      std::cout << linestring << '\n';
+          std::cout << linestring << '\n';
 
-      std::string first{};
-      linestream >> first;
+          std::string first{};
+          linestream >> first;
 
-      if (first == "$") {
-        std::string command{};
-        linestream >> command;
+            if (first == "$") {
+              std::string command{};
+              linestream >> command;
 
-        if (command == "cd") {
-          std::string destination{};
-          linestream >> destination;
-          change_directory(destination);
-          continue;
-        }
+                if (command == "cd") {
+                  std::string destination{};
+                  linestream >> destination;
+                  change_directory(destination);
+                  continue;
+              }
 
-        if (command == "ls") {
-          continue;
-        }
+                if (command == "ls") {
+                  continue;
+              }
+          }
+
+            if (first == "dir") {
+              std::string directory_name{};
+              linestream >> directory_name;
+              add_directory(directory_name);
+              continue;
+          }
+
+          auto file_size = stoul(first);
+
+          std::string file_name{};
+          linestream >> file_name;
+
+          add_file(file_name, file_size);
       }
-
-      if (first == "dir") {
-        std::string directory_name{};
-        linestream >> directory_name;
-        add_directory(directory_name);
-        continue;
-      }
-
-      auto file_size = stoul(first);
-
-      std::string file_name{};
-      linestream >> file_name;
-
-      add_file(file_name, file_size);
     }
-  }
 
-  const std::size_t disk_limit{70000000};
+  const std::size_t disk_limit{ 70000000 };
 
   auto rootdircollection = root_directory->contents;
 
   std::size_t current_stored = std::accumulate(std::begin(rootdircollection),
-                                               std::end(rootdircollection), 0U);
+    std::end(rootdircollection),
+    0U);
 
   std::cout << "\nTotal Available Space => " << disk_limit << '\n';
 
   std::cout << "Current Stored => " << current_stored << '\n';
 
-  const auto target_space_removal{30000000};
+  const auto target_space_removal{ 30000000 };
 
   std::cout << "Desired Space Removal => " << target_space_removal << '\n';
 
   const std::size_t target =
-      target_space_removal - (disk_limit - current_stored);
+    target_space_removal - (disk_limit - current_stored);
 
   std::cout << "Target Reduction => " << target << '\n';
 
-  std::size_t smallest_dir_to_remove{target_space_removal};
+  std::size_t smallest_dir_to_remove{ target_space_removal };
 
-  for (const auto &dir : directories) {
-    auto dirsize = dir->size;
-    if (dirsize >= target) {
-        if(dirsize < smallest_dir_to_remove)
-        {
-            smallest_dir_to_remove = dirsize;
-        }
+    for (const auto &dir : directories) {
+      auto dirsize = dir->size;
+        if (dirsize >= target) {
+            if (dirsize < smallest_dir_to_remove) {
+              smallest_dir_to_remove = dirsize;
+          }
+      }
     }
-  }
 
-  std::cout<<"Smallest dir size => "<<smallest_dir_to_remove<<'\n';
+  std::cout << "Smallest dir size => " << smallest_dir_to_remove << '\n';
 }

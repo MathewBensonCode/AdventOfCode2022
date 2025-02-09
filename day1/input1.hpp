@@ -1,6 +1,9 @@
+#ifndef INPUT1_HPP
+#define INPUT1_HPP
+
 #include <string_view>
 using namespace std::literals::string_view_literals;
-constexpr auto inputdata=R"(2936
+constexpr auto inputdata = R"(2936
 2154
 1578
 4820
@@ -2243,3 +2246,5 @@ constexpr auto inputdata=R"(2936
 1445
 9978
 )"sv;
+
+#endif

@@ -1,7 +1,7 @@
 #include <string_view>
 using namespace std::string_view_literals;
-constexpr auto inputdata=
-R"(B Y
+constexpr auto inputdata =
+  R"(B Y
 A Y
 B Z
 A Z

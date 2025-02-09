@@ -1,7 +1,7 @@
 #include <string_view>
 using namespace std::literals::string_view_literals;
-constexpr auto inputdata=
-R"(17-99,18-24
+constexpr auto inputdata =
+  R"(17-99,18-24
 14-91,22-91
 63-76,66-83
 17-57,17-28
