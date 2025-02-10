@@ -10,17 +10,17 @@ int main()
   const auto counter_length{ array_width * array_width };
   std::array<std::array<char, array_width>, array_width> datastore{};
   std::array<std::array<char, array_width>, array_width> printstore{};
-  std::array<std::size_t, counter_length> visible_tree_count_store{};
+  std::array<unsigned, counter_length> visible_tree_count_store{};
 
-  auto get_index_for_array = [](std::size_t row,
-                               std::size_t col) -> std::size_t {
+  auto get_index_for_array = [](unsigned row,
+                               unsigned col) -> unsigned {
     return col + (row * array_width);
   };
 
   auto print_found = [&](const std::string &name) {
     std::cout << name << '\n';
-      for (std::size_t row_index{ 0 }; row_index < array_width; ++row_index) {
-          for (std::size_t col_index{ 0 }; col_index < array_width; ++col_index) {
+      for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
+          for (unsigned col_index{ 0 }; col_index < array_width; ++col_index) {
             std::cout << printstore.at(row_index).at(col_index);
           }
         std::cout << '\n';
@@ -29,8 +29,8 @@ int main()
   };
 
   auto read_data = [&inputstringstream, &datastore] {
-    for (std::size_t row_index{ 0 }; row_index < array_width; ++row_index) {
-        for (std::size_t col_index{ 0 }; col_index < array_width; ++col_index) {
+    for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
+        for (unsigned col_index{ 0 }; col_index < array_width; ++col_index) {
           char value{};
           inputstringstream >> value;
           datastore.at(row_index).at(col_index) = value;
@@ -45,10 +45,10 @@ int main()
   read_data();
 
   auto count_trees_left_to_right = [&]() {
-    for (std::size_t row_index{ 0 }; row_index < array_width; ++row_index) {
+    for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
       char highest_tree{};
       char current_tree{};
-        for (std::size_t col_index{ 0 }; col_index < array_width; ++col_index) {
+        for (unsigned col_index{ 0 }; col_index < array_width; ++col_index) {
           current_tree = datastore.at(row_index).at(col_index);
 
             if ((col_index == 0) || (current_tree > highest_tree)) {
@@ -67,10 +67,10 @@ int main()
   count_trees_left_to_right();
 
   auto count_trees_top_to_bottom = [&]() {
-    for (std::size_t col_index{ 0 }; col_index < array_width; ++col_index) {
+    for (unsigned col_index{ 0 }; col_index < array_width; ++col_index) {
       char highest_tree{};
       char current_tree{};
-        for (std::size_t row_index{ 0 }; row_index < array_width; ++row_index) {
+        for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
           current_tree = datastore.at(row_index).at(col_index);
 
             if ((row_index == 0) || (current_tree > highest_tree)) {
@@ -93,8 +93,8 @@ int main()
       char highest_tree{};
       char current_tree{};
         for (auto col_index{ array_width - 1 }; col_index >= 0; --col_index) {
-          auto rowval = static_cast<std::size_t>(row_index);
-          auto colval = static_cast<std::size_t>(col_index);
+          auto rowval = static_cast<unsigned>(row_index);
+          auto colval = static_cast<unsigned>(col_index);
           current_tree = datastore.at(rowval).at(colval);
 
             if ((colval == array_width) || (current_tree > highest_tree)) {
@@ -117,8 +117,8 @@ int main()
       char highest_tree{};
       char current_tree{};
         for (auto row_index{ array_width - 1 }; row_index >= 0; --row_index) {
-          auto rowval = static_cast<std::size_t>(row_index);
-          auto colval = static_cast<std::size_t>(col_index);
+          auto rowval = static_cast<unsigned>(row_index);
+          auto colval = static_cast<unsigned>(col_index);
           current_tree = datastore.at(rowval).at(colval);
 
             if ((rowval == array_width) || (current_tree > highest_tree)) {
@@ -136,7 +136,7 @@ int main()
 
   count_trees_bottom_to_top();
 
-  std::size_t visible_tree_count{};
+  unsigned visible_tree_count{};
 
     for (auto &tree : visible_tree_count_store) {
         if (tree > 0) {

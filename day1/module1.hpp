@@ -1,6 +1,3 @@
-#include "input1.hpp"
-#include <algorithm>
-#include <iostream>
 #include <numeric>
 #include <ranges>
 #include <charconv>

@@ -1,9 +1,6 @@
+#include "input1.hpp"
 #include "module1.hpp"
 #include <algorithm>
-#include <iostream>
-#include <numeric>
-#include <ranges>
-#include <charconv>
 #include <print>
 
 int main()

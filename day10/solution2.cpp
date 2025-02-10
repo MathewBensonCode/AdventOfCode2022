@@ -2,21 +2,22 @@
 #include <array>
 #include <sstream>
 #include <print>
+#include <string>
 
 int main()
 {
   std::istringstream inputstringstream{ inputdata };
 
-  const std::size_t screen_width{ 40 };
-  const std::size_t screen_height{ 6 };
-  std::size_t cycle_counter{};
-  std::size_t sprite_start_location{};
+  const unsigned screen_width{ 40 };
+  const unsigned screen_height{ 6 };
+  unsigned cycle_counter{};
+  unsigned sprite_start_location{};
 
   std::array<std::array<char, screen_width>, screen_height> pixel_array{};
 
   auto draw_pixel = [&] {
-    std::size_t current_row = cycle_counter / screen_width;
-    std::size_t current_column = cycle_counter % screen_width;
+    const unsigned current_row = cycle_counter / screen_width;
+    const unsigned current_column = cycle_counter % screen_width;
     char current_char{ '.' };
 
       if ((current_column >= sprite_start_location) && (current_column <= sprite_start_location + 2)) {
@@ -38,7 +39,7 @@ int main()
         if (command == "addx") {
           draw_pixel();
           draw_pixel();
-          std::size_t add_value{};
+          unsigned add_value{};
           inputstringstream >> add_value;
           sprite_start_location += add_value;
           std::print("sprite_start_location => {}\n", sprite_start_location);
