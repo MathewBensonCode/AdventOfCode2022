@@ -106,7 +106,7 @@ int main()
 
     auto remaining_views = rowviews | std::views::drop(1);
 
-      for (const auto& myrow : remaining_views) {
+      for (const auto &myrow : remaining_views) {
         auto selected = myrow | std::views::drop(array_width - (col + 1));
 
         auto value = *(selected.begin());
