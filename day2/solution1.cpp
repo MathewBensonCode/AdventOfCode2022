@@ -1,9 +1,7 @@
 #include "input2.hpp"
-#include <algorithm>
 #include <iostream>
 #include <numeric>
 #include <ranges>
-#include <string>
 
 namespace
 {
@@ -18,13 +16,13 @@ constexpr auto scissors_score{ 3 };
 
 const auto mymoves = [](char move) {
   if (move == 'X') {
-    return 1;
+    return rock_score;
 }
   if (move == 'Y') {
-    return 2;
+    return paper_score;
 }
   if (move == 'Z') {
-    return 3;
+    return scissors_score;
 }
 return 0;
 };

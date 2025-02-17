@@ -2,6 +2,8 @@
 #include <ranges>
 #include <charconv>
 
+#include "input1.hpp"
+
 namespace day1
 {
 inline constexpr std::string_view section_delimiter{ "\n\n" };
@@ -18,5 +20,9 @@ const auto get_section_data = [](const auto &section) {
   return std::accumulate(lines.begin(), lines.end(), 0);
 };
 
-}// namespace
+inline auto get_sections()
+{
+  return inputdata | std::views::split(std::string_view{ "\n\n" }) | std::views::transform(day1::get_section_data);
+}
 
+}// namespace day1

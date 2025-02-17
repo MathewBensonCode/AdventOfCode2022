@@ -1,7 +1,5 @@
 #include "input2.hpp"
-#include <functional>
 #include <iostream>
-#include <map>
 #include <numeric>
 #include <ranges>
 

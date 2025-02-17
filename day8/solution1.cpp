@@ -2,6 +2,7 @@
 #include <array>
 #include <iostream>
 #include <sstream>
+#include <string_view>
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
     return col + (row * array_width);
   };
 
-  auto print_found = [&](const std::string &name) {
+  auto print_found = [&](const std::string_view name) {
     std::cout << name << '\n';
       for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
           for (unsigned col_index{ 0 }; col_index < array_width; ++col_index) {
@@ -92,7 +93,7 @@ int main()
     for (unsigned row_index{ 0 }; row_index < array_width; ++row_index) {
       char highest_tree{};
       char current_tree{};
-        for (auto col_index{ array_width - 1 }; col_index >= 0; --col_index) {
+        for (unsigned col_index{ array_width - 1 }; col_index != unsigned{}; --col_index) {
           auto rowval = row_index;
           auto colval = col_index;
           current_tree = datastore.at(rowval).at(colval);
@@ -116,7 +117,7 @@ int main()
     for (unsigned col_index{}; col_index < array_width; ++col_index) {
       char highest_tree{};
       char current_tree{};
-        for (auto row_index{ array_width - 1 }; row_index >= 0; --row_index) {
+        for (unsigned row_index{ array_width - 1 }; row_index != unsigned{}; --row_index) {
           auto rowval = row_index;
           auto colval = col_index;
           current_tree = datastore.at(rowval).at(colval);
