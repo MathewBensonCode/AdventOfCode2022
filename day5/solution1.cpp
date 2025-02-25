@@ -2,8 +2,6 @@ import input5;
 import std;
 import module5;
 
-using namespace day5;
-
 auto process_moves = [](const auto &moves, auto &stack_container) {
   auto lines = moves | std::views::split(line_delimiter) |
                std::views::transform(to_string_view{});

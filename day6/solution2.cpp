@@ -31,5 +31,6 @@ int main() {
       }
     }
   } catch (std::exception &e) {
+      std::cerr<<std::format("Exception : {}\n", e.what());
   }
 }
