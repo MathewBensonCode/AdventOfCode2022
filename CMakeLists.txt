@@ -1,4 +1,19 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 23)
+
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
+    # This specific value changes as experimental support evolves. See
+    # `Help/dev/experimental.rst` in the CMake source corresponding to
+    # your CMake build for the exact value to use.
+    # old version   "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
+    #"a9e1cf81-9932-4810-974b-6eccaf14e457")
+    "d0edc3af-4c50-42ea-a356-e2862fe7a444")
+
+set(CMAKE_EXPERIMENTAL_EXPORT_BUILD_DATABASE 
+    "73194a1d-c0b5-41b9-9190-a4512925e192")
 
 project(AdventOfCode2022 CXX)
 
@@ -45,9 +60,7 @@ include(cmake/CreateTargetLink.cmake)
 
 #target_link_libraries(stdlib PRIVATE project_options)
 
-add_subdirectory(std.module)
-
-target_link_libraries(project_options INTERFACE std)
+set(CMAKE_CXX_MODULE_STD 1)
 
 add_subdirectory(day1)
 add_subdirectory(day2)
