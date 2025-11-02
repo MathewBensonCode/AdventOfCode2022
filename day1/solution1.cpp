@@ -40,7 +40,7 @@ int main()
 
     try {
 
-      auto highest = get_highest();
+      constexpr auto highest = get_highest();
 
       std::print("Highest Element = {}\n ", highest);
 

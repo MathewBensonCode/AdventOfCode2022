@@ -53,9 +53,10 @@ const auto get_game_score = [](const auto &game) {
 
 int main() {
   try {
-    auto games = std::string_view{inputdata} |
+    auto games = inputdata |
                  std::views::split(line_delimiter) |
                  std::views::transform(get_game_score) | std::views::common;
+
     auto gamescore = std::accumulate(games.begin(), games.end(), 0);
     std::print("Games Total Score => {}\n", gamescore);
   } catch (std::exception &e) {
