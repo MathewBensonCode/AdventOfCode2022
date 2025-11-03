@@ -1,70 +1,72 @@
 #include "input1.hpp"
-#include <array>
+#include <charconv>
 #include <iostream>
-#include <sstream>
+#include <numeric>
+#include <vector>
+#include <iterator>
+
+unsigned get_string_as_number(auto &begin_iterator, const auto &end_iterator){
+    unsigned number{};
+
+    std::from_chars(begin_iterator, end_iterator, number);
+
+    begin_iterator = end_iterator;
+
+    return number;
+}
+
+unsigned get_section_sum(auto &begin_iterator, const auto &end_iterator){
+
+    std::vector<unsigned> numbers;
+   
+    while(begin_iterator != end_iterator){
+        const auto* end_of_line = std::find(begin_iterator, end_iterator, '\n');
+
+        numbers.push_back(get_string_as_number(begin_iterator, end_of_line));
+
+        if(end_of_line != end_iterator){
+            begin_iterator = std::next(end_of_line);
+        }
+       
+    }
+
+    return std::reduce(std::begin(numbers), std::end(numbers), unsigned{});
+}
 
 int main() {
-  std::stringstream inputstream{inputdata};
 
-  if (!inputstream) {
-    return 1;
-  }
+    auto counter = std::begin(inputdata);
+    auto endpoint = std::end(inputdata);
 
-  std::array<std::size_t, 3> highest{};
+    std::vector<unsigned> sums{};
 
-  auto gethighest = [&](const std::size_t number) {
-    std::cout << "\t sum = " << number;
-    bool stored = false;
-    std::size_t prevhigh{};
+    while(counter != endpoint){
+        auto end_of_section = std::adjacent_find(counter, endpoint, [](auto first, auto second){
+                    return (first == '\n' && second == '\n');
+                });
+    
+        sums.push_back(get_section_sum(counter, end_of_section));
 
-    for (auto &high : highest) {
-      if (high == 0) {
-        high = number;
-        break;
-      }
+        if(end_of_section != endpoint){
+            counter = std::next(end_of_section, 2);
+        }
 
-      if (number > high && !stored) {
-        prevhigh = high;
-        high = number;
-        stored = true;
-      }
-      if (prevhigh > high && stored) {
-        auto temp = high;
-        high = prevhigh;
-        prevhigh = temp;
-      }
     }
-  };
 
-  auto printhighest = [&]() {
-    std::cout << "\nHighest => :\n";
-    for (auto high : highest) {
-      std::cout << '\t' << high;
+    std::sort(std::begin(sums), std::end(sums), std::greater{});
+
+    std::vector<unsigned> highest_three(3);
+
+    std::copy_n(std::begin(sums), highest_three.size(), std::begin(highest_three));
+
+    unsigned sum_of_highest_three = std::reduce(std::begin(highest_three), std::end(highest_three), unsigned{});
+
+    std::cout<<"Highest Three Sections => \n";
+
+    for(auto element : highest_three){
+        std::cout << element << '\n';
     }
-  };
 
-  std::size_t sum{};
+    std::cout<< "With Sum => " << sum_of_highest_three;
 
-  while (!inputstream.eof()) {
-    std::string line;
-    std::getline(inputstream, line);
-
-    std::cout << "\ninput : " << line;
-    if (line.length() == 0) {
-      gethighest(sum);
-      sum = 0;
-      printhighest();
-      continue;
-    }
-    auto inputnum = std::stoul(line);
-    sum += inputnum;
-    std::cout << "\t number : " << inputnum;
-  }
-
-  std::size_t totalhighest{0};
-  for (auto high : highest) {
-    totalhighest += high;
-  }
-
-  std::cout << "\nTotal of 3 highest = " << totalhighest << '\n';
 }

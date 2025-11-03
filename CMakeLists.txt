@@ -39,11 +39,13 @@ enable_sanitizers(project_options)
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
 
+# Create links for applications in the source dir for ease of invocation from ide
+include(cmake/CreateTargetLink.cmake)
+
 add_subdirectory(day1)
 add_subdirectory(day2)
 add_subdirectory(day3)
 add_subdirectory(day4)
-add_subdirectory(day5)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)

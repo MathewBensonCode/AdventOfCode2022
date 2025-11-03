@@ -1,38 +1,29 @@
 #include "input1.hpp"
-#include <array>
-#include <iostream>
-#include <sstream>
+#include <algorithm>
+#include <charconv>
+#include <numeric>
+#include <vector>
 
 int main() {
-  std::stringstream inputstream{inputdata};
+  std::vector<unsigned> sums{};
+  std::vector<unsigned> nums{};
 
-  if (!inputstream) {
-    return 1;
-  }
+    for (auto start_iterator{ std::begin(inputdata)}, end_iterator {std::end(inputdata)} ; start_iterator != end_iterator; std::ranges::advance(start_iterator, 1, end_iterator)) {
 
-  std::size_t highest{};
-  std::size_t sum{};
+      const auto *endline = std::ranges::find(start_iterator, end_iterator, '\n');
+      unsigned number{};
+      std::from_chars(start_iterator, endline, number);
 
-  while (!inputstream.eof()) {
-    std::string line;
-    std::getline(inputstream, line);
-
-    std::cout << "\ninput : " << line;
-
-    if (line.length() == 0) {
-      std::cout<<"\t\tSum = "<<sum<<'\n';
-
-      if (sum > highest) {
-        highest = sum;
+        if (number > 0) {
+          start_iterator = endline;
+          nums.push_back(number);
+          continue;
       }
-        sum = 0;
-        continue;
+
+      const auto sum = std::reduce(nums.begin(), nums.end(), unsigned{});
+      nums.clear();
+      sums.push_back(sum);
+      start_iterator = endline;
     }
 
-    auto inputnum = std::stoul(line);
-    sum += inputnum;
-    std::cout << "\t number : " << inputnum;
-  }
-
-  std::cout << "Highest = " << highest << '\n';
 }
