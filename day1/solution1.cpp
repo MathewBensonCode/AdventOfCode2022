@@ -1,6 +1,5 @@
 #include "input1.hpp"
 #include <algorithm>
-#include <charconv>
 #include <numeric>
 #include <vector>
 #include <iterator>
@@ -10,14 +9,15 @@ int main() {
     std::vector<unsigned> sums{};
 
 
-    for (auto start_iterator{ std::begin(inputdata)}, end_iterator {std::end(inputdata)} ; start_iterator != end_iterator; std::ranges::advance(start_iterator, 1, end_iterator)) {
+    for (auto start_iterator{ std::begin(inputdata)}, end_iterator {std::end(inputdata)} ; start_iterator != end_iterator; std::advance(start_iterator, 1)) {
 
       std::vector<unsigned> nums{};
 
-      auto endline = std::ranges::find(start_iterator, end_iterator, '\n');
-      unsigned number{};
+      auto endline = std::find(start_iterator, end_iterator, '\n');
 
-      std::from_chars(start_iterator, endline, number);
+      std::string number_string{start_iterator, endline};
+      
+      unsigned number = static_cast<unsigned>(stoul(number_string));
 
         if (number > 0) {
           start_iterator = endline;
@@ -25,7 +25,7 @@ int main() {
           continue;
       }
 
-      const auto sum = std::reduce(nums.begin(), nums.end(), unsigned{});
+      const auto sum = std::accumulate(nums.begin(), nums.end(), unsigned{});
       sums.push_back(sum);
       start_iterator = endline;
     }

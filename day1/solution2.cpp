@@ -1,21 +1,22 @@
 #include "input1.hpp"
-#include <charconv>
 #include <iostream>
 #include <numeric>
 #include <vector>
 #include <iterator>
 
-unsigned get_string_as_number(auto &begin_iterator, const auto &end_iterator){
-    unsigned number{};
+namespace{
+auto get_string_as_number = [] (auto &begin_iterator, const auto &end_iterator){
 
-    std::from_chars(begin_iterator, end_iterator, number);
+    std::string number_string{begin_iterator, end_iterator};
+
+    unsigned number = static_cast<unsigned>(stoul(number_string));
 
     begin_iterator = end_iterator;
 
     return number;
-}
+};
 
-unsigned get_section_sum(auto &begin_iterator, const auto &end_iterator){
+auto get_section_sum = [](auto &begin_iterator, const auto &end_iterator){
 
     std::vector<unsigned> numbers;
    
@@ -30,7 +31,8 @@ unsigned get_section_sum(auto &begin_iterator, const auto &end_iterator){
        
     }
 
-    return std::reduce(std::begin(numbers), std::end(numbers), unsigned{});
+    return std::accumulate(std::begin(numbers), std::end(numbers), unsigned{});
+};
 }
 
 int main() {
@@ -54,13 +56,13 @@ int main() {
 
     }
 
-    std::sort(std::begin(sums), std::end(sums), std::greater{});
+    std::sort(std::begin(sums), std::end(sums), std::greater<unsigned>{});
 
     std::vector<unsigned> highest_three(3);
 
     std::copy_n(std::begin(sums), highest_three.size(), std::begin(highest_three));
 
-    unsigned sum_of_highest_three = std::reduce(std::begin(highest_three), std::end(highest_three), unsigned{});
+    unsigned sum_of_highest_three = std::accumulate(std::begin(highest_three), std::end(highest_three), unsigned{});
 
     std::cout<<"Highest Three Sections => \n";
 
