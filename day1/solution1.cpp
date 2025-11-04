@@ -1,5 +1,5 @@
 #include "input1.hpp"
-#include <array>
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 
@@ -17,21 +17,17 @@ int main() {
     std::string line;
     std::getline(inputstream, line);
 
-    std::cout << "\ninput : " << line;
-
     if (line.length() == 0) {
       std::cout<<"\t\tSum = "<<sum<<'\n';
 
-      if (sum > highest) {
-        highest = sum;
-      }
+      highest = std::max(sum, highest);
         sum = 0;
         continue;
     }
 
     auto inputnum = std::stoul(line);
     sum += inputnum;
-    std::cout << "\t number : " << inputnum;
+    std::cout << "\t number : " << inputnum << '\n';
   }
 
   std::cout << "Highest = " << highest << '\n';
