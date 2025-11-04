@@ -20,7 +20,7 @@ unsigned get_section_sum(auto &begin_iterator, const auto &end_iterator){
     std::vector<unsigned> numbers;
    
     while(begin_iterator != end_iterator){
-        const auto* end_of_line = std::find(begin_iterator, end_iterator, '\n');
+        auto end_of_line = std::find(begin_iterator, end_iterator, '\n');
 
         numbers.push_back(get_string_as_number(begin_iterator, end_of_line));
 
@@ -35,6 +35,7 @@ unsigned get_section_sum(auto &begin_iterator, const auto &end_iterator){
 
 int main() {
 
+    std::string_view inputdata{inputstring};
     auto counter = std::begin(inputdata);
     auto endpoint = std::end(inputdata);
 

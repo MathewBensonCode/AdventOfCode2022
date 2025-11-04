@@ -10,7 +10,7 @@ function(CreateTargetLink target)
 
   file(CREATE_LINK ${binaryname} ${linkname} SYMBOLIC)
 
-  #  message(
-  #  "created executable name ${binaryname} with a link ${linkname}")
+  message(
+      "created executable name ${binaryname} with a link ${linkname}")
 
 endfunction()

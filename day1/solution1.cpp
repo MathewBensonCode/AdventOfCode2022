@@ -3,15 +3,20 @@
 #include <charconv>
 #include <numeric>
 #include <vector>
+#include <iterator>
 
 int main() {
-  std::vector<unsigned> sums{};
-  std::vector<unsigned> nums{};
+    std::string_view inputdata(inputstring);
+    std::vector<unsigned> sums{};
+
 
     for (auto start_iterator{ std::begin(inputdata)}, end_iterator {std::end(inputdata)} ; start_iterator != end_iterator; std::ranges::advance(start_iterator, 1, end_iterator)) {
 
-      const auto *endline = std::ranges::find(start_iterator, end_iterator, '\n');
+      std::vector<unsigned> nums{};
+
+      auto endline = std::ranges::find(start_iterator, end_iterator, '\n');
       unsigned number{};
+
       std::from_chars(start_iterator, endline, number);
 
         if (number > 0) {
@@ -21,7 +26,6 @@ int main() {
       }
 
       const auto sum = std::reduce(nums.begin(), nums.end(), unsigned{});
-      nums.clear();
       sums.push_back(sum);
       start_iterator = endline;
     }
