@@ -1,34 +1,15 @@
 #include "input1.hpp"
-#include <algorithm>
-#include <iostream>
-#include <sstream>
+#include "utility.hpp"
 
 int main() {
-  std::stringstream inputstream{inputdata};
 
-  if (!inputstream) {
-    return 1;
-  }
+    std::string_view inputstring{inputdata};
+    const unsigned tiles = 8;
 
-  std::size_t highest{};
-  std::size_t sum{};
+    std::vector<char> output(std::size(inputstring));
 
-  while (!inputstream.eof()) {
-    std::string line;
-    std::getline(inputstream, line);
+     auto result = split_parallel_multi_pass(inputstring, output, [](const auto first, auto){
+                return (!first == '\n');
+                });
 
-    if (line.length() == 0) {
-      std::cout<<"\t\tSum = "<<sum<<'\n';
-
-      highest = std::max(sum, highest);
-        sum = 0;
-        continue;
-    }
-
-    auto inputnum = std::stoul(line);
-    sum += inputnum;
-    std::cout << "\t number : " << inputnum << '\n';
-  }
-
-  std::cout << "Highest = " << highest << '\n';
 }

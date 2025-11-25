@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 4.0)
 
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 23)
 set (CMAKE_CXX_EXTENSIONS OFF)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -41,6 +41,8 @@ include(cmake/StaticAnalyzers.cmake)
 
 # Create Target link on the source directory for convinience
 include(cmake/CreateTargetLink.cmake)
+
+find_package(TBB REQUIRED CONFIG)
 
 add_subdirectory(day1)
 #add_subdirectory(day2)
