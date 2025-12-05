@@ -1,22 +1,27 @@
 #include "input1.hpp"
 #include <algorithm>
+#include <iterator>
+#include <string_view>
 #include <numeric>
 #include <vector>
-#include <iterator>
+#include <string>
 
-int main() {
-    std::string_view inputdata(inputstring);
-    std::vector<unsigned> sums{};
+int main()
+{
+  std::string_view inputdata(inputstring);
+  std::vector<unsigned> sums{};
 
-
-    for (auto start_iterator{ std::begin(inputdata)}, end_iterator {std::end(inputdata)} ; start_iterator != end_iterator; std::advance(start_iterator, 1)) {
+    for (auto start_iterator{ std::begin(inputdata) },
+      end_iterator{ std::end(inputdata) };
+      start_iterator != end_iterator;
+      std::advance(start_iterator, 1)) {
 
       std::vector<unsigned> nums{};
 
       auto endline = std::find(start_iterator, end_iterator, '\n');
 
-      std::string number_string{start_iterator, endline};
-      
+      std::string number_string{ start_iterator, endline };
+
       unsigned number = static_cast<unsigned>(stoul(number_string));
 
         if (number > 0) {
@@ -29,5 +34,4 @@ int main() {
       sums.push_back(sum);
       start_iterator = endline;
     }
-
 }
