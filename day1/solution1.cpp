@@ -1,15 +1,21 @@
 #include "input1.hpp"
 #include "utility.hpp"
+#include <print>
 
-int main() {
+int main()
+{
+  const std::string_view inputstring{ inputdata };
+  // const unsigned tiles = 8;
 
-    std::string_view inputstring{inputdata};
-    const unsigned tiles = 8;
+  std::vector<char> output(std::size(inputstring));
 
-    std::vector<char> output(std::size(inputstring));
 
-     auto result = split_parallel_multi_pass(inputstring, output, [](const auto first, auto){
-                return (!first == '\n');
-                });
+  utility::split_parallel_multi_pass(
+    inputstring,
+    output,
+    [](const char first, char) -> bool {
+      return !(first == '\n');
+    });
 
+  std::print("Collection {}", output);
 }

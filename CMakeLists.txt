@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 4.0)
 
-set (CMAKE_CXX_STANDARD 23)
-set (CMAKE_CXX_EXTENSIONS OFF)
-set (CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(AdventOfCode2022 CXX)
 
@@ -12,7 +12,9 @@ include(cmake/PreventInSourceBuilds.cmake)
 add_library(project_options INTERFACE)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE "Enable -ftime-trace to generate time tracing .json files on clang" OFF)
+  option(ENABLE_BUILD_WITH_TIME_TRACE
+         "Enable -ftime-trace to generate time tracing .json files on clang"
+         OFF)
   if(ENABLE_BUILD_WITH_TIME_TRACE)
     target_compile_options(project_options INTERFACE -ftime-trace)
   endif()
@@ -45,12 +47,10 @@ include(cmake/CreateTargetLink.cmake)
 find_package(TBB REQUIRED CONFIG)
 
 add_subdirectory(day1)
-#add_subdirectory(day2)
-#add_subdirectory(day3)
-#add_subdirectory(day4)
+add_subdirectory(day2)
+add_subdirectory(day3)
+add_subdirectory(day4)
+add_subdirectory(day8)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
      ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)
-
-
-
