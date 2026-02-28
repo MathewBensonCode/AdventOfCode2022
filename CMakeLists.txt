@@ -37,19 +37,7 @@ include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-#include(cmake/CompileStandardLibraryHeaderUnits.cmake)
-
-#find_package(fmt REQUIRED)
-
-#add_subdirectory(std.module)
-
-if (CMAKE_CXX_STANDARD LESS 20)
-  message(FATAL_ERROR "At least C++20 required but have ${CMAKE_CXX_STANDARD}")
-endif()
-
-add_subdirectory(fmt)
-
-target_link_libraries(project_options INTERFACE fmt::fmt)
+find_package(fmt CONFIG REQUIRED)
 
 add_subdirectory(day1)
 add_subdirectory(day2)

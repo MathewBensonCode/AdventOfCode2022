@@ -1,5 +1,5 @@
 add_executable(day11_solution1 solution1.cpp)
-target_link_libraries(day11_solution1 PRIVATE project_options project_warnings)
+target_link_libraries(day11_solution1 PRIVATE project_options project_warnings fmt::fmt-module)
 createtargetlink(day11_solution1)
 
 add_executable(day11_solution2 solution2.cpp)
@@ -7,6 +7,7 @@ target_link_libraries(
   day11_solution2
   PRIVATE
     project_options
-    project_warnings
+    project_warning 
+    fmt::fmt-module
 )
 createtargetlink(day11_solution2)
