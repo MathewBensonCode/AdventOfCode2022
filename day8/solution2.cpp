@@ -1,10 +1,10 @@
 #include "input8.hpp"
 #include <algorithm>
-#include <array>
 #include <iostream>
 #include <ranges>
-#include <sstream>
 #include <vector>
+#include <string_view>
+#include <iterator>
 
 int main() {
   constexpr std::string_view dataview{inputdata};
@@ -36,7 +36,7 @@ int main() {
     return false;
   };
 
-  auto get_left_to_right_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_left_to_right_view = [&](unsigned long row, unsigned long col) -> auto{
     auto current_view = joint_view |
                         std::views::drop((row * array_width) + col) |
                         std::views::take(array_width - col);
@@ -55,7 +55,7 @@ int main() {
     return results;
   };
 
-  auto get_right_to_left_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_right_to_left_view = [&](unsigned long row, unsigned long col) -> auto{
     std::vector<char> results{};
 
     auto rowviews = split_view | std::views::drop(row);
@@ -74,7 +74,7 @@ int main() {
     return results;
   };
 
-  auto get_top_to_bottom_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_top_to_bottom_view = [&](unsigned long row, unsigned long col) -> auto{
     std::vector<char> results{};
     found_one_already = false;
     auto rowviews = split_view | std::views::drop(row);
@@ -99,7 +99,7 @@ int main() {
     return results;
   };
 
-  auto get_bottom_to_top_view = [&](std::size_t row, std::size_t col) -> auto{
+  auto get_bottom_to_top_view = [&](unsigned long row, unsigned long col) -> auto{
     std::vector<char> results{};
     auto rowviews =
         reverse_split_view | std::views::drop(array_width - (row + 1));
@@ -112,7 +112,7 @@ int main() {
 
     auto remaining_views = rowviews | std::views::drop(1);
 
-    for (auto myrow : remaining_views) {
+    for (const auto &myrow : remaining_views) {
       auto selected = myrow | std::views::drop(array_width - (col + 1));
 
       auto value = *(selected.begin());
@@ -128,10 +128,10 @@ int main() {
 
   auto print_current = [&current] { std::cout << " => " << current << " -> "; };
 
-  std::size_t highest_scenic_score{};
+  unsigned long highest_scenic_score{};
 
-  for (std::size_t row_index{}; row_index < array_width; ++row_index) {
-    for (std::size_t col_index{0}; col_index < array_width; ++col_index) {
+  for (unsigned long row_index{}; row_index < array_width; ++row_index) {
+    for (unsigned long col_index{0}; col_index < array_width; ++col_index) {
 
       std::cout << "Row = " << row_index << "\t| Col = " << col_index << '\n';
 
@@ -180,9 +180,7 @@ int main() {
       auto scenic_score = lines_ltr.size() * lines_rtl.size() *
                           lines_ttb.size() * lines_btt.size();
 
-      if (scenic_score > highest_scenic_score) {
-        highest_scenic_score = scenic_score;
-      }
+      highest_scenic_score = std::max(scenic_score, highest_scenic_score);
     }
     std::cout << '\n';
   }

@@ -4,7 +4,7 @@
 #include <numeric>
 #include <ranges>
 #include <string_view>
-import fmt;
+#include <fmt/format.h>
 
 namespace {
 const auto compartment_size{53};

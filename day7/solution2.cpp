@@ -1,25 +1,30 @@
 #include "input7.hpp"
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <memory>
 #include <numeric>
-#include <ranges>
 #include <sstream>
 #include <vector>
+#include <cstddef>
+#include <string>
+#include <utility>
 
-struct file {
-  std::string name{};
+namespace {
+  struct file {
+  std::string name;
   std::size_t size{};
 };
 
 struct directory : public file {
-  std::weak_ptr<directory> parent{};
-  std::vector<std::shared_ptr<file>> contents{};
+  std::weak_ptr<directory> parent;
+  std::vector<std::shared_ptr<file>> contents;
 };
 
 std::size_t operator+(const std::size_t value1,
                       const std::shared_ptr<file> &other) {
   return value1 + other->size;
+}
 }
 
 int main() {
@@ -61,11 +66,11 @@ int main() {
                 << '\n';
 
       const auto &contents = current_directory->contents;
-      std::size_t sum{
+      const std::size_t sum =
           std::accumulate(contents.begin(), contents.end(), std::size_t{},
                           [](std::size_t previous_sum, const auto &dir) {
                             return previous_sum + dir->size;
-                          })};
+                          });
 
       if (current_directory->size != sum) {
         current_directory->size = sum;
@@ -75,14 +80,14 @@ int main() {
 
     } else {
 
-      for (auto &dir : current_directory->contents) {
+      for (const auto &dir : current_directory->contents) {
         if (dir->name == destination) {
           auto cast_directory = std::static_pointer_cast<directory>(dir);
 
           if (cast_directory) {
             std::cout << "Changed to directory : " << cast_directory->name
                       << '\n';
-            current_directory = cast_directory;
+            current_directory = std::move(cast_directory);
             break;
           }
         }
@@ -96,7 +101,7 @@ int main() {
     std::string linestring{};
     std::getline(inputstringstream, linestring);
 
-    if (linestring.length() > 0) {
+    if (linestring.empty()) {
       std::istringstream linestream{linestring};
 
       std::cout << linestring << '\n';
@@ -140,7 +145,7 @@ int main() {
 
   auto rootdircollection = root_directory->contents;
 
-  std::size_t current_stored =
+  const std::size_t current_stored =
       std::accumulate(std::begin(rootdircollection),
                       std::end(rootdircollection), std::size_t{});
 
@@ -162,9 +167,7 @@ int main() {
   for (const auto &dir : directories) {
     auto dirsize = dir->size;
     if (dirsize >= target) {
-      if (dirsize < smallest_dir_to_remove) {
-        smallest_dir_to_remove = dirsize;
-      }
+      smallest_dir_to_remove = std::min(dirsize, smallest_dir_to_remove);
     }
   }
 

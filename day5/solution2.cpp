@@ -2,26 +2,27 @@
 #include <array>
 #include <iostream>
 #include <sstream>
-#include <stack>
 #include <vector>
+#include <cstddef>
+#include <string>
 
 int main() {
   std::stringstream inputstringstream{inputdata};
 
-  std::size_t line_counter{0};
-  const std::size_t number_of_stacks{9};
-  const std::size_t data_line_end{8};
-  const std::size_t move_line_length{20};
-  std::size_t stack_location{data_line_end - 1};
+  size_t line_counter{0};
+  const size_t number_of_stacks{9};
+  const size_t data_line_end{8};
+  const size_t move_line_length{20};
+  size_t stack_location{data_line_end - 1};
 
   std::array<std::vector<char>, number_of_stacks> crate_containers{};
 
   auto fill_stacks = [&](const std::string &crate_data) {
     const auto stride{4};
 
-    for (std::size_t line_index{0}; line_index < data_line_end + 1;
+    for (size_t line_index{0}; line_index < data_line_end + 1;
          ++line_index) {
-      char value = crate_data.substr(1 + (line_index * stride), 1)[0];
+      const char value = crate_data.substr(1 + (line_index * stride), 1).at(0);
       if (value != ' ') {
         auto &crate = crate_containers.at(line_index);
         if (crate.size() < stack_location) {
@@ -50,7 +51,7 @@ int main() {
   auto print_stacks = [&crate_containers] {
     std::cout << "\nStacks => \n";
 
-    std::size_t counter{1};
+    size_t counter{1};
     for (const auto &stack : crate_containers) {
       std::cout << "Stack " << counter << " => ";
       for (auto crate : stack) {
@@ -66,21 +67,21 @@ int main() {
 
     std::string movestring;
     movestream >> movestring;
-    std::size_t number_of_moves{};
+    size_t number_of_moves{};
     movestream >> number_of_moves;
 
     std::cout << '\n' << movestring << ' ' << number_of_moves << ' ';
 
     std::string from_string{};
     movestream >> from_string;
-    std::size_t from_index{};
+    size_t from_index{};
 
     movestream >> from_index;
     std::cout << from_string << ' ' << from_index << ' ';
 
     std::string to_string{};
     movestream >> to_string;
-    std::size_t to_index{};
+    size_t to_index{};
     movestream >> to_index;
 
     std::cout << to_string << ' ' << to_index << '\n';
@@ -90,9 +91,9 @@ int main() {
     std::vector<char> tempcontainer(number_of_moves);
 
     auto move_crate_values = [](std::vector<char> &from_stack,
-                                std::size_t moves,
+                                size_t moves,
                                 std::vector<char> &to_stack) {
-      for (std::size_t index{0}; index < moves; ++index) {
+      for (size_t index{0}; index < moves; ++index) {
 
         if (!from_stack.empty()) {
           auto value = from_stack.back();
@@ -113,7 +114,7 @@ int main() {
 
     std::getline(inputstringstream, linestring);
 
-    if (linestring.length() == 0) {
+    if (linestring.empty()) {
       continue;
     }
 

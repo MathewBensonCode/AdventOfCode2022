@@ -15,5 +15,5 @@ int main()
   std::ranges::copy(sections, std::back_inserter(sums));
   auto count = *(std::ranges::max_element(sums));
 
-  fmt::print("Highest Element = {}\n ", count);
+  fmt::println("Highest Element = {}\n ", count);
 };

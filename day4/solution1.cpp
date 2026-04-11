@@ -17,7 +17,7 @@ const auto getpair = [](const auto &pair) {
   auto numbers =
       pair | std::views::split(num_delimiter) |
       std::views::transform([](const auto &num) {
-        std::string_view num_string{num.begin(), num.end()};
+        const std::string_view num_string{num.begin(), num.end()};
         int number{};
         std::from_chars(num_string.data(),
                         num_string.data() + num_string.size(), number);

@@ -2,8 +2,7 @@
 #include <numeric>
 #include <ranges>
 #include <string_view>
-
-import fmt;
+#include <fmt/format.h>
 
 using namespace std::literals::string_view_literals;
 
@@ -45,7 +44,7 @@ const auto get_game_score = [](const auto &game) {
   const std::string_view gameoutcome{game.begin(), game.end()};
   auto roundscore{0};
 
-  char myvalue = gameoutcome.back();
+  const char myvalue = gameoutcome.back();
 
   roundscore += mymoves(myvalue);
   roundscore += win_lose(gameoutcome);
