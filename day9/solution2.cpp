@@ -13,7 +13,7 @@ struct point {
   std::size_t y;
 };
 
-enum class direction {
+enum class direction : char {
   none,
   up,
   down,
@@ -22,12 +22,12 @@ enum class direction {
   up_left,
   up_right,
   down_left,
-  down_right
+  down_right,
 };
 
 direction operator-(const point &head, const point &tail) {
-  int x_difference = static_cast<int>(head.x) - static_cast<int>(tail.x);
-  int y_difference = static_cast<int>(head.y) - static_cast<int>(tail.y);
+  const int x_difference = static_cast<int>(head.x) - static_cast<int>(tail.x);
+  const int y_difference = static_cast<int>(head.y) - static_cast<int>(tail.y);
 
   if (y_difference == 0) {
     if (x_difference < -1) {
@@ -73,14 +73,14 @@ direction operator-(const point &head, const point &tail) {
 } // namespace
 
 int main() {
-  std::string_view inputstringview{inputdata};
+  const std::string_view inputstringview{inputdata};
   constexpr auto number_of_input_lines{2000};
   auto data_view = inputstringview | std::views::split('\n') |
                    std::views::drop(1) |
                    std::views::take(number_of_input_lines);
   constexpr std::size_t grid_width{600};
   const auto center_point{grid_width / 2};
-  const point starting_point{center_point, center_point};
+  const point starting_point{.x=center_point, .y=center_point};
 
   std::array<std::array<short, grid_width>, grid_width> tail_counter{};
   tail_counter.at(center_point).at(center_point)++;
@@ -119,7 +119,7 @@ int main() {
   };
 
   auto move_tail = [&](point &first, point &second) {
-    direction second_direction = first - second;
+    const direction second_direction = first - second;
 
     switch (second_direction) {
     case direction::left: {
@@ -218,7 +218,7 @@ int main() {
   };
 
   for (auto line : data_view) {
-    std::string linestring(line.begin(), line.end());
+    const std::string linestring(line.begin(), line.end());
     std::stringstream linestream{linestring};
     char direction{};
     linestream >> direction;

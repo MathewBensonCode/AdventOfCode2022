@@ -1,5 +1,4 @@
 #include "input3.hpp"
-#include <algorithm>
 #include <array>
 #include <numeric>
 #include <ranges>
@@ -13,7 +12,7 @@ const auto capital_letter_offset{38};
 const auto small_capital_boundary{27};
 constexpr std::string_view line_delimiter{"\n"};
 
-const auto calculate_char = [](std::size_t value) {
+const auto calculate_char = [](auto value) {
   if (value < small_capital_boundary) {
     return static_cast<unsigned char>(value + small_letter_offset);
   }
@@ -21,7 +20,7 @@ const auto calculate_char = [](std::size_t value) {
 };
 
 const auto calculate_index = [](unsigned char letter) {
-  auto value = static_cast<std::size_t>(letter);
+  auto value = static_cast<unsigned long>(letter);
 
   if (value > small_letter_offset) {
     return value - small_letter_offset;

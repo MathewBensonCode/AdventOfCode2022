@@ -19,8 +19,9 @@ const auto getpair = [](const auto &pair) {
       std::views::transform([](const auto &num) {
         const std::string_view num_string{num.begin(), num.end()};
         int number{};
-        std::from_chars(num_string.data(),
-                        num_string.data() + num_string.size(), number);
+        std::from_chars(num_string.begin(),
+                        std::next(num_string.begin(), static_cast<long>(num_string.size())),
+                        number);
         return number;
       });
 

@@ -1,21 +1,23 @@
 #include "input10.hpp"
 #include <array>
 #include <sstream>
+#include <cstddef>
+
 import fmt;
 
 int main() {
   std::istringstream inputstringstream{inputdata};
 
-  const std::size_t screen_width{40};
-  const std::size_t screen_height{6};
-  std::size_t cycle_counter{};
-  std::size_t sprite_start_location{};
+  const size_t screen_width{40};
+  const size_t screen_height{6};
+  size_t cycle_counter{};
+  size_t sprite_start_location{};
 
   std::array<std::array<char, screen_width>, screen_height> pixel_array{};
 
   auto draw_pixel = [&] {
-    std::size_t current_row = cycle_counter / screen_width;
-    std::size_t current_column = cycle_counter % screen_width;
+    const size_t current_row = cycle_counter / screen_width;
+    const size_t current_column = cycle_counter % screen_width;
     char current_char{'.'};
 
     if ((current_column >= sprite_start_location) &&
@@ -39,7 +41,7 @@ int main() {
     if (command == "addx") {
       draw_pixel();
       draw_pixel();
-      std::size_t add_value{};
+      size_t add_value{};
       inputstringstream >> add_value;
       sprite_start_location += add_value;
       fmt::print("sprite_start_location => {}\n", sprite_start_location);

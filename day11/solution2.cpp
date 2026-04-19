@@ -2,22 +2,23 @@
 #include <algorithm>
 #include <charconv>
 #include <functional>
-#include <iostream>
 #include <iterator>
 #include <numeric>
 #include <ranges>
 #include <string_view>
 #include <vector>
 #include <array>
+#include <cstddef>
+
 import fmt;
 
 namespace {
 struct Monkey {
-  std::vector<std::size_t> items{};
-  std::function<std::size_t(std::size_t)> item_operation{};
-  std::size_t test{};
-  std::size_t true_monkey{};
-  std::size_t false_monkey{};
+  std::vector<size_t> items;
+  std::function<size_t(size_t)> item_operation;
+  size_t test{};
+  size_t true_monkey{};
+  size_t false_monkey{};
 };
 
 constexpr std::string_view sectiondelimiter{"\n\n"};
@@ -36,7 +37,7 @@ const auto get_operation = [](const auto &operation_string) {
   const std::string_view myoperator{op_operator.begin(), op_operator.end()};
   const std::string_view second_operand{second_op.begin(), second_op.end()};
 
-  std::function<std::size_t(std::size_t, std::size_t)> operation{};
+  std::function<size_t(size_t, size_t)> operation{};
   if (myoperator == "+") {
     operation = std::plus<>();
   }
@@ -44,22 +45,22 @@ const auto get_operation = [](const auto &operation_string) {
     operation = std::multiplies<>();
   }
 
-  std::size_t operand2{};
+  size_t operand2{};
   if (second_operand == "old") {
     operand2 = 0;
   } else {
-    std::from_chars(second_operand.data(), second_operand.data()+second_operand.size(), operand2);
+    std::from_chars(second_operand.begin(), second_operand.end(), operand2);
   }
 
-  return [operand2, operation](const std::size_t old) {
+  return [operand2, operation](const size_t old) {
     return std::invoke(operation, old, (operand2 == 0 ? old : operand2));
   };
 };
 
 const auto get_num_from_string = [](const auto &item) {
-  std::size_t number{};
-  std::string_view item_string{item.begin(), item.end()};
-  std::from_chars(item_string.data(), item_string.data()+item_string.size(), number);
+  size_t number{};
+  const std::string_view item_string{item.begin(), item.end()};
+  std::from_chars(item_string.begin(), item_string.end(), number);
   return number;
 };
 
@@ -108,10 +109,10 @@ const auto get_monkeys = [](const auto &section) {
   return current_monkey;
 };
 
-const std::size_t num_of_monkeys{8};
+const size_t num_of_monkeys{8};
 
 const auto print_monkeys = [](const auto &monkeys, const auto &monkey_counter) {
-  std::size_t counter{0};
+  size_t counter{0};
   for (const auto &monkey : monkeys) {
     fmt::print("Monkey {} Items => ", counter);
     for (const auto &item : monkey.items) {
@@ -130,22 +131,22 @@ int main() {
 
   std::array<Monkey, num_of_monkeys> monkey_store{};
 
-  std::array<std::size_t, num_of_monkeys> monkey_move_counter{};
+  std::array<size_t, num_of_monkeys> monkey_move_counter{};
 
   std::ranges::copy(monkeys, monkey_store.begin());
 
   print_monkeys(monkey_store, monkey_move_counter);
 
-  std::size_t lcm{monkey_store.at(0).test};
-  for (std::size_t index{1}; index < num_of_monkeys - 1; ++index) {
+  size_t lcm{monkey_store.at(0).test};
+  for (size_t index{1}; index < num_of_monkeys - 1; ++index) {
     lcm = std::lcm(lcm, monkey_store.at(index).test);
   }
 
-  const std::size_t required_rounds{10000};
-  for (std::size_t index{1}; index < required_rounds + 1; ++index) {
+  const size_t required_rounds{10000};
+  for (size_t index{1}; index < required_rounds + 1; ++index) {
     fmt::print("\nAfter Round: {}\n", index);
 
-    std::size_t monkey_index{};
+    size_t monkey_index{};
     for (auto &monkey : monkey_store) {
       while (!monkey.items.empty()) {
         auto item = monkey.items.back();

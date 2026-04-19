@@ -5,17 +5,19 @@
 #include <ranges>
 #include <sstream>
 #include <vector>
+#include <cstddef>
+
 import fmt;
 
 namespace {
 struct file {
-  std::string name{};
+  std::string name;
   std::size_t size{};
 };
 
 struct directory : public file {
-  std::weak_ptr<directory> parent{};
-  std::vector<std::shared_ptr<file>> contents{};
+  std::weak_ptr<directory> parent;
+  std::vector<std::shared_ptr<file>> contents;
 };
 
 const auto add_dir_size = [](const std::size_t &sum,
@@ -64,7 +66,7 @@ int main() {
 
       const auto &contents = current_directory->contents;
 
-      std::size_t sum{
+      const size_t sum{
           std::accumulate(contents.begin(), contents.end(), std::size_t{},
                           [](std::size_t previous_sum, const auto &dir) {
                             return previous_sum + dir->size;
@@ -84,7 +86,7 @@ int main() {
 
           if (cast_directory) {
               fmt::print("Changed to directory : {}\n", cast_directory->name);
-            current_directory = cast_directory;
+            current_directory = std::move(cast_directory);
             break;
           }
         }
@@ -97,7 +99,7 @@ int main() {
   for (const auto &line : lines) {
     std::string linestring{line.begin(), line.end()};
 
-    if (linestring.length() > 0) {
+    if (linestring.empty()) {
       std::istringstream linestream{linestring};
 
       fmt::print("{}\n", linestring);

@@ -5,7 +5,7 @@
 #include <charconv>
 #include <array>
 #include <vector>
-#include <utility>
+#include <cstddef>
 
 import fmt;
 
@@ -13,22 +13,22 @@ namespace {
 constexpr std::string_view section_delimiter{"\n\n"};
 constexpr std::string_view line_delimiter{"\n"};
 constexpr std::string_view space_delimiter{" "};
-constexpr std::size_t stack_count{9};
-constexpr std::size_t stride{4};
+constexpr size_t stack_count{9};
+constexpr size_t stride{4};
 
 const auto to_string_view = [](const auto &data) {
   return std::string_view{data.begin(), data.end()};
 };
 
-const auto fill_stacks = [](const std::string_view datasection,
+auto fill_stacks (const std::string_view datasection,
                             auto &stack_container) {
   auto lines = datasection | std::views::split(line_delimiter) |
                std::views::take(stack_count) |
                std::views::transform(to_string_view);
 
   for (const auto &line : lines) {
-    auto itr = line.begin();
-    std::size_t stack_counter{};
+    for(auto itr = line.begin(); itr!=line.end();){
+    size_t stack_counter{};
     if (!line.empty()) {
       std::advance(itr, 1);
 
@@ -45,14 +45,15 @@ const auto fill_stacks = [](const std::string_view datasection,
         stack_counter++;
       };
     }
+    }
   }
 
   for (auto &vec : stack_container) {
     std::ranges::reverse(vec);
   }
-};
+}
 
-auto print_stacks = [](const auto &stack_container) {
+auto print_stacks (const auto &stack_container) {
   fmt::print("\nStack Status\n");
   unsigned stack_number{1};
   for (const auto &vec : stack_container) {
@@ -66,15 +67,16 @@ auto print_stacks = [](const auto &stack_container) {
   }
 
   fmt::print("\n--------\n\n");
-};
+}
 
-auto process_moves = [](const auto &moves, auto &stack_container) {
+auto process_moves (const auto &moves, auto &stack_container) {
   auto lines = moves | std::views::split(line_delimiter) |
                std::views::transform(to_string_view);
 
-  auto getnum = [](const auto text) {
+  auto getnum = [](const auto &text) {
     int current_num{-1};
-    std::from_chars(text.data(), text.data() + text.size(), current_num);
+    std::from_chars(text.begin(), std::next(text.begin(), static_cast<long>(text.size())),
+          current_num);
     return current_num;
   };
 
@@ -104,7 +106,7 @@ auto process_moves = [](const auto &moves, auto &stack_container) {
     fmt::print("\nAfter {} ", line);
     print_stacks(stack_container);
   }
-};
+}
 
 } // namespace
 

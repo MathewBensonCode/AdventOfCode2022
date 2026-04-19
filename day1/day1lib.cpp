@@ -31,9 +31,9 @@ export struct get_section_sum
     auto lines =
       section | std::views::split(line_delimiter) | std::views::transform([](const auto &line) {
         int number{};
-        std::string_view line_string{ line.begin(), line.end() };
-        std::from_chars(line_string.data(),
-          line_string.data() + line_string.size(),
+        const std::string_view line_string{ line.begin(), line.end() };
+        std::from_chars(line_string.begin(),
+          std::next(line_string.begin() , static_cast<long>(line_string.size())),
           number);
         fmt::print("# {}\n", number);
         return number;
