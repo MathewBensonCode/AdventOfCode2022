@@ -11,49 +11,47 @@ int main() {
     return 2;
   }
 
-  std::size_t gamescore{};
+  auto gamescore{0U};
 
   while (!inputstringstream.eof()) {
     std::string gameoutcome{};
 
     std::getline(inputstringstream, gameoutcome);
 
-    std::size_t roundscore{};
 
-    if (gameoutcome.length() == 0) {
+    if (gameoutcome.empty()) {
       continue;
     }
 
-    char myvalue = gameoutcome[2];
+    const auto myvalue = gameoutcome[2];
 
-    const auto winning_score{6};
-    const auto draw_score{3};
-    const auto lose_score{0};
+    const auto winning_score{6U};
+    const auto draw_score{3U};
+    const auto lose_score{0U};
 
-    std::map<char, std::size_t> win_draw_lose = {
+    std::map<char, unsigned> win_draw_lose = {
         {'Z', winning_score}, {'Y', draw_score}, {'X', lose_score}};
 
-    const auto rock_score{1};
-    const auto paper_score{2};
-    const auto scissors_score{3};
+    const auto rock_score{1U};
+    const auto paper_score{2U};
+    const auto scissors_score{3U};
 
-    std::map<std::string, std::size_t> moves = {// Win Moves
-                                                {"A Z", paper_score},
-                                                {"B Z", scissors_score},
-                                                {"C Z", rock_score},
+    const auto moves = std::map<std::string, unsigned>{// Win Moves
+                                                {std::string{"A Z"}, paper_score},
+                                                {std::string{"B Z"}, scissors_score},
+                                                {std::string{"C Z"}, rock_score},
 
                                                 // Draw Moves
-                                                {"A Y", rock_score},
-                                                {"B Y", paper_score},
-                                                {"C Y", scissors_score},
+                                                {std::string{"A Y"}, rock_score},
+                                                {std::string{"B Y"}, paper_score},
+                                                {std::string{"C Y"}, scissors_score},
 
                                                 // Lose Moves
-                                                {"A X", scissors_score},
-                                                {"B X", rock_score},
-                                                {"C X", paper_score}};
+                                                {std::string{"A X"}, scissors_score},
+                                                {std::string{"B X"}, rock_score},
+                                                {std::string{"C X"}, paper_score}};
 
-    roundscore += win_draw_lose[myvalue];
-    roundscore += moves[gameoutcome];
+    const auto roundscore = win_draw_lose.at(myvalue) + moves.at(gameoutcome);
 
     std::cout << "Game: \n input => " << gameoutcome << "\tScore=> "
               << roundscore << '\n';
