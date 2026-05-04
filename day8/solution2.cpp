@@ -39,7 +39,7 @@ int main()
 
   std::size_t highest_scenic_score{};
 
-  unsigned row_index{};
+    unsigned row_index{};
     for (const auto &row : rowview) {
       unsigned col_index{};
         for (const auto &column : row) {
