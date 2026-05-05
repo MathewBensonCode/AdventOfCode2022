@@ -11,8 +11,8 @@ int main() {
     return 1;
   }
 
-  auto highest{0U};
-  auto sum{0U};
+  auto highest{0UL};
+  auto sum{0UL};
 
   while (!inputstream.eof()) {
     std::string line;
@@ -22,7 +22,7 @@ int main() {
       std::cout<<"\t\tSum = "<<sum<<'\n';
 
       highest = std::max(sum, highest);
-        sum = 0U;
+        sum = 0UL;
         continue;
     }
 

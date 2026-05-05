@@ -12,12 +12,12 @@ int main()
       return 1;
   }
 
-  std::array<unsigned, 3> highest{};
+  std::array<unsigned long, 3> highest{};
 
   auto gethighest = [&](const auto number) {
     std::cout << "\t sum = " << number;
     bool stored = false;
-    auto prevhigh{ 0U };
+    auto prevhigh{ 0UL };
 
       for (auto &high : highest) {
           if (high == 0) {
@@ -45,7 +45,7 @@ int main()
       }
   };
 
-  auto sum{ 0U };
+  auto sum{ 0UL };
 
     while (!inputstream.eof()) {
       std::string line;
@@ -54,7 +54,7 @@ int main()
       std::cout << "\ninput : " << line;
         if (line.empty()) {
           gethighest(sum);
-          sum = 0U;
+          sum = 0UL;
           printhighest();
           continue;
       }
@@ -63,7 +63,7 @@ int main()
       std::cout << "\t number : " << inputnum;
     }
 
-  auto totalhighest{ 0U };
+  auto totalhighest{ 0UL };
     for (const auto high : highest) {
       totalhighest += high;
     }
