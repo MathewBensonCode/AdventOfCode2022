@@ -9,11 +9,11 @@ namespace
 {
 struct point
 {
-  std::size_t x;
-  std::size_t y;
+  int x{};
+  int y{};
 };
 
-enum class direction : char{
+enum class direction : char {
   none,
   up,
   down,
@@ -27,8 +27,8 @@ enum class direction : char{
 
 direction operator-(const point &head, const point &tail)
 {
-  const int x_difference = static_cast<int>(head.x) - static_cast<int>(tail.x);
-  const int y_difference = static_cast<int>(head.y) - static_cast<int>(tail.y);
+  const auto x_difference = head.x - tail.x;
+  const auto y_difference = head.y - tail.y;
 
     if (y_difference == 0) {
         if (x_difference < -1) {
@@ -75,7 +75,7 @@ int main()
   auto data_view = inputstringview | std::views::all | std::views::split('\n') | std::views::drop(1) | std::views::take(number_of_input_lines);
   const std::size_t grid_width{ 600 };
   const auto center_point{ grid_width / 2 };
-  const point starting_point{ .x=center_point, .y=center_point };
+  const point starting_point{ .x = center_point, .y = center_point };
 
   std::array<std::array<short, grid_width>, grid_width> tail_counter{};
 
@@ -162,7 +162,7 @@ int main()
         }
       }
     fmt::print("Tail point at x={}, y={} | Head point at x={}, y={}\n", tail.x, tail.y, head.x, head.y);
-    tail_counter.at(tail.y).at(tail.x)++;
+    tail_counter.at(static_cast<unsigned long>(tail.y)).at(static_cast<unsigned long>(tail.x))++;
   };
 
   auto move_head = [&](const char direction, const std::size_t moves) {

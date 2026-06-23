@@ -1,10 +1,10 @@
 module;
 
 #include "input1.hpp"
-#include <charconv>
 #include <numeric>
-#include <ranges>
 #include <string_view>
+#include <ranges>
+#include <charconv>
 
 export module day1lib;
 
@@ -18,7 +18,6 @@ constexpr std::string_view line_delimiter{ "\n" };
 
 export struct get_section_sum
 {
-
   get_section_sum() = default;
   get_section_sum &operator=(const get_section_sum &) = delete;
   get_section_sum &operator=(get_section_sum &&) = delete;
@@ -33,7 +32,7 @@ export struct get_section_sum
         int number{};
         const std::string_view line_string{ line.begin(), line.end() };
         std::from_chars(line_string.begin(),
-          std::next(line_string.begin() , static_cast<long>(line_string.size())),
+          std::next(line_string.begin(), static_cast<long>(line_string.size())),
           number);
         fmt::print("# {}\n", number);
         return number;

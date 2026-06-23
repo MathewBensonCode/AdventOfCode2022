@@ -1,14 +1,6 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 4.0)
 
 project(AdventOfCode2022 CXX)
-include(cmake/PreventInSourceBuilds.cmake)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE "Enable -ftime-trace to generate time tracing .json files on clang" OFF)
-  if(ENABLE_BUILD_WITH_TIME_TRACE)
-    target_compile_options(project_options INTERFACE -ftime-trace)
-  endif()
-endif()
 
 include(cmake/CreateTargetLink.cmake)
 
