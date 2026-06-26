@@ -1,46 +1,9 @@
-cmake_minimum_required(VERSION 3.15)
-
-set (CMAKE_CXX_STANDARD 20)
-set (CMAKE_CXX_EXTENSIONS OFF)
-set (CMAKE_CXX_STANDARD_REQUIRED ON)
-set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
+cmake_minimum_required(VERSION 4.0)
 
 project(AdventOfCode2022 CXX)
 
-include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
-add_library(project_options INTERFACE)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE "Enable -ftime-trace to generate time tracing .json files on clang" OFF)
-  if(ENABLE_BUILD_WITH_TIME_TRACE)
-    target_compile_options(project_options INTERFACE -ftime-trace)
-  endif()
-endif()
-
-# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
-add_library(project_warnings INTERFACE)
-
-# enable cache system
-include(cmake/Cache.cmake)
-
-# Add linker configuration
-include(cmake/Linker.cmake)
-configure_linker(project_options)
-
-# standard compiler warnings
-include(cmake/CompilerWarnings.cmake)
-set_project_warnings(project_warnings)
-
-# sanitizer options if supported by compiler
-include(cmake/Sanitizers.cmake)
-enable_sanitizers(project_options)
-
-# allow for static analysis options
-include(cmake/StaticAnalyzers.cmake)
-
-# Create links for applications in the source dir for ease of invocation from ide
 include(cmake/CreateTargetLink.cmake)
 
 add_subdirectory(day1)

@@ -1,8 +1,8 @@
-add_executable(day1_solution1 solution1.cpp)
-target_link_libraries(day1_solution1 PRIVATE project_options project_warnings)
+add_executable(day1_solution1)
+target_sources(day1_solution1 PRIVATE solution1.cpp PRIVATE FILE_SET HEADERS FILES input1.hpp)
 CreateTargetLink(day1_solution1)
 
-add_executable(day1_solution2 solution2.cpp)
-target_link_libraries(day1_solution2 PRIVATE project_options project_warnings)
+add_executable(day1_solution2)
+target_sources(day1_solution2 PRIVATE solution2.cpp PRIVATE FILE_SET HEADERS FILES input1.hpp)
 CreateTargetLink(day1_solution2)
 

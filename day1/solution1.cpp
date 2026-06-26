@@ -1,6 +1,7 @@
 #include "input1.hpp"
 #include <algorithm>
 #include <iterator>
+#include <print>
 #include <string_view>
 #include <numeric>
 #include <vector>
@@ -34,4 +35,6 @@ int main()
       sums.push_back(sum);
       start_iterator = endline;
     }
+
+  std::println("Highest Section Sum = > {}", *(std::max_element(std::begin(sums), std::end(sums))));
 }

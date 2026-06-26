@@ -1,9 +1,10 @@
 #include "input2.hpp"
-#include <iostream>
 #include <map>
 #include <numeric>
+#include <print>
 #include <string>
 #include <vector>
+#include <cstddef>
 
 namespace
 {
@@ -20,12 +21,12 @@ int main()
 
   std::string_view inputstring{ inputdata };
 
-  std::vector<unsigned> gamescores{};
+  std::vector<std::size_t> gamescores{};
 
     for (auto counter_iterator = std::begin(inputstring), end_iterator = std::end(inputstring);
       counter_iterator != end_iterator;) {
 
-      unsigned roundscore{};
+      std::size_t roundscore{};
 
       auto end_of_line = std::find(counter_iterator, end_iterator, '\n');
 
@@ -51,13 +52,12 @@ int main()
       roundscore += mymoves[myvalue];
       roundscore += win_lose[gameoutcome];
 
-      std::cout << "Game: \n input => " << gameoutcome << "\tScore=> "
-                << roundscore << '\n';
+      std::println("Game: \n input =>{} \tScore=> {}", gameoutcome, roundscore);
 
       gamescores.push_back(roundscore);
 
       counter_iterator = (end_of_line != end_iterator) ? std::next(end_of_line, 1) : end_of_line;
     }
 
-  std::cout << "Games Total Score => " << std::reduce(std::begin(gamescores), std::end(gamescores), unsigned{}) << '\n';
+  std::println("Games Total Score => {}", std::reduce(std::begin(gamescores), std::end(gamescores), std::size_t{}));
 }

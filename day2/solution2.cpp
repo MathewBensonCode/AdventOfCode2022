@@ -1,8 +1,8 @@
 #include "input2.hpp"
-#include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
+#include <print>
 
 int main()
 {
@@ -58,11 +58,10 @@ int main()
       roundscore += win_draw_lose[myvalue];
       roundscore += moves[gameoutcome];
 
-      std::cout << "Game: \n input => " << gameoutcome << "\tScore=> "
-                << roundscore << '\n';
+      std::println("Game: \n input => {} \tScore=> {}", gameoutcome, roundscore);
 
       gamescore += roundscore;
     }
 
-  std::cout << "Games Total Score => " << gamescore << '\n';
+  std::println("Games Total Score => {}", gamescore);
 }
