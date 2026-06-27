@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
-
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_STANDARD 23)
+cmake_minimum_required(VERSION 4.0 FATAL_ERROR)
 
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
     # This specific value changes as experimental support evolves. See
@@ -12,53 +8,10 @@ set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
     #"a9e1cf81-9932-4810-974b-6eccaf14e457")
     "d0edc3af-4c50-42ea-a356-e2862fe7a444")
 
-set(CMAKE_EXPERIMENTAL_EXPORT_BUILD_DATABASE 
-    "73194a1d-c0b5-41b9-9190-a4512925e192")
-
 project(AdventOfCode2022 CXX)
-
-include(cmake/StandardProjectSettings.cmake)
-include(cmake/PreventInSourceBuilds.cmake)
-
-# Link this 'library' to set the c++ standard / compile-time options requested
-add_library(project_options INTERFACE)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  option(ENABLE_BUILD_WITH_TIME_TRACE
-         "Enable -ftime-trace to generate time tracing .json files on clang"
-         OFF)
-  if(ENABLE_BUILD_WITH_TIME_TRACE)
-    target_compile_options(project_options INTERFACE -ftime-trace)
-  endif()
-endif()
-
-# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
-add_library(project_warnings INTERFACE)
-
-# Add linker configuration
-include(cmake/Linker.cmake)
-configure_linker(project_options)
-
-# standard compiler warnings
-include(cmake/CompilerWarnings.cmake)
-set_project_warnings(project_warnings)
-
-# sanitizer options if supported by compiler
-include(cmake/Sanitizers.cmake)
-enable_sanitizers(project_options)
-
-# allow for static analysis options
-include(cmake/StaticAnalyzers.cmake)
 
 include(cmake/CreateTargetLink.cmake)
 
-#add_subdirectory(fmt)
-
-#add_library(stdlib)
-
-#target_sources(stdlib PUBLIC FILE_SET stdlibmodules TYPE CXX_MODULES FILES std.ixx)
-
-#target_link_libraries(stdlib PRIVATE project_options)
 
 set(CMAKE_CXX_MODULE_STD 1)
 
