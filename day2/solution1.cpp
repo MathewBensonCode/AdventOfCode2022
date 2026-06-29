@@ -23,7 +23,7 @@ int main()
           continue;
       }
 
-      const auto myvalue = gameoutcome[2];
+      const auto myvalue = gameoutcome.at(2);
 
       const auto winning_score{ 6U };
       const auto draw_score{ 3U };
@@ -35,7 +35,9 @@ int main()
       const auto losing_score{ 0U };
 
       const auto mymoves = std::map<const char, const unsigned>{
-        { 'X', rock_score }, { 'Y', paper_score }, { 'Z', scissors_score }
+        { 'X', rock_score },
+        { 'Y', paper_score },
+        { 'Z', scissors_score },
       };
 
       const auto win_lose = std::map<const std::string, const unsigned>{
@@ -52,7 +54,7 @@ int main()
         // I Lose
         { std::string{ "A Z" }, losing_score },
         { std::string{ "C Y" }, losing_score },
-        { std::string{ "B X" }, losing_score }
+        { std::string{ "B X" }, losing_score },
       };
 
       const auto roundscore = mymoves.at(myvalue) + win_lose.at(gameoutcome);
