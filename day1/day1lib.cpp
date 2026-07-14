@@ -19,12 +19,13 @@ export struct get_section_sum
     auto lines =
       section | std::views::split(line_delimiter) | std::views::transform([](const auto &line) {
         unsigned number{};
-        std::from_chars(line.begin(), line.end(), number);
+        const auto* line_start = std::ranges::cdata(line);
+        std::from_chars(line_start, std::next(line_start, line.size()), number);
         std::print("# {}\n", number);
         return number;
       });
 
-    const auto section_sum = std::accumulate(lines.begin(), lines.end(), 0);
+    const auto section_sum = std::accumulate(lines.begin(), lines.end(), unsigned{});
     std::print("Section Sum => {}\n\n", section_sum);
     return section_sum;
   }
